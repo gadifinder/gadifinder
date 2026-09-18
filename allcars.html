@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="GadiFinder All Cars - Explore cars sold in India by leading car brands.">
+
+  <meta name="google-site-verification"
+        content="SgqZ9yGE-HvlXzNbv-H4vzFWVXJqt0wzoXyhwAmzaQM">
+
+  <title>All Cars | GadiFinder</title>
+
+  <!--
+    ============================================================
+    GADIFINDER
+    PART 3 — ALL CARS PAGE
+
+    FILE NAME:
+    03-all-cars.html
+
+    PURPOSE:
+    Displays all available car brands and their car models.
+
+    IMPORTANT:
+    This page is intentionally separate from:
+      01-index.html
+      02-find-cars.html
+      04-compare.html
+      05-promote.html
+      06-insurance-emi.html
+      07-contact.html
+
+    COMMON DESIGN:
+    The main styling is loaded from:
+      10-style.css
+
+    COMMON JAVASCRIPT:
+      11-script.js
+
+    CAR DATABASE:
+      08-car-data.js
+
+    You can therefore update the car database separately
+    without changing this page.
+    ============================================================
+  -->
+
+  <!-- MAIN WEBSITE STYLE -->
+  <link rel="stylesheet" href="10-style.css">
+
+  <!--
+    PAGE-SPECIFIC STYLE
+    These styles affect only this page.
+  -->
+  <style>
+
+    /* =========================================================
+       ALL CARS PAGE
+       ========================================================= */
+
+    .all-cars-page {
+      min-height: 100vh;
+      padding-bottom: 120px;
+    }
+
+    /* ---------------------------------------------------------
+       PAGE HERO
+       --------------------------------------------------------- */
+
+    .all-cars-hero {
+      padding: 55px 20px 35px;
+      text-align: center;
+    }
+
+    .all-cars-hero .small-label {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: rgba(255, 212, 59, 0.12);
+      color: #ffd43b;
+      border: 1px solid rgba(255, 212, 59, 0.25);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    .all-cars-hero h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+
+    .all-cars-hero h1 span {
+      color: #ffd43b;
+    }
+
+    .all-cars-hero p {
+      max-width: 760px;
+      margin: 18px auto 0;
+      color: #aeb9ca;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ---------------------------------------------------------
+       SEARCH / FILTER AREA
+       --------------------------------------------------------- */
+
+    .all-cars-tools {
+      max-width: 1180px;
+      margin: 15px auto 35px;
+      padding: 0 20px;
+    }
+
+    .all-cars-tools-box {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 14px;
+      backdrop-filter: blur(14px);
+    }
+
+    .all-cars-search {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 15px;
+      padding: 12px 14px;
+    }
+
+    .all-cars-search::placeholder {
+      color: #7f8ba0;
+    }
+
+    .brand-count {
+      white-space: nowrap;
+      padding: 10px 15px;
+      border-radius: 12px;
+      background: #ffd43b;
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* ---------------------------------------------------------
+       BRAND SECTION
+       --------------------------------------------------------- */
+
+    .brands-container {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .brand-section {
+      margin-bottom: 48px;
+      scroll-margin-top: 90px;
+    }
+
+    .brand-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-logo-placeholder {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.09);
+      color: #ffd43b;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .brand-title {
+      margin: 0;
+      color: #fff;
+      font-size: 23px;
+      font-weight: 850;
+    }
+
+    .brand-model-count {
+      color: #8490a3;
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    /* ---------------------------------------------------------
+       CAR GRID
+       --------------------------------------------------------- */
+
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    /* ---------------------------------------------------------
+       CAR CARD
+       --------------------------------------------------------- */
+
+    .all-car-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.16);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .all-car-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.22);
+    }
+
+    .car-image-area {
+      height: 220px;
+      background:
+        linear-gradient(
+          145deg,
+          #edf1f6,
+          #dfe5ed
+        );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .car-image-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .all-car-card:hover .car-image-area img {
+      transform: scale(1.04);
+    }
+
+    /*
+      IMAGE PLACEHOLDER
+
+      If you have not uploaded the image yet,
+      this placeholder remains visible.
+
+      Later put your image path in the database.
+    */
+
+    .image-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #7b8799;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .image-placeholder-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15,23,42,0.07);
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .image-placeholder strong {
+      font-size: 14px;
+      color: #526074;
+    }
+
+    .image-placeholder small {
+      margin-top: 5px;
+      font-size: 11px;
+    }
+
+    /* ---------------------------------------------------------
+       CARD INFORMATION
+       --------------------------------------------------------- */
+
+    .all-car-content {
+      padding: 18px;
+    }
+
+    .all-car-name {
+      margin: 0;
+      color: #0f172a;
+      font-size: 20px;
+      font-weight: 850;
+    }
+
+    .all-car-type {
+      margin-top: 5px;
+      color: #687589;
+      font-size: 13px;
+    }
+
+    .all-car-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .all-car-price {
+      color: #0f172a;
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .all-car-price small {
+      display: block;
+      margin-top: 3px;
+      color: #8290a2;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .view-car-btn {
+      border: 0;
+      background: #0f172a;
+      color: #ffd43b;
+      padding: 10px 14px;
+      border-radius: 11px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .view-car-btn:hover {
+      background: #ffd43b;
+      color: #0f172a;
+    }
+
+    /* ---------------------------------------------------------
+       EMPTY SEARCH RESULT
+       --------------------------------------------------------- */
+
+    .no-results {
+      display: none;
+      padding: 55px 20px;
+      text-align: center;
+      color: #9ba7b9;
+    }
+
+    .no-results strong {
+      display: block;
+      color: #fff;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    /* ---------------------------------------------------------
+       MOBILE
+       --------------------------------------------------------- */
+
+    @media (max-width: 900px) {
+
+      .cars-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 620px) {
+
+      .all-cars-hero {
+        padding-top: 35px;
+      }
+
+      .all-cars-hero h1 {
+        font-size: 38px;
+      }
+
+      .all-cars-tools-box {
+        border-radius: 16px;
+      }
+
+      .brand-heading {
+        align-items: flex-start;
+      }
+
+      .brand-title {
+        font-size: 20px;
+      }
+
+      .brand-model-count {
+        font-size: 11px;
+      }
+
+      .cars-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .car-image-area {
+        height: 235px;
+      }
+
+      .all-car-content {
+        padding: 16px;
+      }
+
+      .brand-logo-placeholder {
+        width: 43px;
+        height: 43px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================================
+       MAIN PAGE WRAPPER
+       ======================================================== -->
+
+  <main class="all-cars-page">
+
+    <!-- ======================================================
+         NAVIGATION
+         ======================================================
+
+         Desktop:
+         Navigation can appear at the top.
+
+         Mobile:
+         Your common CSS/JS can place the navigation
+         in the bottom navigation area.
+         ====================================================== -->
+
+    <header id="site-header"></header>
+
+
+    <!-- ======================================================
+         PAGE HERO
+         ====================================================== -->
+
+    <section class="all-cars-hero">
+
+      <div class="small-label">
+        EXPLORE INDIAN CARS
+      </div>
+
+      <h1>
+        All Cars on
+        <span>GadiFinder</span>
+      </h1>
+
+      <p>
+        Explore cars currently represented in the GadiFinder
+        database. Select a brand and open any car to view its
+        detailed specifications, variants, prices, features,
+        images and other available information.
+      </p>
+
+    </section>
+
+
+    <!-- ======================================================
+         SEARCH
+         ====================================================== -->
+
+    <section class="all-cars-tools">
+
+      <div class="all-cars-tools-box">
+
+        <input
+          id="carSearch"
+          class="all-cars-search"
+          type="search"
+          placeholder="Search car or brand..."
+          autocomplete="off"
+          aria-label="Search cars or brands"
+        >
+
+        <div
+          id="brandCount"
+          class="brand-count">
+          0 Brands
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         BRANDS + CARS
+         ====================================================== -->
+
+    <section class="brands-container">
+
+      <!--
+        JavaScript will generate the complete brand/car list
+        from 08-car-data.js.
+
+        This means you DO NOT need to manually create
+        hundreds of car cards here.
+
+        Update the database only in:
+        08-car-data.js
+      -->
+
+      <div id="brandsContainer"></div>
+
+      <div
+        id="noResults"
+        class="no-results">
+
+        <strong>
+          No cars found
+        </strong>
+
+        Try another car name or brand.
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+
+  <footer id="site-footer"></footer>
+
+
+  <!-- ========================================================
+       COMMON CAR DATABASE
+       ======================================================== -->
+
+  <script src="08-car-data.js"></script>
+
+
+  <!-- ========================================================
+       COMMON WEBSITE JAVASCRIPT
+       ======================================================== -->
+
+  <script src="11-script.js"></script>
+
+
+  <!-- ========================================================
+       ALL CARS PAGE JAVASCRIPT
+
+       This script controls ONLY this page.
+       ======================================================== -->
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /*
+        --------------------------------------------------------
+        GET DATABASE
+        --------------------------------------------------------
+
+        The database should expose an array named:
+
+        GADI_CARS
+
+        Example:
+
+        const GADI_CARS = [
+          {
+            id: "maruti-swift",
+            brand: "Maruti Suzuki",
+            name: "Swift",
+            type: "Hatchback",
+            startingPrice: "₹6.49 Lakh"
+          }
+        ];
+      */
+
+      const cars =
+        Array.isArray(window.GADI_CARS)
+          ? window.GADI_CARS
+          : [];
+
+
+      const container =
+        document.getElementById("brandsContainer");
+
+      const searchInput =
+        document.getElementById("carSearch");
+
+      const noResults =
+        document.getElementById("noResults");
+
+      const brandCount =
+        document.getElementById("brandCount");
+
+
+      /*
+        --------------------------------------------------------
+        REQUIRED BRANDS
+
+        These are the brands you previously selected
+        for the All Cars section.
+        --------------------------------------------------------
+      */
+
+      const allowedBrands = [
+        "Maruti Suzuki",
+        "Toyota",
+        "Hyundai",
+        "Kia",
+        "Tata",
+        "Mahindra",
+        "Honda",
+        "MG",
+        "Skoda",
+        "Volkswagen",
+        "Renault",
+        "Nissan",
+        "Citroen",
+        "BYD",
+        "Force",
+        "Jeep"
+      ];
+
+
+      /*
+        --------------------------------------------------------
+        NORMALIZE TEXT
+        --------------------------------------------------------
+      */
+
+      function normalize(value) {
+
+        return String(value || "")
+          .trim()
+          .toLowerCase();
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        CHECK BRAND
+        --------------------------------------------------------
+      */
+
+      function isAllowedBrand(brand) {
+
+        const current =
+          normalize(brand);
+
+        return allowedBrands.some(function (allowed) {
+
+          return normalize(allowed) === current;
+
+        });
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        FILTER DATABASE
+        --------------------------------------------------------
+      */
+
+      const filteredCars =
+        cars.filter(function (car) {
+
+          return isAllowedBrand(car.brand);
+
+        });
+
+
+      /*
+        --------------------------------------------------------
+        GROUP BY BRAND
+        --------------------------------------------------------
+      */
+
+      function groupCarsByBrand(list) {
+
+        const groups = {};
+
+        list.forEach(function (car) {
+
+          const brand =
+            car.brand || "Other";
+
+          if (!groups[brand]) {
+            groups[brand] = [];
+          }
+
+          groups[brand].push(car);
+
+        });
+
+        return groups;
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        CREATE CAR CARD
+        --------------------------------------------------------
+      */
+
+      function createCarCard(car) {
+
+        const card =
+          document.createElement("article");
+
+        card.className = "all-car-card";
+
+        /*
+          Every card opens the individual car page.
+
+          The ID is sent through the URL.
+
+          Example:
+
+          09-car-details.html?id=maruti-swift
+        */
+
+        card.addEventListener("click", function () {
+
+          if (!car.id) {
+            return;
+          }
+
+          window.location.href =
+            "09-car-details.html?id=" +
+            encodeURIComponent(car.id);
+
+        });
+
+
+        const imageArea =
+          document.createElement("div");
+
+        imageArea.className =
+          "car-image-area";
+
+
+        /*
+          IMAGE SUPPORT
+
+          Database can contain:
+
+          image
+
+          or
+
+          images: [
+            "image1.avif",
+            "image2.avif"
+          ]
+
+          The first image will be used on this card.
+        */
+
+        const imagePath =
+          car.image ||
+          (
+            Array.isArray(car.images)
+              ? car.images[0]
+              : ""
+          );
+
+
+        if (imagePath) {
+
+          const img =
+            document.createElement("img");
+
+          img.src = imagePath;
+
+          img.alt =
+            (car.brand || "") +
+            " " +
+            (car.name || "Car");
+
+          img.loading = "lazy";
+
+          img.onerror =
+            function () {
+
+              img.remove();
+
+              showPlaceholder(
+                imageArea,
+                car
+              );
+
+            };
+
+          imageArea.appendChild(img);
+
+        } else {
+
+          showPlaceholder(
+            imageArea,
+            car
+          );
+
+        }
+
+
+        const content =
+          document.createElement("div");
+
+        content.className =
+          "all-car-content";
+
+
+        const name =
+          document.createElement("h3");
+
+        name.className =
+          "all-car-name";
+
+        name.textContent =
+          car.name || "Car";
+
+        content.appendChild(name);
+
+
+        const type =
+          document.createElement("div");
+
+        type.className =
+          "all-car-type";
+
+        type.textContent =
+          car.type ||
+          "Passenger vehicle";
+
+        content.appendChild(type);
+
+
+        const bottom =
+          document.createElement("div");
+
+        bottom.className =
+          "all-car-bottom";
+
+
+        const price =
+          document.createElement("div");
+
+        price.className =
+          "all-car-price";
+
+        price.innerHTML =
+          escapeHTML(
+            car.startingPrice ||
+            car.price ||
+            "Price available"
+          ) +
+          "<small>Starting ex-showroom price</small>";
+
+
+        bottom.appendChild(price);
+
+
+        const button =
+          document.createElement("button");
+
+        button.className =
+          "view-car-btn";
+
+        button.type =
+          "button";
+
+        button.textContent =
+          "View Car →";
+
+
+        button.addEventListener(
+          "click",
+          function (event) {
+
+            event.stopPropagation();
+
+            if (!car.id) {
+              return;
+            }
+
+            window.location.href =
+              "09-car-details.html?id=" +
+              encodeURIComponent(car.id);
+
+          }
+        );
+
+
+        bottom.appendChild(button);
+
+        content.appendChild(bottom);
+
+        card.appendChild(imageArea);
+
+        card.appendChild(content);
+
+        return card;
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        PLACEHOLDER
+        --------------------------------------------------------
+      */
+
+      function showPlaceholder(
+        parent,
+        car
+      ) {
+
+        const placeholder =
+          document.createElement("div");
+
+        placeholder.className =
+          "image-placeholder";
+
+        placeholder.innerHTML =
+
+          '<div class="image-placeholder-icon">🚗</div>' +
+
+          '<strong>' +
+          escapeHTML(
+            (car.brand || "") +
+            " " +
+            (car.name || "Car")
+          ) +
+          '</strong>' +
+
+          '<small>Car image will be added here</small>';
+
+        parent.appendChild(
+          placeholder
+        );
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        ESCAPE HTML
+        --------------------------------------------------------
+      */
+
+      function escapeHTML(value) {
+
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        RENDER BRANDS
+        --------------------------------------------------------
+      */
+
+      function renderCars(searchTerm) {
+
+        container.innerHTML = "";
+
+        const query =
+          normalize(searchTerm);
+
+
+        const matchingCars =
+          filteredCars.filter(function (car) {
+
+            if (!query) {
+              return true;
+            }
+
+            const searchable =
+              normalize(
+                (car.brand || "") +
+                " " +
+                (car.name || "") +
+                " " +
+                (car.type || "")
+              );
+
+            return searchable.includes(
+              query
+            );
+
+          });
+
+
+        const groups =
+          groupCarsByBrand(
+            matchingCars
+          );
+
+
+        let visibleBrandCount = 0;
+
+
+        /*
+          Maintain the preferred brand order.
+        */
+
+        allowedBrands.forEach(
+          function (brandName) {
+
+            const matchingBrandKey =
+              Object.keys(groups).find(
+                function (key) {
+
+                  return normalize(key) ===
+                    normalize(brandName);
+
+                }
+              );
+
+
+            if (!matchingBrandKey) {
+              return;
+            }
+
+
+            const brandCars =
+              groups[matchingBrandKey];
+
+
+            visibleBrandCount++;
+
+
+            /*
+              BRAND SECTION
+            */
+
+            const section =
+              document.createElement("section");
+
+            section.className =
+              "brand-section";
+
+
+            /*
+              BRAND HEADING
+            */
+
+            const heading =
+              document.createElement("div");
+
+            heading.className =
+              "brand-heading";
+
+
+            const titleWrap =
+              document.createElement("div");
+
+            titleWrap.className =
+              "brand-title-wrap";
+
+
+            const logo =
+              document.createElement("div");
+
+            logo.className =
+              "brand-logo-placeholder";
+
+            /*
+              We intentionally use initials/text here
+              until you provide the actual brand logos.
+            */
+
+            logo.textContent =
+              getBrandInitials(
+                matchingBrandKey
+              );
+
+
+            const textWrap =
+              document.createElement("div");
+
+
+            const title =
+              document.createElement("h2");
+
+            title.className =
+              "brand-title";
+
+            title.textContent =
+              matchingBrandKey;
+
+
+            const count =
+              document.createElement("div");
+
+            count.className =
+              "brand-model-count";
+
+            count.textContent =
+              brandCars.length +
+              (
+                brandCars.length === 1
+                  ? " model"
+                  : " models"
+              );
+
+
+            textWrap.appendChild(
+              title
+            );
+
+            textWrap.appendChild(
+              count
+            );
+
+
+            titleWrap.appendChild(
+              logo
+            );
+
+            titleWrap.appendChild(
+              textWrap
+            );
+
+
+            heading.appendChild(
+              titleWrap
+            );
+
+
+            section.appendChild(
+              heading
+            );
+
+
+            /*
+              CAR GRID
+            */
+
+            const grid =
+              document.createElement("div");
+
+            grid.className =
+              "cars-grid";
+
+
+            brandCars.forEach(
+              function (car) {
+
+                grid.appendChild(
+                  createCarCard(car)
+                );
+
+              }
+            );
+
+
+            section.appendChild(
+              grid
+            );
+
+
+            container.appendChild(
+              section
+            );
+
+          }
+        );
+
+
+        /*
+          SEARCH RESULT STATE
+        */
+
+        if (
+          matchingCars.length === 0
+        ) {
+
+          noResults.style.display =
+            "block";
+
+        } else {
+
+          noResults.style.display =
+            "none";
+
+        }
+
+
+        brandCount.textContent =
+          visibleBrandCount +
+          (
+            visibleBrandCount === 1
+              ? " Brand"
+              : " Brands"
+          );
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        BRAND INITIALS
+        --------------------------------------------------------
+      */
+
+      function getBrandInitials(
+        brand
+      ) {
+
+        const words =
+          String(brand)
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+        if (words.length === 1) {
+
+          return words[0]
+            .substring(0, 2)
+            .toUpperCase();
+
+        }
+
+
+        return (
+          words[0][0] +
+          words[1][0]
+        ).toUpperCase();
+
+      }
+
+
+      /*
+        --------------------------------------------------------
+        LIVE SEARCH
+        --------------------------------------------------------
+      */
+
+      searchInput.addEventListener(
+        "input",
+        function () {
+
+          renderCars(
+            searchInput.value
+          );
+
+        }
+      );
+
+
+      /*
+        --------------------------------------------------------
+        INITIAL RENDER
+        --------------------------------------------------------
+      */
+
+      renderCars("");
+
+    });
+
+  </script>
+
+
+  <!-- ========================================================
+       COMMON HEADER / FOOTER FALLBACK
+       ========================================================
+
+       If 11-script.js already creates these automatically,
+       this section is not required.
+
+       The links below make this page independently usable.
+       ======================================================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const header =
+          document.getElementById(
+            "site-header"
+          );
+
+        const footer =
+          document.getElementById(
+            "site-footer"
+          );
+
+
+        /*
+          Only create fallback navigation
+          if the common script hasn't already
+          populated it.
+        */
+
+        if (
+          header &&
+          !header.innerHTML.trim()
+        ) {
+
+          header.innerHTML = `
+
+            <div class="site-header-inner">
+
+              <a
+                href="01-index.html"
+                class="site-logo"
+              >
+                Gadi<span>Finder</span>
+              </a>
+
+              <nav class="desktop-navigation">
+
+                <a href="01-index.html">
+                  Home
+                </a>
+
+                <a href="02-find-cars.html">
+                  Find Cars
+                </a>
+
+                <a
+                  href="03-all-cars.html"
+                  class="active"
+                >
+                  All Cars
+                </a>
+
+                <a href="04-compare.html">
+                  Compare
+                </a>
+
+                <a href="05-promote.html">
+                  Promote
+                </a>
+
+                <a href="06-insurance-emi.html">
+                  Insurance &amp; EMI
+                </a>
+
+                <a href="07-contact.html">
+                  Contact
+                </a>
+
+              </nav>
+
+            </div>
+
+          `;
+
+        }
+
+
+        if (
+          footer &&
+          !footer.innerHTML.trim()
+        ) {
+
+          footer.innerHTML = `
+
+            <div class="site-footer-inner">
+
+              <div>
+                <strong>
+                  GadiFinder
+                </strong>
+
+                <p>
+                  India’s smart car discovery experience.
+                </p>
+              </div>
+
+              <div class="footer-links">
+
+                <a href="01-index.html">
+                  Home
+                </a>
+
+                <a href="02-find-cars.html">
+                  Find Cars
+                </a>
+
+                <a href="03-all-cars.html">
+                  All Cars
+                </a>
+
+                <a href="04-compare.html">
+                  Compare
+                </a>
+
+                <a href="05-promote.html">
+                  Promote
+                </a>
+
+                <a href="06-insurance-emi.html">
+                  Insurance &amp; EMI
+                </a>
+
+                <a href="07-contact.html">
+                  Contact
+                </a>
+
+              </div>
+
+              <div class="footer-bottom">
+
+                © <span id="footerYear"></span>
+                GadiFinder. All rights reserved.
+
+              </div>
+
+            </div>
+
+          `;
+
+
+          const year =
+            document.getElementById(
+              "footerYear"
+            );
+
+          if (year) {
+
+            year.textContent =
+              new Date().getFullYear();
+
+          }
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
