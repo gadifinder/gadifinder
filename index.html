@@ -1,69 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<title>CarDhundo — India's Smartest Car Finder</title>
 
-<meta
-  name="google-site-verification"
-  content="SgqZ9yGE-HvlXzNbv-H4vzFWVXJqt0wzoXyhwAmzaQM"
-/>
-
-<meta
-  name="description"
-  content="GadiFinder — Indian car discovery, comparison, research, finance and automotive information platform."
->
-
-<meta
-  name="theme-color"
-  content="#0F172A"
->
-
-<title>GadiFinder — Find Your Car</title>
+<meta name="description"
+content="CarDhundo — Find, compare and finance your perfect Indian car.">
 
 <style>
-
 :root{
   --navy:#06101f;
   --navy2:#0a1830;
   --navy3:#102442;
-
-  --charcoal:#0F172A;
-  --charcoal2:#111c31;
-
   --yellow:#ffd43b;
   --yellow2:#ffea75;
-
   --white:#ffffff;
   --text:#172238;
-  --muted:#71809a;
-  --muted2:#9eabc0;
-
-  --line:#dce3ed;
-  --soft:#f5f7fa;
-  --soft2:#eef2f7;
-
-  --green:#38d996;
-  --red:#ef6b73;
-
-  --shadow:0 20px 60px rgba(15,23,42,.12);
-  --shadowDark:0 25px 70px rgba(0,0,0,.22);
-
-  --radius:28px;
-  --radiusSmall:18px;
-
-  --max:1240px;
+  --muted:#718096;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --line:#e4e9f1;
+  --green:#16a66a;
+  --danger:#ef5350;
+  --shadow:0 20px 70px rgba(5,16,31,.12);
+  --shadow2:0 10px 35px rgba(5,16,31,.08);
+  --radius:24px;
 }
 
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
 }
 
 html{
@@ -79,18 +48,14 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-
-  background:var(--charcoal);
-  color:var(--white);
-
-  min-height:100vh;
-  overflow-x:hidden;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.5;
 }
 
 button,
 input,
-select,
-textarea{
+select{
   font:inherit;
 }
 
@@ -99,2667 +64,1432 @@ button{
 }
 
 a{
-  color:inherit;
   text-decoration:none;
+  color:inherit;
 }
-
-img{
-  max-width:100%;
-  display:block;
-}
-
-/* =========================================================
-   GLOBAL
-========================================================= */
 
 .container{
-  width:min(var(--max),calc(100% - 48px));
+  width:min(1240px,92%);
   margin:auto;
 }
 
-.page{
-  min-height:calc(100vh - 88px);
-  padding:48px 0 100px;
-  background:
-    radial-gradient(
-      circle at 80% 10%,
-      rgba(255,212,59,.07),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #07111f 0%,
-      #0f172a 55%,
-      #16243c 100%
-    );
-}
-
-.lightPage{
-  background:#f5f7fa;
-  color:var(--text);
-}
-
-.hidden{
-  display:none !important;
-}
-
-.textYellow{
-  color:var(--yellow);
-}
-
-.muted{
-  color:var(--muted);
-}
-
-.center{
-  text-align:center;
-}
-
-/* =========================================================
+/* =========================
    HEADER
-========================================================= */
+========================= */
 
-.siteHeader{
+header{
   position:sticky;
   top:0;
   z-index:1000;
-
-  height:88px;
-
-  background:rgba(6,16,31,.96);
-  border-bottom:1px solid rgba(255,255,255,.08);
-
+  background:rgba(6,16,31,.94);
   backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.headerInner{
-  height:88px;
-
-  width:min(100% - 48px,var(--max));
-  margin:auto;
-
+.nav{
+  min-height:78px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:30px;
+  gap:20px;
 }
 
 .logo{
-  font-size:31px;
-  font-weight:900;
+  font-size:29px;
+  font-weight:1000;
   letter-spacing:-1.8px;
-  white-space:nowrap;
+  color:white;
 }
 
-.logoWhite{
-  color:#fff;
-}
-
-.logoYellow{
+.logo span{
   color:var(--yellow);
 }
 
-.desktopNav{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.navButton{
-  border:0;
-  background:transparent;
-  color:#dce4f2;
-
-  padding:14px 17px;
-
-  border-radius:17px;
-
-  font-weight:800;
-  font-size:15px;
-
-  transition:
-    background .2s ease,
-    color .2s ease,
-    transform .2s ease;
-}
-
-.navButton:hover{
-  background:rgba(255,255,255,.07);
+.founder-top{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
   color:#fff;
-  transform:translateY(-1px);
-}
-
-.navButton.active{
-  background:var(--yellow);
-  color:#101827;
-}
-
-/* =========================================================
-   MOBILE NAVIGATION
-========================================================= */
-
-.mobileBottomNav{
-  display:none;
-
-  position:fixed;
-  z-index:2000;
-
-  left:10px;
-  right:10px;
-  bottom:10px;
-
-  padding:9px;
-
-  border-radius:23px;
-
-  background:rgba(8,18,34,.96);
-  border:1px solid rgba(255,255,255,.12);
-
-  box-shadow:0 20px 60px rgba(0,0,0,.35);
-
-  backdrop-filter:blur(20px);
-}
-
-.mobileNavGrid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:4px;
-}
-
-.mobileNavButton{
-  border:0;
-  background:transparent;
-  color:#aab7ca;
-
-  border-radius:16px;
-
-  padding:9px 3px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
-
-  font-size:10px;
-  font-weight:800;
-}
-
-.mobileNavButton span:first-child{
-  font-size:19px;
-}
-
-.mobileNavButton.active{
-  background:var(--yellow);
-  color:#111827;
-}
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-  min-height:720px;
-
-  display:grid;
-  grid-template-columns:1.08fr .92fr;
-  align-items:center;
-
-  gap:55px;
-}
-
-.heroBadge{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-
-  padding:10px 17px;
-
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.05);
-
-  border-radius:999px;
-
-  color:#dce5f4;
-
-  font-size:13px;
-  font-weight:900;
-
-  letter-spacing:1.2px;
+  font-size:12px;
+  font-weight:1000;
+  letter-spacing:2px;
   text-transform:uppercase;
 }
 
-.heroBadgeDot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
+.navlinks{
+  display:flex;
+  align-items:center;
+  gap:21px;
+  color:#aebbd0;
+  font-size:13px;
+  font-weight:850;
+}
+
+.navlinks a:hover{
+  color:white;
+}
+
+.nav-find{
   background:var(--yellow);
-  box-shadow:0 0 15px rgba(255,212,59,.7);
+  color:#07111e!important;
+  padding:11px 17px;
+  border-radius:13px;
+  font-weight:1000;
 }
 
-.heroTitle{
-  margin-top:27px;
+/* =========================
+   HERO
+========================= */
 
-  font-size:
-    clamp(54px,7vw,92px);
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(255,212,59,.16),transparent 26%),
+    radial-gradient(circle at 10% 15%,rgba(61,113,255,.18),transparent 28%),
+    linear-gradient(135deg,#040c18,#0a1930 65%,#0d2444);
+  color:white;
+  padding:100px 0 150px;
+}
 
-  line-height:.95;
+.hero:before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  border:1px solid rgba(255,212,59,.08);
+  right:-200px;
+  top:-220px;
+}
 
+.hero-content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  max-width:950px;
+}
+
+.hero-pill{
+  display:inline-flex;
+  padding:9px 15px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.06);
+  color:#dce5f2;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.7px;
+}
+
+.hero h1{
+  font-size:clamp(46px,7vw,88px);
+  line-height:.94;
   letter-spacing:-5px;
-
-  font-weight:950;
+  margin:25px 0 20px;
+  font-weight:1000;
 }
 
-.heroTitleYellow{
+.hero h1 span{
   color:var(--yellow);
 }
 
-.heroText{
-  margin-top:30px;
-
-  max-width:790px;
-
-  font-size:20px;
-  line-height:1.7;
-
-  color:#b7c4d8;
+.hero-description{
+  max-width:730px;
+  margin:auto;
+  color:#b8c5d7;
+  font-size:17px;
 }
 
-.heroActions{
+.hero-actions{
   display:flex;
+  justify-content:center;
+  gap:12px;
   flex-wrap:wrap;
-  gap:13px;
-
-  margin-top:35px;
+  margin-top:30px;
 }
 
-.primaryButton,
-.secondaryButton{
-  border-radius:17px;
-
-  padding:16px 23px;
-
-  font-size:16px;
-  font-weight:900;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-}
-
-.primaryButton{
+.btn{
   border:0;
+  border-radius:14px;
+  padding:13px 19px;
+  font-weight:950;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-yellow{
   background:var(--yellow);
-  color:#101827;
-
-  box-shadow:
-    0 15px 35px rgba(255,212,59,.16);
+  color:#06101f;
+  box-shadow:0 15px 35px rgba(255,212,59,.2);
 }
 
-.primaryButton:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 20px 45px rgba(255,212,59,.25);
+.btn-white{
+  background:white;
+  color:#06101f;
 }
 
-.secondaryButton{
+.btn-outline{
   background:transparent;
-  color:#fff;
-
-  border:1px solid rgba(255,255,255,.35);
+  color:var(--text);
+  border:1px solid var(--line);
 }
 
-.secondaryButton:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.06);
+.btn-dark{
+  background:var(--navy);
+  color:white;
 }
 
-/* =========================================================
-   ADVERTISING BOX
-========================================================= */
-
-.adBox{
-  min-height:470px;
-
-  border-radius:32px;
-
-  border:1px solid rgba(255,255,255,.14);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.08),
-      rgba(255,255,255,.035)
-    );
-
-  box-shadow:var(--shadowDark);
-
-  padding:30px;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+.hero-founder{
+  margin:42px auto 0;
+  width:min(700px,100%);
+  padding:25px;
+  border-radius:24px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:0 20px 80px rgba(0,0,0,.2);
 }
 
-.adHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  font-weight:900;
+.hero-founder small{
+  display:block;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:9px;
+  font-weight:950;
+  color:#8fa1b9;
+  margin-bottom:6px;
 }
 
-.liveDot{
-  width:9px;
-  height:9px;
-
-  border-radius:50%;
-
-  background:var(--green);
-
-  display:inline-block;
-  margin-right:7px;
+.hero-founder strong{
+  display:block;
+  color:var(--yellow);
+  font-size:28px;
+  font-weight:1000;
+  letter-spacing:-.8px;
 }
 
-.adImagePlaceholder{
-  flex:1;
+.hero-founder p{
+  margin-top:3px;
+  color:#aab8ca;
+  font-size:11px;
+}
 
-  min-height:270px;
+/* =========================
+   ADVERTISEMENT
+========================= */
 
-  margin-top:25px;
-
-  border-radius:27px;
-
-  border:1px dashed rgba(255,255,255,.25);
-
+.ad-space{
+  margin:24px auto;
+  min-height:100px;
+  border:1px dashed #c9d2df;
+  border-radius:19px;
+  background:white;
   display:flex;
   align-items:center;
   justify-content:center;
-
   text-align:center;
-
-  color:#aab9ce;
-
-  padding:30px;
-}
-
-.adImagePlaceholder strong{
-  display:block;
-  color:#fff;
-  font-size:18px;
-  margin-bottom:10px;
-}
-
-.adStats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-
-  margin-top:15px;
-}
-
-.adStat{
-  background:rgba(255,255,255,.055);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  border-radius:18px;
-
-  padding:18px;
-}
-
-.adStat strong{
-  display:block;
-  font-size:17px;
-}
-
-.adStat span{
-  display:block;
-  margin-top:5px;
-  color:#91a0b7;
-  font-size:13px;
-}
-
-/* =========================================================
-   HOME INFORMATION CARDS
-========================================================= */
-
-.homeInfo{
-  padding:80px 0;
-  background:#f5f7fa;
-  color:var(--text);
-}
-
-.sectionHeading{
-  max-width:850px;
-  margin-bottom:35px;
-}
-
-.sectionHeading h2{
-  font-size:46px;
-  line-height:1.05;
-  letter-spacing:-2px;
-}
-
-.sectionHeading p{
-  margin-top:14px;
-  color:#70809a;
-  font-size:18px;
-  line-height:1.65;
-}
-
-.infoGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-
-.infoCard{
-  min-height:255px;
-
-  padding:29px;
-
-  border-radius:27px;
-
-  background:#fff;
-
-  box-shadow:
-    0 20px 55px rgba(15,23,42,.09);
-
-  border:1px solid #e5eaf1;
-
-  cursor:pointer;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-.infoCard:hover{
-  transform:translateY(-6px);
-  box-shadow:
-    0 30px 65px rgba(15,23,42,.14);
-}
-
-.infoIcon{
-  font-size:27px;
-  margin-bottom:35px;
-}
-
-.infoCard h3{
-  font-size:23px;
-}
-
-.infoCard p{
-  color:#73819a;
-  line-height:1.65;
-  margin-top:9px;
-}
-
-.infoLink{
-  display:inline-block;
-
-  margin-top:23px;
-
-  color:#a17b00;
-
-  font-weight:900;
-}
-
-/* =========================================================
-   FOUNDER
-========================================================= */
-
-.founderSection{
-  padding:80px 0;
-
-  background:
-    linear-gradient(
-      135deg,
-      #101b30,
-      #17253d
-    );
-}
-
-.founderBox{
-  max-width:850px;
-  margin:auto;
-
-  text-align:center;
-
-  padding:50px;
-
-  border:1px solid rgba(255,212,59,.35);
-
-  border-radius:
-    30px
-    30px
-    80px
-    30px;
-
-  background:
-    rgba(255,255,255,.06);
-}
-
-.founderLabel{
-  color:#b6c2d6;
-
-  font-size:12px;
-
-  letter-spacing:2px;
-
-  font-weight:900;
-
+  color:#8190a5;
+  font-size:10px;
   text-transform:uppercase;
+  letter-spacing:1.5px;
 }
 
-.founderName{
-  margin-top:17px;
-
-  color:var(--yellow);
-
-  font-size:39px;
-
-  font-weight:950;
-
-  letter-spacing:-1.5px;
+.ad-space strong{
+  color:#43526a;
 }
 
-.founderText{
-  margin-top:14px;
+/* =========================
+   FINDER
+========================= */
 
-  color:#c0ccdd;
-
-  line-height:1.7;
+.finder-wrap{
+  margin-top:-65px;
+  position:relative;
+  z-index:10;
 }
 
-/* =========================================================
-   PAGE HEADERS
-========================================================= */
-
-.pageHeader{
-  margin-bottom:35px;
-}
-
-.pageHeader h1{
-  font-size:55px;
-  letter-spacing:-2.5px;
-}
-
-.pageHeader p{
-  margin-top:12px;
-  max-width:800px;
-
-  color:#aab8cc;
-
-  font-size:17px;
-  line-height:1.7;
-}
-
-.lightPage .pageHeader p{
-  color:#73819a;
-}
-
-/* =========================================================
-   SEARCH / FILTER
-========================================================= */
-
-.filterPanel{
-  padding:26px;
-
-  border-radius:25px;
-
-  background:#fff;
-
+.finder{
+  background:white;
   border:1px solid var(--line);
-
+  border-radius:28px;
+  padding:30px;
   box-shadow:var(--shadow);
-
-  color:var(--text);
-
-  margin-bottom:28px;
 }
 
-.filterGrid{
+.finder-header{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.finder-header h2{
+  font-size:29px;
+  letter-spacing:-1px;
+}
+
+.finder-header p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.step{
+  background:#fff6cf;
+  color:#806300;
+  border-radius:10px;
+  padding:8px 11px;
+  font-size:10px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+
+.progress{
+  height:6px;
+  background:#edf0f4;
+  border-radius:99px;
+  overflow:hidden;
+  margin-bottom:22px;
+}
+
+.progress span{
+  display:block;
+  width:16.66%;
+  height:100%;
+  background:linear-gradient(90deg,var(--yellow),#f7ad00);
+  transition:.25s;
+}
+
+.form-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:15px;
 }
 
 .field label{
   display:block;
-
-  margin-bottom:8px;
-
-  font-size:13px;
-
-  font-weight:900;
-
-  color:#53617a;
+  font-size:10px;
+  font-weight:950;
+  color:#405069;
+  margin-bottom:7px;
 }
 
 .field input,
-.field select,
-.field textarea{
+.field select{
   width:100%;
-
-  border:1px solid #dbe2eb;
-
-  border-radius:14px;
-
-  padding:13px 14px;
-
+  padding:13px;
+  border:1px solid #dce2ea;
+  border-radius:13px;
+  background:white;
   outline:none;
-
-  background:#fff;
-
-  color:#172238;
+  color:var(--text);
 }
 
 .field input:focus,
-.field select:focus,
-.field textarea:focus{
-  border-color:#b69b32;
-
-  box-shadow:
-    0 0 0 4px rgba(255,212,59,.13);
+.field select:focus{
+  border-color:#d7ae16;
+  box-shadow:0 0 0 4px rgba(255,212,59,.15);
 }
 
-/* =========================================================
-   CAR GRID
-========================================================= */
+.find-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
 
-.carGrid{
+.find-actions button{
+  flex:1;
+}
+
+.find-note{
+  text-align:center;
+  margin-top:11px;
+  color:#8995a7;
+  font-size:9px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  padding:85px 0;
+}
+
+.dark-section{
+  background:var(--navy);
+  color:white;
+}
+
+.heading{
+  text-align:center;
+  max-width:850px;
+  margin:0 auto 40px;
+}
+
+.eyebrow{
+  color:#c39700;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-weight:1000;
+}
+
+.dark-section .eyebrow{
+  color:var(--yellow);
+}
+
+.heading h2{
+  font-size:clamp(32px,4vw,52px);
+  line-height:1;
+  letter-spacing:-2px;
+  margin-top:8px;
+}
+
+.heading p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:11px;
+}
+
+.dark-section .heading p{
+  color:#91a1b6;
+}
+
+/* =========================
+   RESULTS
+========================= */
+
+.page-view{
+  display:none;
+}
+
+.page-view.active{
+  display:block;
+}
+
+.results-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.results-header h2{
+  font-size:40px;
+  letter-spacing:-1.5px;
+}
+
+.results-header p{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.result-tools{
+  display:flex;
+  gap:8px;
+}
+
+.result-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:22px;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
-.carCard{
+/* =========================
+   CAR CARD
+========================= */
+
+.car-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
   overflow:hidden;
-
-  background:#fff;
-
-  border:1px solid #e3e8ef;
-
-  border-radius:26px;
-
-  box-shadow:0 18px 55px rgba(15,23,42,.08);
-
-  color:var(--text);
-
-  cursor:pointer;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+  box-shadow:var(--shadow2);
+  transition:.22s;
 }
 
-.carCard:hover{
+.car-card:hover{
   transform:translateY(-5px);
-
-  box-shadow:
-    0 25px 65px rgba(15,23,42,.14);
+  box-shadow:0 25px 60px rgba(6,16,31,.13);
 }
 
-.carImage{
-  height:230px;
-
+.car-image{
+  height:220px;
+  position:relative;
   background:
-    linear-gradient(
-      135deg,
-      #e8edf4,
-      #d9e0ea
-    );
+    radial-gradient(circle at 50% 45%,rgba(255,212,59,.16),transparent 43%),
+    linear-gradient(145deg,#edf1f6,#fbfcfd);
+  overflow:hidden;
+}
 
+.car-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.image-placeholder{
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  color:#7c899d;
-
-  font-size:15px;
-
-  position:relative;
+  text-align:center;
+  padding:20px;
 }
 
-.carImage img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.image-placeholder b{
+  font-size:27px;
+  color:#26344a;
 }
 
-.carImageTag{
+.image-placeholder span{
+  display:block;
+  color:#7d8a9d;
+  font-size:10px;
+  margin-top:3px;
+}
+
+.card-badge{
   position:absolute;
+  left:12px;
+  top:12px;
+  z-index:2;
+  padding:7px 9px;
+  border-radius:9px;
+  background:rgba(255,255,255,.94);
+  color:#26344a;
+  font-size:9px;
+  font-weight:1000;
+}
 
-  left:14px;
-  top:14px;
+.card-body{
+  padding:18px;
+}
 
-  padding:7px 10px;
+.card-title-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
 
+.card-title{
+  font-size:19px;
+  font-weight:1000;
+}
+
+.card-brand{
+  color:#7c8899;
+  font-size:10px;
+  margin-top:2px;
+}
+
+.match-score{
+  min-width:43px;
+  height:43px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff6c9;
+  color:#856b00;
+  font-size:10px;
+  font-weight:1000;
+}
+
+.price{
+  color:#b18300;
+  font-size:17px;
+  font-weight:1000;
+  margin-top:8px;
+}
+
+.specs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin:14px 0;
+}
+
+.spec{
+  background:#f6f8fb;
+  border-radius:9px;
+  padding:8px;
+  font-size:9px;
+  color:#7c8899;
+}
+
+.spec b{
+  display:block;
+  color:#26344a;
+  font-size:10px;
+  margin-top:2px;
+}
+
+.card-actions{
+  display:flex;
+  gap:8px;
+}
+
+.card-actions button{
+  flex:1;
+  padding:10px;
   border-radius:10px;
-
-  background:rgba(6,16,31,.85);
-
-  color:#fff;
-
-  font-size:11px;
-
-  font-weight:900;
-}
-
-.carBody{
-  padding:22px;
-}
-
-.carBrand{
-  color:#8a6e00;
-
-  font-size:12px;
-
-  text-transform:uppercase;
-
-  font-weight:900;
-
-  letter-spacing:1px;
-}
-
-.carName{
-  font-size:24px;
-
+  border:0;
+  font-size:10px;
   font-weight:950;
-
-  margin-top:5px;
 }
 
-.carMeta{
+.info-btn{
+  background:var(--navy);
+  color:white;
+}
+
+.compare-btn{
+  background:white;
+  color:#33445c;
+  border:1px solid #d9e0e8!important;
+}
+
+/* =========================
+   CATALOG
+========================= */
+
+.brand-filter{
   display:flex;
   flex-wrap:wrap;
-
-  gap:7px;
-
-  margin-top:13px;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:25px;
 }
 
-.metaChip{
-  background:#f1f4f8;
-
-  color:#59677d;
-
-  padding:6px 9px;
-
-  border-radius:9px;
-
-  font-size:11px;
-
-  font-weight:800;
-}
-
-.carPrice{
-  margin-top:18px;
-
-  font-size:18px;
-
+.brand-pill{
+  border:1px solid #d9e0e8;
+  background:white;
+  color:#405069;
+  padding:9px 13px;
+  border-radius:999px;
+  font-size:10px;
   font-weight:950;
+  transition:.18s;
 }
 
-.carCardButton{
-  margin-top:16px;
-
-  color:#a17b00;
-
-  font-weight:900;
+.brand-pill:hover,
+.brand-pill.active{
+  background:var(--navy);
+  color:var(--yellow);
+  border-color:var(--navy);
 }
 
-/* =========================================================
-   CAR DETAIL
-========================================================= */
-
-.carDetail{
-  background:#f5f7fa;
-  color:var(--text);
-
-  padding-bottom:80px;
-}
-
-.carDetailTop{
-  background:
-    linear-gradient(
-      135deg,
-      #0b1628,
-      #172640
-    );
-
-  color:#fff;
-
-  padding:60px 0;
-}
-
-.breadcrumb{
-  color:#9eabc0;
-
-  font-size:13px;
-
+.catalog-tools{
+  display:flex;
+  gap:10px;
   margin-bottom:20px;
 }
 
-.carDetailGrid{
-  display:grid;
-
-  grid-template-columns:
-    1.1fr .9fr;
-
-  gap:35px;
-
-  align-items:start;
-}
-
-.mainCarImage{
-  height:470px;
-
-  border-radius:30px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #dfe5ed,
-      #cbd4df
-    );
-
-  border:1px solid rgba(255,255,255,.1);
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-
-  color:#6c7b90;
-}
-
-.mainCarImage img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.carGallery{
-  display:grid;
-
-  grid-template-columns:
-    repeat(6,1fr);
-
-  gap:10px;
-
-  margin-top:12px;
-}
-
-.galleryThumb{
-  height:75px;
-
+.catalog-tools input,
+.catalog-tools select{
+  border:1px solid var(--line);
   border-radius:12px;
-
-  border:2px solid transparent;
-
-  background:#dbe2eb;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:#728097;
-
-  overflow:hidden;
-
-  cursor:pointer;
+  padding:12px;
+  background:white;
+  outline:none;
 }
 
-.galleryThumb.active{
-  border-color:var(--yellow);
+.catalog-tools input{
+  flex:1;
 }
 
-.galleryThumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.carDetailInfo{
-  padding-top:12px;
-}
-
-.carDetailBrand{
-  color:var(--yellow);
-
-  font-weight:900;
-
-  letter-spacing:1px;
-
-  text-transform:uppercase;
-}
-
-.carDetailName{
-  font-size:55px;
-
-  letter-spacing:-2px;
-
-  margin-top:8px;
-}
-
-.carDetailPrice{
-  font-size:23px;
-
-  margin-top:15px;
-
-  font-weight:900;
-}
-
-.specGrid{
+.catalog-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:12px;
-
-  margin-top:25px;
-}
-
-.specBox{
-  padding:18px;
-
-  border-radius:17px;
-
-  background:rgba(255,255,255,.07);
-
-  border:1px solid rgba(255,255,255,.08);
-}
-
-.specBox small{
-  display:block;
-
-  color:#91a0b7;
-
-  font-size:11px;
-
-  text-transform:uppercase;
-
-  letter-spacing:.8px;
-
-  font-weight:800;
-}
-
-.specBox strong{
-  display:block;
-
-  margin-top:5px;
-
-  font-size:15px;
-}
-
-/* =========================================================
-   DETAIL SECTIONS
-========================================================= */
-
-.detailSection{
-  margin-top:35px;
-
-  background:#fff;
-
-  border-radius:29px;
-
-  padding:35px;
-
-  border:1px solid #e2e7ee;
-
-  box-shadow:0 15px 45px rgba(15,23,42,.06);
-}
-
-.detailSection h2{
-  font-size:34px;
-
-  letter-spacing:-1px;
-}
-
-.detailSectionIntro{
-  color:#73819a;
-
-  margin-top:9px;
-
-  line-height:1.65;
-}
-
-.variantTableWrap{
-  overflow-x:auto;
-
-  margin-top:25px;
-}
-
-.variantTable{
-  width:100%;
-
-  border-collapse:collapse;
-
-  min-width:800px;
-}
-
-.variantTable th{
-  background:#f0f3f7;
-
-  color:#1b2a43;
-
-  text-align:left;
-
-  padding:16px;
-
-  font-size:13px;
-}
-
-.variantTable td{
-  border-bottom:1px solid #e6eaf0;
-
-  padding:17px 16px;
-
-  vertical-align:top;
-
-  line-height:1.5;
-}
-
-.variantName{
-  font-weight:900;
-}
-
-.priceStrong{
-  font-weight:900;
-}
-
-/* =========================================================
-   FEATURE LIST
-========================================================= */
-
-.featureGrid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:12px;
-
-  margin-top:22px;
-}
-
-.featureItem{
-  padding:15px;
-
-  border-radius:15px;
-
-  background:#f5f7fa;
-
-  border:1px solid #e6ebf1;
-
-  font-size:14px;
-
-  color:#4f5d73;
-}
-
-.featureItem::before{
-  content:"✓";
-
-  color:#a17b00;
-
-  font-weight:900;
-
-  margin-right:8px;
-}
-
-/* =========================================================
-   EMI
-========================================================= */
-
-.emiBox{
-  margin-top:25px;
-
-  padding:25px;
-
-  border-radius:22px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #fffdf2,
-      #fff
-    );
-
-  border:1px solid #f1df8d;
-}
-
-.emiGrid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
 }
 
-.emiResult{
-  margin-top:22px;
-
-  padding:23px;
-
+.catalog-card{
+  background:white;
+  border:1px solid var(--line);
   border-radius:18px;
-
-  background:#0f172a;
-
-  color:#fff;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.emiResult strong{
-  color:var(--yellow);
-
-  font-size:31px;
+.catalog-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow2);
 }
 
-/* =========================================================
-   INSURANCE / FINANCE
-========================================================= */
+.catalog-img{
+  height:145px;
+  background:linear-gradient(145deg,#edf1f6,#fff);
+}
 
-.partnerBlank{
-  padding:45px;
+.catalog-img img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
 
-  border-radius:27px;
+.catalog-body{
+  padding:14px;
+}
 
-  border:1px dashed #bfc8d5;
+.catalog-body h3{
+  font-size:14px;
+}
 
-  background:#fafbfc;
+.catalog-body p{
+  font-size:9px;
+  color:var(--muted);
+  margin-top:3px;
+}
 
+.catalog-price{
+  color:#a47d00;
+  font-weight:950;
+  font-size:12px;
+  margin-top:6px;
+}
+
+/* =========================
+   COMPARE
+========================= */
+
+.compare-empty{
   text-align:center;
+  padding:55px 20px;
+  border:1px dashed #334862;
+  border-radius:20px;
+  color:#91a0b5;
+}
 
+.compare-table-wrap{
+  overflow:auto;
+}
+
+.compare-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+  background:white;
+  color:var(--text);
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.compare-table th,
+.compare-table td{
+  padding:13px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  font-size:11px;
+}
+
+.compare-table th{
+  background:#f6f8fb;
+}
+
+.compare-table td:first-child{
+  font-weight:950;
+  color:#4a5870;
+}
+
+/* =========================
+   EMI
+========================= */
+
+.emi-page{
+  min-height:70vh;
+}
+
+.emi-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.emi-box,
+.emi-result{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:27px;
+  box-shadow:var(--shadow2);
+}
+
+.emi-box h3,
+.emi-result h3{
+  font-size:24px;
+  letter-spacing:-.8px;
+}
+
+.emi-field{
+  margin-top:18px;
+}
+
+.emi-field label{
+  display:block;
+  font-size:10px;
+  font-weight:950;
+  color:#536178;
+  margin-bottom:7px;
+}
+
+.emi-field input{
+  width:100%;
+  padding:13px;
+  border:1px solid #dbe2ea;
+  border-radius:12px;
+  outline:none;
+}
+
+.minimum-dp{
+  background:#fff7cd;
+  border:1px solid #f2df74;
+  color:#675300;
+  padding:12px;
+  border-radius:12px;
+  margin-top:15px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.emi-number{
+  font-size:52px;
+  font-weight:1000;
+  color:#a67d00;
+  letter-spacing:-3px;
+  margin-top:15px;
+}
+
+.emi-sub{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.emi-breakdown{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+
+.emi-stat{
+  padding:14px;
+  background:#f7f9fb;
+  border-radius:12px;
+}
+
+.emi-stat small{
+  display:block;
+  color:#78869a;
+  font-size:9px;
+}
+
+.emi-stat b{
+  display:block;
+  margin-top:2px;
+  font-size:14px;
+}
+
+/* =========================
+   PROMOTIONS
+========================= */
+
+.promo-grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:18px;
+}
+
+.promo-box{
+  padding:30px;
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,212,59,.16),transparent 25%),
+    #0c1b32;
+  border:1px solid #243651;
+  color:white;
+}
+
+.promo-box h3{
+  font-size:27px;
+  margin-top:6px;
+}
+
+.promo-box p{
+  color:#9cabc0;
+  font-size:12px;
+  margin:10px 0 18px;
+}
+
+.contact-box{
+  padding:30px;
+  border-radius:24px;
+  background:white;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow2);
+}
+
+.contact-box h3{
+  font-size:23px;
+  margin-top:6px;
+}
+
+.contact-box p{
+  color:var(--muted);
+  font-size:11px;
+  margin:9px 0;
+}
+
+.contact-box a{
+  color:#9c7600;
+  font-size:13px;
+  font-weight:1000;
+  word-break:break-word;
+}
+
+/* =========================
+   FEATURES
+========================= */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.feature{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:22px;
+}
+
+.feature-icon{
+  width:43px;
+  height:43px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:#fff7cd;
+  margin-bottom:12px;
+  font-size:19px;
+}
+
+.feature h3{
+  font-size:16px;
+}
+
+.feature p{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:rgba(2,8,17,.78);
+  backdrop-filter:blur(10px);
+  padding:15px;
+  align-items:center;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(1050px,100%);
+  max-height:94vh;
+  overflow:auto;
+  background:white;
+  border-radius:26px;
+  padding:25px;
+  position:relative;
+}
+
+.modal-close{
+  position:absolute;
+  right:15px;
+  top:15px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:#eef1f5;
+  font-size:18px;
+}
+
+.detail-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.detail-image{
+  height:350px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#edf1f6,#fff);
+  overflow:hidden;
+}
+
+.detail-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.detail-title{
+  margin-top:4px;
+  font-size:34px;
+  letter-spacing:-1.5px;
+}
+
+.detail-price{
+  color:#a37b00;
+  font-size:19px;
+  font-weight:1000;
+  margin-top:5px;
+}
+
+.detail-specs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:18px;
+}
+
+.detail-spec{
+  background:#f6f8fb;
+  padding:11px;
+  border-radius:11px;
+  font-size:10px;
   color:#77859a;
 }
 
-.partnerBlank strong{
+.detail-spec b{
   display:block;
-
-  color:#26354c;
-
-  font-size:19px;
-
-  margin-bottom:9px;
+  color:#27364c;
+  font-size:12px;
 }
 
-.financeSection{
-  margin-top:28px;
+.variant-section{
+  margin-top:22px;
+  border-top:1px solid var(--line);
+  padding-top:20px;
 }
 
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contactGrid{
+.variant-row{
   display:grid;
-
-  grid-template-columns:
-    .8fr 1.2fr;
-
-  gap:25px;
+  grid-template-columns:1.2fr .7fr .7fr 1fr;
+  gap:8px;
+  padding:11px 0;
+  border-bottom:1px solid #edf0f4;
+  font-size:10px;
 }
 
-.contactCard{
-  background:#fff;
-
-  color:var(--text);
-
-  border-radius:26px;
-
-  padding:30px;
-
-  border:1px solid #e1e7ee;
-
-  box-shadow:var(--shadow);
+.variant-tag{
+  display:inline-block;
+  padding:5px 7px;
+  border-radius:8px;
+  background:#fff7cd;
+  color:#755e00;
+  font-weight:950;
 }
 
-.contactCard h2{
-  font-size:29px;
+.source-note{
+  color:#8793a5;
+  font-size:9px;
+  margin-top:13px;
 }
 
-.contactCard p{
-  color:#73819a;
+/* =========================
+   COMPARE BAR
+========================= */
 
-  line-height:1.7;
-
-  margin-top:10px;
-}
-
-.contactEmail{
-  margin-top:25px;
-
-  color:#a17b00;
-
-  font-weight:900;
-}
-
-/* =========================================================
-   PROMOTE
-========================================================= */
-
-.serviceGrid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:20px;
-}
-
-.serviceCard{
-  padding:27px;
-
-  background:#fff;
-
-  border-radius:24px;
-
-  border:1px solid #e1e7ee;
-
-  box-shadow:var(--shadow);
-
-  color:var(--text);
-}
-
-.serviceCard h3{
-  font-size:22px;
-}
-
-.serviceCard p{
-  margin-top:9px;
-
-  color:#73819a;
-
-  line-height:1.65;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer{
-  background:#06101f;
-
-  border-top:1px solid rgba(255,255,255,.08);
-
-  padding:65px 0 100px;
-}
-
-.footerGrid{
-  display:grid;
-
-  grid-template-columns:
-    1.2fr .8fr .8fr 1fr;
-
-  gap:35px;
-}
-
-.footer h3{
-  margin-bottom:15px;
-}
-
-.footer p,
-.footer a{
-  color:#91a0b7;
-
-  line-height:1.8;
-}
-
-.footer a{
-  display:block;
-
-  cursor:pointer;
-}
-
-.footer a:hover{
-  color:var(--yellow);
-}
-
-.footerFounder{
-  padding:25px;
-
-  border-radius:24px;
-
-  background:#0d1b31;
-
-  border:1px solid rgba(255,255,255,.09);
-}
-
-.footerFounder strong{
-  display:block;
-
-  font-size:25px;
-}
-
-.footerFounder span{
-  display:block;
-
-  color:var(--yellow);
-
-  margin-top:8px;
-
-  font-weight:900;
-}
-
-.footerBottom{
-  border-top:1px solid rgba(255,255,255,.08);
-
-  margin-top:45px;
-
-  padding-top:23px;
-
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-  color:#71819a;
-
-  font-size:13px;
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
+.compare-bar{
+  display:none;
   position:fixed;
-
-  right:25px;
-  bottom:25px;
-
-  z-index:5000;
-
-  padding:14px 19px;
-
-  background:#101c30;
-
-  color:#fff;
-
-  border:1px solid rgba(255,255,255,.1);
-
-  border-radius:14px;
-
-  box-shadow:0 20px 50px rgba(0,0,0,.3);
-
-  transform:translateY(120px);
-
-  opacity:0;
-
-  transition:.3s;
+  left:50%;
+  bottom:18px;
+  transform:translateX(-50%);
+  z-index:1500;
+  width:min(980px,94%);
+  padding:12px;
+  border-radius:18px;
+  background:#07111f;
+  color:white;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 70px rgba(0,0,0,.3);
+  align-items:center;
+  gap:10px;
 }
 
-.toast.show{
-  transform:translateY(0);
-
-  opacity:1;
+.compare-bar.show{
+  display:flex;
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+.compare-chips{
+  flex:1;
+  display:flex;
+  gap:6px;
+  overflow:auto;
+}
+
+.compare-chip{
+  background:#16253b;
+  padding:7px 9px;
+  border-radius:8px;
+  white-space:nowrap;
+  font-size:9px;
+}
+
+.compare-chip button{
+  border:0;
+  background:none;
+  color:#9aa9bc;
+  margin-left:5px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#040c18;
+  color:white;
+  padding:60px 0 25px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1.5fr;
+  gap:30px;
+}
+
+.footer-grid h4{
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.footer-grid p,
+.footer-grid a{
+  color:#8797ad;
+  font-size:10px;
+}
+
+.footer-grid a{
+  display:block;
+  margin:7px 0;
+}
+
+.founder-card{
+  border:1px solid #243651;
+  background:#0b1930;
+  border-radius:18px;
+  padding:18px;
+}
+
+.founder-card strong{
+  display:block;
+  font-size:19px;
+  color:white;
+}
+
+.founder-card span{
+  display:block;
+  color:#8999ae;
+  font-size:9px;
+  margin:3px 0 9px;
+}
+
+.founder-card a{
+  color:var(--yellow);
+  font-size:11px;
+  font-weight:950;
+}
+
+.footer-bottom{
+  text-align:center;
+  color:#65758b;
+  border-top:1px solid #1d2b40;
+  padding-top:17px;
+  margin-top:35px;
+  font-size:9px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-nav{
+  display:none;
+}
 
 @media(max-width:1050px){
-
-  .desktopNav{
-    gap:0;
+  .result-grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .navButton{
-    padding:12px 9px;
-    font-size:13px;
+  .catalog-grid{
+    grid-template-columns:1fr 1fr;
   }
 
-  .hero{
-    grid-template-columns:1fr;
-    padding:50px 0;
+  .features{
+    grid-template-columns:1fr 1fr;
   }
 
-  .adBox{
-    min-height:400px;
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
   }
-
-  .infoGrid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .carGrid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .carDetailGrid{
-    grid-template-columns:1fr;
-  }
-
-  .contactGrid{
-    grid-template-columns:1fr;
-  }
-
-  .footerGrid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
 }
 
-@media(max-width:760px){
+@media(max-width:700px){
 
-  .container{
-    width:min(100% - 28px,var(--max));
+  body{
+    padding-bottom:65px;
   }
 
-  .siteHeader{
-    height:74px;
-  }
-
-  .headerInner{
-    height:74px;
-    width:calc(100% - 28px);
-  }
-
-  .logo{
-    font-size:25px;
-  }
-
-  .desktopNav{
+  .founder-top{
     display:none;
   }
 
-  .mobileBottomNav{
-    display:block;
+  .nav{
+    min-height:64px;
   }
 
-  .page{
-    padding:35px 0 110px;
+  .logo{
+    font-size:24px;
+  }
+
+  .navlinks{
+    display:none;
   }
 
   .hero{
-    min-height:auto;
-    padding:40px 0 55px;
+    padding:65px 0 110px;
   }
 
-  .heroTitle{
-    font-size:55px;
+  .hero h1{
+    font-size:48px;
     letter-spacing:-3px;
   }
 
-  .heroText{
-    font-size:17px;
+  .hero-description{
+    font-size:14px;
   }
 
-  .heroActions{
+  .hero-founder strong{
+    font-size:23px;
+  }
+
+  .finder{
+    padding:19px;
+  }
+
+  .finder-header{
+    display:block;
+  }
+
+  .step{
+    display:inline-block;
+    margin-top:9px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .find-actions{
     flex-direction:column;
   }
 
-  .primaryButton,
-  .secondaryButton{
+  .results-header{
+    display:block;
+  }
+
+  .results-header h2{
+    font-size:32px;
+  }
+
+  .result-grid{
+    grid-template-columns:1fr;
+  }
+
+  .catalog-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .catalog-tools{
+    flex-direction:column;
+  }
+
+  .catalog-tools>*{
     width:100%;
-    text-align:center;
   }
 
-  .adBox{
-    min-height:390px;
-  }
-
-  .adStats{
+  .emi-layout{
     grid-template-columns:1fr;
   }
 
-  .infoGrid{
+  .promo-grid{
     grid-template-columns:1fr;
   }
 
-  .sectionHeading h2{
-    font-size:36px;
-  }
-
-  .carGrid{
+  .features{
     grid-template-columns:1fr;
   }
 
-  .filterGrid{
+  .footer-grid{
     grid-template-columns:1fr;
   }
 
-  .carDetailName{
-    font-size:42px;
-  }
-
-  .mainCarImage{
-    height:300px;
-  }
-
-  .carGallery{
-    grid-template-columns:
-      repeat(3,1fr);
-  }
-
-  .featureGrid{
+  .detail-layout{
     grid-template-columns:1fr;
   }
 
-  .emiGrid{
-    grid-template-columns:1fr;
+  .detail-image{
+    height:250px;
   }
 
-  .serviceGrid{
-    grid-template-columns:1fr;
+  .variant-row{
+    grid-template-columns:1fr 1fr;
   }
 
-  .footerGrid{
-    grid-template-columns:1fr;
+  .compare-bar{
+    bottom:72px;
   }
 
-  .footerBottom{
-    flex-direction:column;
+  .mobile-nav{
+    position:fixed;
+    display:flex;
+    left:0;
+    right:0;
+    bottom:0;
+    height:65px;
+    z-index:1600;
+    background:rgba(6,16,31,.98);
+    border-top:1px solid #25354c;
+    justify-content:space-around;
+    align-items:center;
   }
 
+  .mobile-nav button{
+    background:none;
+    border:0;
+    color:#9daec3;
+    font-size:9px;
+    font-weight:900;
+  }
+
+  .mobile-nav b{
+    display:block;
+    color:white;
+    font-size:17px;
+    margin-bottom:2px;
+  }
 }
-
 </style>
 </head>
+
 <body>
 
-<!-- =====================================================
+<!-- =========================
      HEADER
-===================================================== -->
+========================= -->
 
-<header class="siteHeader">
+<header>
+  <div class="container nav">
 
-  <div class="headerInner">
+    <a class="logo" href="#" onclick="showHome()">
+      Car<span>Dhundo</span>
+    </a>
 
-    <button
-      class="logo"
-      onclick="navigate('home')"
-      style="border:0;background:none;"
-    >
-      <span class="logoWhite">Gadi</span><span class="logoYellow">Finder</span>
-    </button>
+    <div class="founder-top">
+      TANMAY THORAT
+    </div>
 
-    <nav class="desktopNav">
-
-      <button
-        class="navButton active"
-        data-nav="home"
-        onclick="navigate('home')"
-      >
-        Home
-      </button>
-
-      <button
-        class="navButton"
-        data-nav="find"
-        onclick="navigate('find')"
-      >
-        Find Cars
-      </button>
-
-      <button
-        class="navButton"
-        data-nav="cars"
-        onclick="navigate('cars')"
-      >
-        All Cars
-      </button>
-
-      <button
-        class="navButton"
-        data-nav="compare"
-        onclick="navigate('compare')"
-      >
-        Compare
-      </button>
-
-      <button
-        class="navButton"
-        data-nav="promote"
-        onclick="navigate('promote')"
-      >
-        Promote
-      </button>
-
-      <button
-        class="navButton"
-        data-nav="insurance"
-        onclick="navigate('insurance')"
-      >
-        Insurance
-      </button>
-
-      <button
-        class="navButton"
-        data-nav="emi"
-        onclick="navigate('emi')"
-      >
-        EMI
-      </button>
-
-      <button
-        class="navButton"
-        data-nav="contact"
-        onclick="navigate('contact')"
-      >
-        Contact
-      </button>
-
+    <nav class="navlinks">
+      <a href="#" onclick="showHome()">Home</a>
+      <a href="#finder" onclick="showHome()">Find Cars</a>
+      <a href="#catalog" onclick="showCatalog()">All Cars</a>
+      <a href="#compare" onclick="showCompare()">Compare</a>
+      <a href="#promotions">Promotions</a>
+      <a class="nav-find" href="#finder" onclick="showHome()">
+        Find My Car
+      </a>
     </nav>
 
   </div>
-
 </header>
 
 
-<!-- =====================================================
-     MOBILE BOTTOM MENU
-===================================================== -->
+<!-- =========================
+     HOME VIEW
+========================= -->
 
-<nav class="mobileBottomNav">
+<div id="homeView" class="page-view active">
 
-  <div class="mobileNavGrid">
+<section class="hero">
 
-    <button
-      class="mobileNavButton active"
-      data-nav-mobile="home"
-      onclick="navigate('home')"
-    >
-      <span>⌂</span>
-      <span>Home</span>
-    </button>
+  <div class="container hero-content">
 
-    <button
-      class="mobileNavButton"
-      data-nav-mobile="find"
-      onclick="navigate('find')"
-    >
-      <span>⌕</span>
-      <span>Find</span>
-    </button>
-
-    <button
-      class="mobileNavButton"
-      data-nav-mobile="cars"
-      onclick="navigate('cars')"
-    >
-      <span>▦</span>
-      <span>Cars</span>
-    </button>
-
-    <button
-      class="mobileNavButton"
-      data-nav-mobile="compare"
-      onclick="navigate('compare')"
-    >
-      <span>⇄</span>
-      <span>Compare</span>
-    </button>
-
-    <button
-      class="mobileNavButton"
-      data-nav-mobile="contact"
-      onclick="navigate('contact')"
-    >
-      <span>✉</span>
-      <span>Contact</span>
-    </button>
-
-  </div>
-
-</nav>
-
-
-<!-- =====================================================
-     HOME PAGE
-===================================================== -->
-
-<main id="app">
-
-<section
-  id="page-home"
-  class="page"
->
-
-  <div class="container">
-
-    <div class="hero">
-
-      <!-- LEFT SIDE -->
-
-      <div>
-
-        <div class="heroBadge">
-          <span class="heroBadgeDot"></span>
-          India's smarter car discovery experience
-        </div>
-
-        <h1 class="heroTitle">
-
-          Don't search for a car.
-
-          <br>
-
-          <span class="heroTitleYellow">
-            Find your car.
-          </span>
-
-        </h1>
-
-        <p class="heroText">
-
-          GadiFinder brings Indian car research,
-          comparisons, buying tools, promotions and
-          future insurance & finance partnerships into
-          one clean experience.
-
-        </p>
-
-        <div class="heroActions">
-
-          <button
-            class="primaryButton"
-            onclick="navigate('find')"
-          >
-            Find My Car →
-          </button>
-
-          <button
-            class="secondaryButton"
-            onclick="navigate('cars')"
-          >
-            Explore All Cars
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- RIGHT ADVERTISING BOX -->
-
-      <div class="adBox">
-
-        <div class="adHeader">
-
-          <span>
-            GadiFinder Discovery
-          </span>
-
-          <span>
-            <span class="liveDot"></span>
-            Catalogue
-          </span>
-
-        </div>
-
-        <!--
-          BLANK BY DESIGN.
-
-          Later you can upload an advertising /
-          featured campaign image here.
-        -->
-
-        <div class="adImagePlaceholder">
-
-          <div>
-
-            <strong>
-              Your advertising / featured image area
-            </strong>
-
-            Blank by design —
-            upload your own image later.
-
-          </div>
-
-        </div>
-
-        <div class="adStats">
-
-          <div class="adStat">
-            <strong>Find</strong>
-            <span>Smart filters</span>
-          </div>
-
-          <div class="adStat">
-            <strong>Compare</strong>
-            <span>Side-by-side</span>
-          </div>
-
-          <div class="adStat">
-            <strong>Explore</strong>
-            <span>Car database</span>
-          </div>
-
-        </div>
-
-      </div>
-
+    <div class="hero-pill">
+      ✦ INDIA'S SMARTER CAR DISCOVERY EXPERIENCE
     </div>
 
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     HOME INFORMATION SECTION
-===================================================== -->
-
-<section class="homeInfo">
-
-  <div class="container">
-
-    <div class="sectionHeading">
-
-      <h2>
-        Everything you need,
-        one click away.
-      </h2>
-
-      <p>
-        Open every GadiFinder experience on its own
-        page. Research cars, compare models, find the
-        right car, explore promotions, insurance and
-        finance information, or contact GadiFinder.
-      </p>
-
-    </div>
-
-
-    <div class="infoGrid">
-
-
-      <!-- FIND -->
-
-      <article
-        class="infoCard"
-        onclick="navigate('find')"
-      >
-
-        <div class="infoIcon">
-          ⌕
-        </div>
-
-        <h3>
-          Find My Car
-        </h3>
-
-        <p>
-          Use structured preferences such as budget,
-          body type, fuel, transmission, seating and
-          personal or commercial usage.
-        </p>
-
-        <span class="infoLink">
-          Open Finder →
-        </span>
-
-      </article>
-
-
-      <!-- ALL CARS -->
-
-      <article
-        class="infoCard"
-        onclick="navigate('cars')"
-      >
-
-        <div class="infoIcon">
-          ▦
-        </div>
-
-        <h3>
-          All Cars
-        </h3>
-
-        <p>
-          Browse the GadiFinder catalogue by manufacturer,
-          model and individual research pages.
-        </p>
-
-        <span class="infoLink">
-          Explore Cars →
-        </span>
-
-      </article>
-
-
-      <!-- COMPARE -->
-
-      <article
-        class="infoCard"
-        onclick="navigate('compare')"
-      >
-
-        <div class="infoIcon">
-          ⇄
-        </div>
-
-        <h3>
-          Compare
-        </h3>
-
-        <p>
-          Select vehicles and compare important
-          specifications side by side.
-        </p>
-
-        <span class="infoLink">
-          Compare Cars →
-        </span>
-
-      </article>
-
-
-      <!-- PROMOTE -->
-
-      <article
-        class="infoCard"
-        onclick="navigate('promote')"
-      >
-
-        <div class="infoIcon">
-          ✦
-        </div>
-
-        <h3>
-          Promote
-        </h3>
-
-        <p>
-          Advertising, promotions, brand collaborations,
-          creator collaborations and business enquiries.
-        </p>
-
-        <span class="infoLink">
-          Promote With Us →
-        </span>
-
-      </article>
-
-
-      <!-- INSURANCE -->
-
-      <article
-        class="infoCard"
-        onclick="navigate('insurance')"
-      >
-
-        <div class="infoIcon">
-          🛡
-        </div>
-
-        <h3>
-          Insurance
-        </h3>
-
-        <p>
-          Insurance partner area. Company listings can
-          be added here when insurance companies approach
-          GadiFinder.
-        </p>
-
-        <span class="infoLink">
-          Open Insurance →
-        </span>
-
-      </article>
-
-
-      <!-- EMI -->
-
-      <article
-        class="infoCard"
-        onclick="navigate('emi')"
-      >
-
-        <div class="infoIcon">
-          ₹
-        </div>
-
-        <h3>
-          EMI & Finance
-        </h3>
-
-        <p>
-          Explore finance partners and calculate
-          estimated monthly payments for a vehicle.
-        </p>
-
-        <span class="infoLink">
-          Open Finance →
-        </span>
-
-      </article>
-
-
-      <!-- CONTACT -->
-
-      <article
-        class="infoCard"
-        onclick="navigate('contact')"
-      >
-
-        <div class="infoIcon">
-          ✉
-        </div>
-
-        <h3>
-          Contact
-        </h3>
-
-        <p>
-          Questions, advertising, promotions,
-          collaborations, creator enquiries and
-          business proposals.
-        </p>
-
-        <span class="infoLink">
-          Contact GadiFinder →
-        </span>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     FOUNDER
-===================================================== -->
-
-<section class="founderSection">
-
-  <div class="container">
-
-    <div class="founderBox">
-
-      <div class="founderLabel">
-        Founder • Creator • Maintained By
-      </div>
-
-      <div class="founderName">
-        Tanmay Thorat
-      </div>
-
-      <p class="founderText">
-
-        GadiFinder is created, managed and maintained
-        by <strong>Tanmay Thorat</strong>, with a focus
-        on clear automotive information and a professional
-        car-discovery journey.
-
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-<!-- =====================================================
-     FIND MY CAR PAGE
-===================================================== -->
-
-<section
-  id="page-find"
-  class="page lightPage hidden"
->
-
-  <div class="container">
-
-    <div class="pageHeader">
-
-      <h1>
-        Find My Car
-      </h1>
-
-      <p>
-        Choose your preferences and GadiFinder will
-        filter the catalogue before showing matching
-        cars.
-      </p>
-
-    </div>
-
-
-    <div class="filterPanel">
-
-      <div class="filterGrid">
-
-        <div class="field">
-          <label>Maximum Budget ₹</label>
-          <input
-            id="findBudget"
-            type="number"
-            inputmode="numeric"
-            placeholder="Example: 1500000"
-          >
-        </div>
-
-
-        <div class="field">
-
-          <label>Body Type</label>
-
-          <select id="findBody">
-
-            <option value="">Any body type</option>
-            <option value="Hatchback">Hatchback</option>
-            <option value="Sedan">Sedan</option>
-            <option value="SUV">SUV</option>
-            <option value="MPV">MPV</option>
-            <option value="Pickup">Pickup</option>
-            <option value="EV">Electric</option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>Fuel</label>
-
-          <select id="findFuel">
-
-            <option value="">Any fuel</option>
-            <option value="Petrol">Petrol</option>
-            <option value="Diesel">Diesel</option>
-            <option value="CNG">CNG</option>
-            <option value="Electric">Electric</option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>Transmission</label>
-
-          <select id="findTransmission">
-
-            <option value="">Any transmission</option>
-            <option value="Manual">Manual</option>
-            <option value="Automatic">Automatic</option>
-            <option value="AMT">AMT</option>
-            <option value="DCT">DCT</option>
-            <option value="CVT">CVT</option>
-            <option value="AT">AT</option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>Seats</label>
-
-          <input
-            id="findSeats"
-            type="number"
-            inputmode="numeric"
-            min="2"
-            max="12"
-            placeholder="5"
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label>Use</label>
-
-          <select id="findUse">
-
-            <option value="">Any use</option>
-            <option value="Personal">Personal</option>
-            <option value="Commercial">Commercial</option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>Brand</label>
-
-          <select id="findBrand">
-
-            <option value="">Any brand</option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>Search</label>
-
-          <input
-            id="findSearch"
-            type="search"
-            placeholder="Car or brand"
-          >
-
-        </div>
-
-      </div>
-
-
-      <div style="margin-top:18px;display:flex;gap:10px;">
-
-        <button
-          class="primaryButton"
-          onclick="runFinder()"
-        >
-          Find Matching Cars
-        </button>
-
-        <button
-          class="secondaryButton"
-          style="color:#172238;border-color:#cbd3df;"
-          onclick="resetFinder()"
-        >
-          Reset
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div
-      id="finderResults"
-      class="carGrid"
-    ></div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ALL CARS PAGE
-===================================================== -->
-
-<section
-  id="page-cars"
-  class="page lightPage hidden"
->
-
-  <div class="container">
-
-    <div class="pageHeader">
-
-      <h1>
-        All Cars
-      </h1>
-
-      <p>
-        Browse the GadiFinder Indian-market catalogue
-        by brand and model.
-      </p>
-
-    </div>
-
-
-    <div class="filterPanel">
-
-      <div class="filterGrid">
-
-        <div class="field">
-
-          <label>Brand</label>
-
-          <select
-            id="catalogBrand"
-            onchange="renderCarsPage()"
-          >
-
-            <option value="">
-              All selected brands
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>Search Model</label>
-
-          <input
-            id="catalogSearch"
-            type="search"
-            oninput="renderCarsPage()"
-            placeholder="Search car"
-          >
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div
-      id="catalogGrid"
-      class="carGrid"
-    ></div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     COMPARE PAGE
-===================================================== -->
-
-<section
-  id="page-compare"
-  class="page lightPage hidden"
->
-
-  <div class="container">
-
-    <div class="pageHeader">
-
-      <h1>
-        Compare Cars
-      </h1>
-
-      <p>
-        Select up to three vehicles and compare their
-        important specifications.
-      </p>
-
-    </div>
-
-
-    <div class="filterPanel">
-
-      <div class="filterGrid">
-
-        <div class="field">
-
-          <label>Car 1</label>
-
-          <select id="compare1"></select>
-
-        </div>
-
-        <div class="field">
-
-          <label>Car 2</label>
-
-          <select id="compare2"></select>
-
-        </div>
-
-        <div class="field">
-
-          <label>Car 3</label>
-
-          <select id="compare3"></select>
-
-        </div>
-
-      </div>
-
+    <h1>
+      Don't search for a car.<br>
+      <span>Find your car.</span>
+    </h1>
+
+    <p class="hero-description">
+      Tell CarDhundo your budget, fuel preference, family size,
+      efficiency, body type and transmission.
+      We'll show every qualifying car instead of hiding the rest.
+    </p>
+
+    <div class="hero-actions">
 
       <button
-        class="primaryButton"
-        style="margin-top:18px;"
-        onclick="runCompare()"
-      >
-        Compare Selected Cars
+        class="btn btn-yellow"
+        onclick="document.getElementById('finder').scrollIntoView({behavior:'smooth'})">
+        Find My Car →
+      </button>
+
+      <button
+        class="btn btn-white"
+        onclick="showCatalog()">
+        Explore All Cars
       </button>
 
     </div>
 
+    <div class="hero-founder">
 
-    <div id="compareResults"></div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PROMOTE PAGE
-===================================================== -->
-
-<section
-  id="page-promote"
-  class="page lightPage hidden"
->
-
-  <div class="container">
-
-    <div class="pageHeader">
-
-      <h1>
-        Promote With GadiFinder
-      </h1>
-
-      <p>
-        GadiFinder can provide a dedicated space for
-        automotive advertising, promotions,
-        collaborations and business opportunities.
-      </p>
-
-    </div>
-
-
-    <div class="serviceGrid">
-
-
-      <div class="serviceCard">
-
-        <h3>
-          Advertising
-        </h3>
-
-        <p>
-          Advertising placements for automotive brands,
-          manufacturers, dealerships, finance partners
-          and related businesses.
-        </p>
-
-      </div>
-
-
-      <div class="serviceCard">
-
-        <h3>
-          Promotions
-        </h3>
-
-        <p>
-          Product launches, special campaigns,
-          promotional announcements and automotive
-          offers.
-        </p>
-
-      </div>
-
-
-      <div class="serviceCard">
-
-        <h3>
-          Brand Collaboration
-        </h3>
-
-        <p>
-          Collaboration opportunities between GadiFinder
-          and automotive brands or related businesses.
-        </p>
-
-      </div>
-
-
-      <div class="serviceCard">
-
-        <h3>
-          Creator Collaboration
-        </h3>
-
-        <p>
-          Creator campaigns, automotive content
-          collaborations and digital discovery projects.
-        </p>
-
-      </div>
-
-
-      <div class="serviceCard">
-
-        <h3>
-          Business Enquiries
-        </h3>
-
-        <p>
-          Business proposals, partnerships,
-          technology collaborations and other
-          professional enquiries.
-        </p>
-
-      </div>
-
-
-      <div class="serviceCard">
-
-        <h3>
-          Campaign Space
-        </h3>
-
-        <p>
-          Featured campaigns can use the blank
-          advertising area on the GadiFinder homepage
-          after a partnership is established.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div style="margin-top:25px;">
-
-      <button
-        class="primaryButton"
-        onclick="navigate('contact')"
-      >
-        Discuss Advertising →
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     INSURANCE PAGE
-===================================================== -->
-
-<section
-  id="page-insurance"
-  class="page lightPage hidden"
->
-
-  <div class="container">
-
-    <div class="pageHeader">
-
-      <h1>
-        Insurance
-      </h1>
-
-      <p>
-        This section is reserved for insurance companies
-        that partner with or promote their services
-        through GadiFinder.
-      </p>
-
-    </div>
-
-
-    <div class="partnerBlank">
+      <small>Founder • Created & Maintained By</small>
 
       <strong>
-        Insurance Partner Area
+        TANMAY THORAT
       </strong>
 
-      No insurance companies have been added yet.
-
-      <br>
-
-      Partner listings can be added here later with
-      company name, services, coverage information,
-      contact details and promotional information.
-
-    </div>
-
-
-    <div class="detailSection">
-
-      <h2>
-        What will appear here?
-      </h2>
-
-      <div class="featureGrid">
-
-        <div class="featureItem">
-          Insurance company name
-        </div>
-
-        <div class="featureItem">
-          Insurance products
-        </div>
-
-        <div class="featureItem">
-          Coverage information
-        </div>
-
-        <div class="featureItem">
-          Partner information
-        </div>
-
-        <div class="featureItem">
-          Promotional offer
-        </div>
-
-        <div class="featureItem">
-          Contact / enquiry option
-        </div>
-
-      </div>
+      <p>
+        CarDhundo — India's Smartest Car Finder
+      </p>
 
     </div>
 
@@ -2768,585 +1498,150 @@ img{
 </section>
 
 
-<!-- =====================================================
-     EMI PAGE
-===================================================== -->
-
-<section
-  id="page-emi"
-  class="page lightPage hidden"
->
+<main>
 
   <div class="container">
 
-    <div class="pageHeader">
-
-      <h1>
-        EMI & Finance
-      </h1>
-
-      <p>
-        Calculate an estimated monthly EMI or explore
-        finance-partner space.
-      </p>
-
-    </div>
-
-
-    <div class="detailSection">
-
-      <h2>
-        EMI Calculator
-      </h2>
-
-      <p class="detailSectionIntro">
-        Enter the vehicle price, down payment, interest
-        rate and loan period.
-      </p>
-
-
-      <div class="emiBox">
-
-        <div class="emiGrid">
-
-          <div class="field">
-
-            <label>
-              Vehicle Price ₹
-            </label>
-
-            <input
-              id="globalCarPrice"
-              type="number"
-              inputmode="numeric"
-              value="1000000"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Down Payment ₹
-            </label>
-
-            <input
-              id="globalDownPayment"
-              type="number"
-              inputmode="numeric"
-              value="200000"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Interest Rate %
-            </label>
-
-            <input
-              id="globalRate"
-              type="number"
-              step="0.1"
-              value="9"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Loan Period
-            </label>
-
-            <select id="globalTenure">
-
-              <option value="36">3 Years</option>
-              <option value="48">4 Years</option>
-              <option value="60" selected>5 Years</option>
-              <option value="72">6 Years</option>
-              <option value="84">7 Years</option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <button
-          class="primaryButton"
-          style="margin-top:20px;"
-          onclick="calculateGlobalEMI()"
-        >
-          Calculate EMI
-        </button>
-
-
-        <div
-          id="globalEMIResult"
-          class="emiResult"
-        >
-          Monthly EMI will appear here.
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="detailSection financeSection">
-
-      <h2>
-        Finance Partners
-      </h2>
-
-      <p class="detailSectionIntro">
-        Partner listings will be added here when finance
-        companies approach GadiFinder.
-      </p>
-
-
-      <div
-        class="partnerBlank"
-        style="margin-top:22px;"
-      >
-
-        <strong>
-          Finance Partner Area
-        </strong>
-
-        Currently empty.
-
-      </div>
-
+    <div class="ad-space">
+      <strong>
+        PREMIUM ADVERTISEMENT / PROMOTION SPACE
+      </strong>
+      &nbsp; • Dealer Offers • Brand Launches • Finance • Accessories
     </div>
 
   </div>
 
-</section>
 
+  <!-- FINDER -->
 
-<!-- =====================================================
-     CONTACT PAGE
-===================================================== -->
-
-<section
-  id="page-contact"
-  class="page lightPage hidden"
->
-
-  <div class="container">
-
-    <div class="pageHeader">
-
-      <h1>
-        Contact GadiFinder
-      </h1>
-
-      <p>
-        For questions, advertising, promotions,
-        collaborations, creator collaborations and
-        business enquiries, contact GadiFinder.
-      </p>
-
-    </div>
-
-
-    <div class="contactGrid">
-
-
-      <div class="contactCard">
-
-        <h2>
-          Let's talk.
-        </h2>
-
-        <p>
-          GadiFinder is open to automotive advertising,
-          promotional campaigns, creator collaborations,
-          brand partnerships and business enquiries.
-        </p>
-
-        <div class="contactEmail">
-          tanamy7773y@gmail.com
-        </div>
-
-        <p style="margin-top:18px;">
-          Founder • Creator • Maintained By
-        </p>
-
-        <strong
-          style="display:block;margin-top:5px;font-size:24px;"
-        >
-          Tanmay Thorat
-        </strong>
-
-      </div>
-
-
-      <div class="contactCard">
-
-        <h2>
-          Send a Query
-        </h2>
-
-        <form
-          id="contactForm"
-          onsubmit="submitContact(event)"
-          style="margin-top:22px;"
-        >
-
-          <div class="field">
-
-            <label>
-              Your Name
-            </label>
-
-            <input
-              id="contactName"
-              required
-              placeholder="Your name"
-            >
-
-          </div>
-
-
-          <div class="field" style="margin-top:15px;">
-
-            <label>
-              Your Email
-            </label>
-
-            <input
-              id="contactEmail"
-              type="email"
-              required
-              placeholder="you@example.com"
-            >
-
-          </div>
-
-
-          <div class="field" style="margin-top:15px;">
-
-            <label>
-              Query / Message
-            </label>
-
-            <textarea
-              id="contactMessage"
-              rows="7"
-              required
-              placeholder="Write your query..."
-            ></textarea>
-
-          </div>
-
-
-          <button
-            class="primaryButton"
-            style="margin-top:17px;"
-            type="submit"
-          >
-            Send Query →
-          </button>
-
-        </form>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     CAR DETAIL PAGE
-===================================================== -->
-
-<section
-  id="page-car"
-  class="carDetail hidden"
->
-
-  <div class="carDetailTop">
+  <section class="finder-wrap" id="finder">
 
     <div class="container">
 
-      <div class="breadcrumb">
+      <div class="finder">
 
-        GadiFinder /
-        <span id="detailBrandBreadcrumb">
-          Brand
-        </span>
-        /
-        <span id="detailNameBreadcrumb">
-          Car
-        </span>
+        <div class="finder-header">
 
-      </div>
+          <div>
+            <h2>Find the right car for you.</h2>
 
-
-      <div class="carDetailGrid">
-
-
-        <!-- IMAGES -->
-
-        <div>
-
-          <div
-            id="mainCarImage"
-            class="mainCarImage"
-          >
-            Main car image
+            <p>
+              Six choices → all matching cars → compare → EMI
+            </p>
           </div>
 
-
-          <div
-            id="carGallery"
-            class="carGallery"
-          ></div>
+          <span class="step" id="step">
+            1 of 6
+          </span>
 
         </div>
 
 
-        <!-- SUMMARY -->
-
-        <div class="carDetailInfo">
-
-          <div
-            id="detailBrand"
-            class="carDetailBrand"
-          >
-            BRAND
-          </div>
-
-          <h1
-            id="detailName"
-            class="carDetailName"
-          >
-            Car
-          </h1>
-
-          <div
-            id="detailPrice"
-            class="carDetailPrice"
-          >
-            ₹ —
-          </div>
-
-
-          <div
-            id="detailSpecs"
-            class="specGrid"
-          ></div>
-
-
-          <div style="margin-top:25px;">
-
-            <button
-              class="primaryButton"
-              onclick="scrollToVariants()"
-            >
-              View Variants & Features ↓
-            </button>
-
-          </div>
-
+        <div class="progress">
+          <span id="progress"></span>
         </div>
 
-      </div>
 
-    </div>
+        <div class="form-grid">
 
-  </div>
-
-
-  <div class="container">
-
-
-    <!-- OVERVIEW -->
-
-    <div class="detailSection">
-
-      <h2>
-        Car Overview
-      </h2>
-
-      <p
-        id="detailDescription"
-        class="detailSectionIntro"
-      ></p>
-
-      <div
-        id="detailFeatureGrid"
-        class="featureGrid"
-      ></div>
-
-    </div>
-
-
-    <!-- VARIANTS -->
-
-    <div
-      id="variantSection"
-      class="detailSection"
-    >
-
-      <h2>
-        Variant & Feature Information
-      </h2>
-
-      <p class="detailSectionIntro">
-        Variant-level information including
-        ex-showroom pricing, fuel, transmission and
-        important equipment.
-      </p>
-
-
-      <div class="variantTableWrap">
-
-        <table class="variantTable">
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Variant
-              </th>
-
-              <th>
-                Ex-showroom Price
-              </th>
-
-              <th>
-                Fuel
-              </th>
-
-              <th>
-                Transmission
-              </th>
-
-              <th>
-                Key Features
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody
-            id="variantTableBody"
-          ></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <!-- CAR EMI -->
-
-    <div class="detailSection">
-
-      <h2>
-        EMI Calculator
-      </h2>
-
-      <p class="detailSectionIntro">
-        The minimum down payment is automatically
-        calculated from this car's configured finance
-        profile.
-      </p>
-
-
-      <div class="emiBox">
-
-        <div class="emiGrid">
+          <!-- BUDGET IS NOW TYPED -->
 
           <div class="field">
-
             <label>
-              Car Price ₹
+              Maximum Budget
             </label>
 
             <input
-              id="carEMIPrice"
+              id="budgetInput"
               type="number"
-              inputmode="numeric"
-            >
+              min="1"
+              placeholder="Enter budget in ₹ lakh"
+              value="12">
+          </div>
+
+
+          <div class="field">
+
+            <label>Fuel</label>
+
+            <select id="fuel">
+              <option value="Any">Any Fuel</option>
+              <option>Petrol</option>
+              <option>Diesel</option>
+              <option>CNG</option>
+              <option>Electric</option>
+              <option>Hybrid</option>
+            </select>
 
           </div>
 
 
           <div class="field">
 
-            <label>
-              Minimum Down Payment ₹
-            </label>
+            <label>Family / Seating</label>
 
-            <input
-              id="carEMIDown"
-              type="number"
-              inputmode="numeric"
-            >
+            <select id="family">
 
-          </div>
+              <option value="Any">Any</option>
+              <option value="1-2">1–2 People</option>
+              <option value="3-4" selected>3–4 People</option>
+              <option value="5-6">5–6 People</option>
+              <option value="7+">7+ People</option>
 
-
-          <div class="field">
-
-            <label>
-              Interest Rate %
-            </label>
-
-            <input
-              id="carEMIRate"
-              type="number"
-              step="0.1"
-              value="9"
-            >
+            </select>
 
           </div>
 
 
           <div class="field">
 
-            <label>
-              Tenure
-            </label>
+            <label>Minimum Efficiency</label>
 
-            <select id="carEMITenure">
+            <select id="mileage">
 
-              <option value="36">
-                3 Years
-              </option>
+              <option value="any">Any</option>
+              <option value="15">15+ km/l</option>
+              <option value="18">18+ km/l</option>
+              <option value="20">20+ km/l</option>
+              <option value="25">25+ km/l</option>
 
-              <option value="48">
-                4 Years
-              </option>
+            </select>
 
-              <option value="60"
-                      selected>
-                5 Years
-              </option>
+          </div>
 
-              <option value="72">
-                6 Years
-              </option>
 
-              <option value="84">
-                7 Years
-              </option>
+          <div class="field">
+
+            <label>Body Type</label>
+
+            <select id="bodyType">
+
+              <option value="Any">Any Body Type</option>
+              <option>SUV</option>
+              <option>Compact SUV</option>
+              <option>Hatchback</option>
+              <option>Sedan</option>
+              <option>MPV</option>
+              <option>EV</option>
+              <option>Pickup</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>Transmission</label>
+
+            <select id="transmission">
+
+              <option value="Any">Any Transmission</option>
+              <option>Manual</option>
+              <option>AMT</option>
+              <option>Automatic</option>
+              <option>DCT</option>
+              <option>CVT/IVT</option>
 
             </select>
 
@@ -3355,3323 +1650,2730 @@ img{
         </div>
 
 
-        <button
-          class="primaryButton"
-          style="margin-top:20px;"
-          onclick="calculateCarEMI()"
-        >
-          Calculate Car EMI
-        </button>
+        <div class="find-actions">
+
+          <button
+            class="btn btn-yellow"
+            onclick="findCars()">
+            Find All Matching Cars →
+          </button>
+
+          <button
+            class="btn btn-outline"
+            onclick="resetFinder()">
+            Reset
+          </button>
+
+        </div>
 
 
-        <div
-          id="carEMIResult"
-          class="emiResult"
-        >
-          Monthly EMI will appear here.
+        <div class="find-note">
+          Budget matching is based on the catalogue's model-level starting-price field.
+          Always verify current variant prices with the manufacturer/dealer.
         </div>
 
       </div>
 
     </div>
 
+  </section>
+
+
+  <!-- QUICK FEATURES -->
+
+  <section class="section">
+
+    <div class="container">
+
+      <div class="heading">
+
+        <span class="eyebrow">
+          THE CAR DHUNDO EXPERIENCE
+        </span>
+
+        <h2>
+          One place to discover your next car.
+        </h2>
+
+        <p>
+          Built around discovery, comparison and finance planning.
+        </p>
+
+      </div>
+
+
+      <div class="features">
+
+        <article class="feature">
+
+          <div class="feature-icon">🎯</div>
+
+          <h3>
+            All matching cars
+          </h3>
+
+          <p>
+            Your choices can return 1, 4, 8, 10 or more cars.
+            The result is not restricted to one recommendation.
+          </p>
+
+        </article>
+
+
+        <article class="feature">
+
+          <div class="feature-icon">⚖️</div>
+
+          <h3>
+            Compare up to 4
+          </h3>
+
+          <p>
+            Add cars from the catalogue or results and compare
+            their key specifications side by side.
+          </p>
+
+        </article>
+
+
+        <article class="feature">
+
+          <div class="feature-icon">💳</div>
+
+          <h3>
+            EMI Planner
+          </h3>
+
+          <p>
+            Enter the car price, choose your down payment and
+            calculate an estimated monthly EMI.
+          </p>
+
+        </article>
+
+
+        <article class="feature">
+
+          <div class="feature-icon">🏷️</div>
+
+          <h3>
+            Brand Discovery
+          </h3>
+
+          <p>
+            Click a specific brand and only that manufacturer's
+            models are displayed.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     RESULTS VIEW
+========================= -->
+
+<div id="resultsView" class="page-view">
+
+<section class="section">
+
+<div class="container">
+
+  <div class="results-header">
+
+    <div>
+
+      <span class="eyebrow">
+        CAR DHUNDO RESULTS
+      </span>
+
+      <h2>
+        Cars that fit your choices.
+      </h2>
+
+      <p id="resultSummary">
+        Searching...
+      </p>
+
+    </div>
+
+    <div class="result-tools">
+
+      <button
+        class="btn btn-dark"
+        onclick="showHome()">
+        ← Modify Choices
+      </button>
+
+    </div>
 
   </div>
+
+
+  <div id="resultsGrid" class="result-grid"></div>
+
+</div>
 
 </section>
 
 </div>
-      <script>
 
-/* =========================================================
-   GADIFINDER DATABASE
 
-   The structure is intentionally kept simple so that
-   additional researched models can be added easily.
+<!-- =========================
+     CATALOG VIEW
+========================= -->
 
-   Each vehicle contains:
-   - brand
-   - model
-   - body
-   - fuel
-   - transmission
-   - seats
-   - use
-   - starting price
-   - minimum down payment
-   - description
-   - six image slots
-   - variants
-   - features
-========================================================= */
+<div id="catalogView" class="page-view">
 
-const CAR_DB = [
+<section class="section">
 
-/* =========================================================
-   MARUTI SUZUKI
-========================================================= */
+<div class="container">
 
-{
- brand:"Maruti Suzuki",
- model:"Swift",
- body:"Hatchback",
- fuel:"Petrol",
- transmission:"Manual / AMT",
- seats:5,
- use:"Personal",
- price:649000,
- minDown:130000,
- description:"Compact hatchback focused on everyday city usability, efficiency, practicality and easy manoeuvrability.",
- features:[
-  "Petrol engine",
-  "Manual and AMT options",
-  "5-seat cabin",
-  "Touchscreen infotainment",
-  "Connected features on selected variants",
-  "Multiple safety systems",
-  "Rear parking assistance",
-  "Airbags",
-  "ABS with EBD",
-  "Electronic stability features on applicable variants"
- ],
- variants:[
-  {
-   name:"LXi",
-   price:649000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety equipment, manual transmission, front airbags, ABS with EBD, basic comfort equipment"
-  },
-  {
-   name:"VXi",
-   price:714000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Infotainment system, additional convenience equipment, steering controls and enhanced cabin equipment"
-  },
-  {
-   name:"ZXi",
-   price:790000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Premium interior equipment, enhanced infotainment, additional styling and convenience features"
-  }
- ]
-},
+  <div class="heading">
 
-{
- brand:"Maruti Suzuki",
- model:"Baleno",
- body:"Hatchback",
- fuel:"Petrol",
- transmission:"Manual / AMT",
- seats:5,
- use:"Personal",
- price:599900,
- minDown:120000,
- description:"Premium hatchback designed around cabin space, everyday practicality and urban driving.",
- features:[
-  "Petrol powertrain",
-  "5-seat layout",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Rear camera",
-  "Safety systems",
-  "Automatic transmission availability",
-  "LED lighting on selected variants"
- ],
- variants:[
-  {
-   name:"Sigma",
-   price:599900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Safety equipment, manual transmission, airbags, ABS with EBD"
-  },
-  {
-   name:"Delta",
-   price:680000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Infotainment, steering controls, convenience equipment and additional exterior features"
-  },
-  {
-   name:"Zeta",
-   price:760000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Enhanced cabin equipment, connected features and additional comfort equipment"
-  },
-  {
-   name:"Alpha",
-   price:860000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Premium equipment, advanced infotainment, camera and additional styling equipment"
-  }
- ]
-},
+    <span class="eyebrow">
+      CAR DHUNDO GARAGE
+    </span>
 
-{
- brand:"Maruti Suzuki",
- model:"Fronx",
- body:"SUV",
- fuel:"Petrol / CNG",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:749900,
- minDown:150000,
- description:"Compact crossover combining SUV-inspired styling with city-friendly dimensions.",
- features:[
-  "Petrol engine options",
-  "CNG availability",
-  "Manual transmission",
-  "Automatic transmission on selected powertrains",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Rear camera",
-  "Multiple safety systems"
- ],
- variants:[
-  {
-   name:"Sigma",
-   price:749900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Safety equipment, airbags, ABS with EBD and essential convenience features"
-  },
-  {
-   name:"Delta",
-   price:835000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Infotainment, steering controls, rear camera and convenience equipment"
-  },
-  {
-   name:"Zeta",
-   price:950000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Enhanced infotainment, connected technology, additional comfort and styling equipment"
-  },
-  {
-   name:"Alpha",
-   price:1100000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Premium technology, camera, advanced convenience equipment and premium cabin features"
-  }
- ]
-},
+    <h2>
+      Indian Cars Catalogue
+    </h2>
 
-{
- brand:"Maruti Suzuki",
- model:"Brezza",
- body:"SUV",
- fuel:"Petrol / CNG",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:839900,
- minDown:170000,
- description:"Compact SUV offering a practical cabin, elevated seating position and multiple powertrain choices.",
- features:[
-  "Petrol engine",
-  "CNG option",
-  "Manual transmission",
-  "Automatic transmission",
-  "Touchscreen infotainment",
-  "Connected features",
-  "Rear camera",
-  "Safety equipment",
-  "Cruise control on applicable variants"
- ],
- variants:[
-  {
-   name:"LXi",
-   price:839900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety equipment, airbags, ABS with EBD and essential convenience equipment"
-  },
-  {
-   name:"VXi",
-   price:950000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Infotainment, rear camera, steering controls and additional comfort equipment"
-  },
-  {
-   name:"ZXi",
-   price:1070000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Enhanced cabin equipment, connected technology and premium convenience features"
-  },
-  {
-   name:"ZXi+",
-   price:1180000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Top-level equipment, premium infotainment, advanced convenience and styling features"
-  }
- ]
-},
+    <p>
+      Click a brand to display only that brand's cars.
+    </p>
 
-{
- brand:"Maruti Suzuki",
- model:"Grand Vitara",
- body:"SUV",
- fuel:"Petrol / Hybrid",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1119000,
- minDown:230000,
- description:"Mid-size SUV with petrol and hybrid-oriented powertrain choices.",
- features:[
-  "Petrol powertrain",
-  "Strong-hybrid availability",
-  "Automatic transmission",
-  "SUV body style",
-  "Large infotainment system",
-  "Connected technology",
-  "Safety systems",
-  "Rear camera",
-  "Premium cabin equipment"
- ],
- variants:[
-  {
-   name:"Sigma",
-   price:1119000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Safety equipment, infotainment, airbags and essential comfort features"
-  },
-  {
-   name:"Delta",
-   price:1250000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Additional technology, infotainment and convenience equipment"
-  },
-  {
-   name:"Zeta",
-   price:1450000,
-   fuel:"Petrol / Hybrid",
-   transmission:"Manual / Automatic",
-   features:"Enhanced comfort, connected features and premium cabin equipment"
-  },
-  {
-   name:"Alpha",
-   price:1700000,
-   fuel:"Petrol / Hybrid",
-   transmission:"Automatic",
-   features:"Premium technology, advanced convenience equipment and enhanced styling"
-  }
- ]
-},
+  </div>
 
-/* =========================================================
-   TOYOTA
-========================================================= */
 
-{
- brand:"Toyota",
- model:"Glanza",
- body:"Hatchback",
- fuel:"Petrol / CNG",
- transmission:"Manual / AMT",
- seats:5,
- use:"Personal",
- price:689000,
- minDown:140000,
- description:"Premium hatchback with efficient powertrain options and practical urban dimensions.",
- features:[
-  "Petrol engine",
-  "CNG availability",
-  "Manual transmission",
-  "Automatic option",
-  "Touchscreen infotainment",
-  "Connected features",
-  "Rear camera",
-  "Safety equipment"
- ],
- variants:[
-  {
-   name:"E",
-   price:689000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Essential safety and comfort equipment"
-  },
-  {
-   name:"S",
-   price:780000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Infotainment, convenience equipment and additional styling"
-  },
-  {
-   name:"G",
-   price:890000,
-   fuel:"Petrol / CNG",
-   transmission:"Manual / AMT",
-   features:"Premium convenience, connected features and enhanced equipment"
-  }
- ]
-},
+  <div
+    id="brandFilter"
+    class="brand-filter">
+  </div>
 
-{
- brand:"Toyota",
- model:"Urban Cruiser Hyryder",
- body:"SUV",
- fuel:"Petrol / Hybrid / CNG",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1120000,
- minDown:230000,
- description:"Mid-size SUV offered with petrol, CNG and hybrid-oriented powertrain options.",
- features:[
-  "Petrol powertrain",
-  "Hybrid option",
-  "CNG option",
-  "Manual transmission",
-  "Automatic transmission",
-  "Connected technology",
-  "SUV cabin",
-  "Safety equipment",
-  "Rear camera"
- ],
- variants:[
-  {
-   name:"E",
-   price:1120000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"S",
-   price:1300000,
-   fuel:"Petrol / CNG",
-   transmission:"Manual",
-   features:"Infotainment and convenience equipment"
-  },
-  {
-   name:"G",
-   price:1550000,
-   fuel:"Petrol / Hybrid",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, enhanced cabin equipment and additional convenience features"
-  },
-  {
-   name:"V",
-   price:1850000,
-   fuel:"Hybrid",
-   transmission:"Automatic",
-   features:"Premium equipment, advanced convenience and hybrid powertrain"
-  }
- ]
-},
 
-{
- brand:"Toyota",
- model:"Innova Hycross",
- body:"MPV",
- fuel:"Petrol / Hybrid",
- transmission:"Automatic",
- seats:7,
- use:"Personal / Commercial",
- price:1999000,
- minDown:400000,
- description:"Large family-oriented MPV with petrol and hybrid powertrain options and three-row seating.",
- features:[
-  "Three-row seating",
-  "Petrol engine",
-  "Hybrid powertrain option",
-  "Automatic transmission",
-  "Large cabin",
-  "Connected technology",
-  "Safety systems",
-  "Rear camera",
-  "Premium comfort equipment"
- ],
- variants:[
-  {
-   name:"G-SLF",
-   price:1999000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Three-row seating, safety systems, infotainment and core comfort equipment"
-  },
-  {
-   name:"GX",
-   price:2200000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Enhanced infotainment, convenience and interior equipment"
-  },
-  {
-   name:"VX Hybrid",
-   price:3000000,
-   fuel:"Hybrid",
-   transmission:"Automatic",
-   features:"Hybrid system, premium cabin, connected technology and advanced safety equipment"
-  }
- ]
-},
+  <div class="catalog-tools">
 
-{
- brand:"Toyota",
- model:"Fortuner",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic",
- seats:7,
- use:"Personal / Commercial",
- price:3400000,
- minDown:680000,
- description:"Large SUV focused on long-distance touring, high ground clearance and three-row practicality.",
- features:[
-  "Petrol option",
-  "Diesel option",
-  "Manual transmission",
-  "Automatic transmission",
-  "7-seat layout",
-  "4x4 availability on selected variants",
-  "Large touchscreen",
-  "Safety systems",
-  "Cruise control"
- ],
- variants:[
-  {
-   name:"4x2",
-   price:3400000,
-   fuel:"Diesel",
-   transmission:"Manual",
-   features:"7 seats, safety equipment, infotainment and SUV comfort features"
-  },
-  {
-   name:"4x2 AT",
-   price:3650000,
-   fuel:"Diesel",
-   transmission:"Automatic",
-   features:"Automatic transmission, infotainment, cruise control and convenience equipment"
-  },
-  {
-   name:"4x4",
-   price:3900000,
-   fuel:"Diesel",
-   transmission:"Manual / Automatic",
-   features:"4x4 system, SUV equipment, safety technology and premium convenience features"
-  }
- ]
-},
+    <input
+      id="catalogSearch"
+      placeholder="Search car or brand...">
 
-/* =========================================================
-   HYUNDAI
-========================================================= */
+    <select id="catalogBody">
 
-{
- brand:"Hyundai",
- model:"Exter",
- body:"SUV",
- fuel:"Petrol / CNG",
- transmission:"Manual / AMT",
- seats:5,
- use:"Personal / Commercial",
- price:580600,
- minDown:120000,
- description:"Compact SUV designed for city driving with petrol and CNG powertrain options.",
- features:[
-  "1.2-litre petrol",
-  "CNG option",
-  "5-speed manual",
-  "AMT",
-  "Touchscreen infotainment",
-  "Digital cluster",
-  "Rear camera",
-  "Safety systems",
-  "Airbags"
- ],
- variants:[
-  {
-   name:"EX",
-   price:580600,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety equipment, airbags, ABS with EBD and essential cabin equipment"
-  },
-  {
-   name:"S",
-   price:680000,
-   fuel:"Petrol / CNG",
-   transmission:"Manual / AMT",
-   features:"Infotainment, steering controls, convenience equipment and safety technology"
-  },
-  {
-   name:"SX",
-   price:800000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Enhanced infotainment, camera, connected features and additional comfort"
-  },
-  {
-   name:"SX(O)",
-   price:900000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Premium technology, advanced convenience and additional styling equipment"
-  }
- ]
-},
+      <option value="All">
+        All Body Types
+      </option>
 
-{
- brand:"Hyundai",
- model:"Venue",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic / DCT",
- seats:5,
- use:"Personal",
- price:799900,
- minDown:160000,
- description:"Compact SUV with petrol and diesel powertrains and multiple transmission choices.",
- features:[
-  "Petrol engine choices",
-  "Diesel engine option",
-  "Manual transmission",
-  "Automatic transmission",
-  "DCT option",
-  "10.25-inch infotainment on applicable variants",
-  "Digital cluster",
-  "Safety systems",
-  "6 airbags on applicable variants"
- ],
- variants:[
-  {
-   name:"HX2",
-   price:799900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Projector headlamps, LED DRLs, touchscreen infotainment, digital cluster, rear parking sensors, ESC, VSM, HAC and airbags"
-  },
-  {
-   name:"HX4",
-   price:900000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Enhanced comfort, infotainment and safety equipment"
-  },
-  {
-   name:"HX6",
-   price:1000000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, camera, enhanced cabin equipment and convenience features"
-  },
-  {
-   name:"HX8",
-   price:1150000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Premium infotainment, connected technology, advanced comfort and safety equipment"
-  },
-  {
-   name:"HX10",
-   price:1300000,
-   fuel:"Petrol / Diesel",
-   transmission:"Automatic / DCT",
-   features:"Top-level technology, premium cabin equipment and advanced convenience features"
-  }
- ]
-},
+      <option>SUV</option>
+      <option>Compact SUV</option>
+      <option>Hatchback</option>
+      <option>Sedan</option>
+      <option>MPV</option>
+      <option>EV</option>
+      <option>Pickup</option>
 
-{
- brand:"Hyundai",
- model:"Creta",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / IVT / DCT",
- seats:5,
- use:"Personal",
- price:1090700,
- minDown:220000,
- description:"Mid-size SUV with petrol and diesel engine choices and multiple transmission configurations.",
- features:[
-  "1.5-litre petrol",
-  "1.5-litre turbo petrol",
-  "1.5-litre diesel",
-  "Manual transmission",
-  "IVT",
-  "7-speed DCT",
-  "Connected technology",
-  "Advanced safety equipment",
-  "Large infotainment display"
- ],
- variants:[
-  {
-   name:"E",
-   price:1090700,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety, infotainment and comfort equipment"
-  },
-  {
-   name:"EX",
-   price:1200000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual",
-   features:"Enhanced infotainment and convenience equipment"
-  },
-  {
-   name:"S",
-   price:1350000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / IVT",
-   features:"Connected technology, camera, enhanced comfort and safety equipment"
-  },
-  {
-   name:"SX",
-   price:1550000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / IVT / DCT",
-   features:"Premium infotainment, connected technology and advanced cabin equipment"
-  },
-  {
-   name:"SX(O)",
-   price:1800000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / IVT / DCT",
-   features:"Premium safety, technology, comfort and advanced convenience features"
-  }
- ]
-},
+    </select>
 
-{
- brand:"Hyundai",
- model:"Verna",
- body:"Sedan",
- fuel:"Petrol",
- transmission:"Manual / IVT / DCT",
- seats:5,
- use:"Personal",
- price:1099200,
- minDown:220000,
- description:"Mid-size sedan with naturally aspirated and turbocharged petrol powertrains.",
- features:[
-  "1.5-litre MPi petrol",
-  "1.5-litre turbo GDi petrol",
-  "Manual",
-  "IVT",
-  "7-speed DCT",
-  "Large infotainment",
-  "Digital instrumentation",
-  "Advanced safety systems",
-  "Connected technology"
- ],
- variants:[
-  {
-   name:"HX2",
-   price:1099200,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"HX4",
-   price:1200000,
-   fuel:"Petrol",
-   transmission:"Manual / IVT",
-   features:"Infotainment, camera and enhanced comfort equipment"
-  },
-  {
-   name:"HX6",
-   price:1350000,
-   fuel:"Petrol",
-   transmission:"Manual / IVT",
-   features:"Connected technology, enhanced safety and cabin equipment"
-  },
-  {
-   name:"HX8",
-   price:1550000,
-   fuel:"Petrol",
-   transmission:"Manual / DCT",
-   features:"Turbo option, premium infotainment and advanced equipment"
-  },
-  {
-   name:"HX10",
-   price:1800000,
-   fuel:"Petrol",
-   transmission:"DCT",
-   features:"Top-level safety, technology, comfort and premium equipment"
-  }
- ]
-},
+  </div>
 
-{
- brand:"Hyundai",
- model:"Creta Electric",
- body:"EV",
- fuel:"Electric",
- transmission:"Automatic",
- seats:5,
- use:"Personal",
- price:1802800,
- minDown:360000,
- description:"Electric SUV with permanent-magnet motor technology and single-speed reduction transmission.",
- features:[
-  "Electric motor",
-  "Single-speed transmission",
-  "Multiple battery configurations",
-  "Regenerative braking",
-  "Digital displays",
-  "Connected technology",
-  "Advanced safety equipment",
-  "Fast charging capability",
-  "EV-specific features"
- ],
- variants:[
-  {
-   name:"Executive",
-   price:1802800,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"EV powertrain, touchscreen infotainment, safety systems and digital displays"
-  },
-  {
-   name:"Smart",
-   price:2000000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Enhanced technology, connected features and convenience equipment"
-  },
-  {
-   name:"Premium",
-   price:2250000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Premium technology, advanced safety and enhanced comfort equipment"
-  }
- ]
-},
 
-/* =========================================================
-   KIA
-========================================================= */
+  <div
+    id="catalogGrid"
+    class="catalog-grid">
+  </div>
 
-{
- brand:"Kia",
- model:"Sonet",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic / DCT",
- seats:5,
- use:"Personal",
- price:799900,
- minDown:160000,
- description:"Compact SUV with petrol and diesel powertrains and a wide range of technology features.",
- features:[
-  "Petrol engine",
-  "Diesel engine",
-  "Manual transmission",
-  "Automatic transmission",
-  "DCT",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Rear camera",
-  "Safety systems"
- ],
- variants:[
-  {
-   name:"HTE",
-   price:799900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"HTK",
-   price:900000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Infotainment, camera and additional convenience equipment"
-  },
-  {
-   name:"HTX",
-   price:1050000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, enhanced infotainment and premium equipment"
-  },
-  {
-   name:"GTX+",
-   price:1300000,
-   fuel:"Petrol / Diesel",
-   transmission:"Automatic / DCT",
-   features:"Premium technology, advanced safety and enhanced styling"
-  }
- ]
-},
+</div>
 
-{
- brand:"Kia",
- model:"Seltos",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic / DCT / IVT",
- seats:5,
- use:"Personal",
- price:1099000,
- minDown:220000,
- description:"Mid-size SUV offering multiple petrol and diesel powertrain configurations.",
- features:[
-  "Petrol engines",
-  "Diesel engine",
-  "Manual",
-  "Automatic",
-  "DCT",
-  "IVT",
-  "Connected technology",
-  "Advanced infotainment",
-  "Safety equipment"
- ],
- variants:[
-  {
-   name:"HTE",
-   price:1099000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and convenience equipment"
-  },
-  {
-   name:"HTK",
-   price:1250000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Infotainment, camera and convenience equipment"
-  },
-  {
-   name:"HTX",
-   price:1450000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic / IVT",
-   features:"Connected technology, premium infotainment and enhanced safety"
-  },
-  {
-   name:"GTX+",
-   price:1800000,
-   fuel:"Petrol",
-   transmission:"DCT",
-   features:"Premium technology, advanced safety and top-level convenience features"
-  }
- ]
-},
+</section>
 
-{
- brand:"Kia",
- model:"Carens",
- body:"MPV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic / DCT",
- seats:6,
- use:"Personal / Commercial",
- price:1100000,
- minDown:220000,
- description:"Family-oriented multi-purpose vehicle with flexible seating and multiple engine choices.",
- features:[
-  "6/7 seat configurations",
-  "Petrol engine options",
-  "Diesel option",
-  "Manual",
-  "Automatic",
-  "DCT",
-  "Large infotainment",
-  "Connected features",
-  "Safety systems"
- ],
- variants:[
-  {
-   name:"Premium",
-   price:1100000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Three-row seating, safety equipment and essential comfort features"
-  },
-  {
-   name:"Prestige",
-   price:1250000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual",
-   features:"Infotainment, convenience and additional cabin equipment"
-  },
-  {
-   name:"Luxury",
-   price:1500000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, enhanced comfort and premium infotainment"
-  },
-  {
-   name:"Luxury Plus",
-   price:1800000,
-   fuel:"Petrol / Diesel",
-   transmission:"Automatic / DCT",
-   features:"Premium cabin equipment, advanced safety and enhanced technology"
-  }
- ]
-},
+</div>
 
-/* =========================================================
-   TATA
-========================================================= */
 
-{
- brand:"Tata",
- model:"Punch",
- body:"SUV",
- fuel:"Petrol / CNG / Electric",
- transmission:"Manual / AMT / Automatic",
- seats:5,
- use:"Personal / Commercial",
- price:599900,
- minDown:120000,
- description:"Compact SUV-style vehicle available with petrol, CNG and electric configurations.",
- features:[
-  "Petrol option",
-  "CNG option",
-  "Electric version",
-  "Manual",
-  "AMT",
-  "Automatic on EV",
-  "Touchscreen infotainment",
-  "Safety equipment",
-  "Rear camera"
- ],
- variants:[
-  {
-   name:"Pure",
-   price:599900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and convenience equipment"
-  },
-  {
-   name:"Adventure",
-   price:700000,
-   fuel:"Petrol / CNG",
-   transmission:"Manual / AMT",
-   features:"Infotainment, camera and enhanced comfort equipment"
-  },
-  {
-   name:"Accomplished",
-   price:850000,
-   fuel:"Petrol / CNG",
-   transmission:"Manual / AMT",
-   features:"Connected technology, enhanced infotainment and premium convenience"
-  },
-  {
-   name:"EV",
-   price:1000000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Electric powertrain, digital displays, regenerative braking and EV equipment"
-  }
- ]
-},
+<!-- =========================
+     COMPARE VIEW
+========================= -->
 
-{
- brand:"Tata",
- model:"Nexon",
- body:"SUV",
- fuel:"Petrol / Diesel / CNG / Electric",
- transmission:"Manual / AMT / Automatic",
- seats:5,
- use:"Personal / Commercial",
- price:799900,
- minDown:160000,
- description:"Compact SUV with petrol, diesel, CNG and electric configurations.",
- features:[
+<div id="compareView" class="page-view">
+
+<section class="section dark-section">
+
+<div class="container">
+
+  <div class="heading">
+
+    <span class="eyebrow">
+      COMPARE SMARTER
+    </span>
+
+    <h2>
+      Your cars. Side by side.
+    </h2>
+
+    <p>
+      Add up to four cars and compare the important specifications.
+    </p>
+
+  </div>
+
+
+  <div id="compareOutput"></div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =========================
+     EMI VIEW
+========================= -->
+
+<div id="emiView" class="page-view">
+
+<section class="section emi-page">
+
+<div class="container">
+
+  <div class="heading">
+
+    <span class="eyebrow">
+      CAR DHUNDO FINANCE
+    </span>
+
+    <h2>
+      EMI Calculator
+    </h2>
+
+    <p>
+      Plan your approximate monthly car payment.
+    </p>
+
+  </div>
+
+
+  <div class="emi-layout">
+
+    <div class="emi-box">
+
+      <h3>
+        Enter finance details
+      </h3>
+
+
+      <div class="emi-field">
+
+        <label>
+          Car Price — ₹ Lakh
+        </label>
+
+        <input
+          id="emiPrice"
+          type="number"
+          min="1"
+          value="10">
+
+      </div>
+
+
+      <div class="emi-field">
+
+        <label>
+          Down Payment — ₹ Lakh
+        </label>
+
+        <input
+          id="emiDown"
+          type="number"
+          min="0"
+          value="2">
+
+      </div>
+
+
+      <div class="minimum-dp">
+
+        Minimum down payment is fixed at
+        <strong id="minimumDpText">
+          ₹2.00 Lakh
+        </strong>
+
+        for this calculator.
+
+      </div>
+
+
+      <div class="emi-field">
+
+        <label>
+          Interest Rate — %
+        </label>
+
+        <input
+          id="emiRate"
+          type="number"
+          step=".1"
+          value="9">
+
+      </div>
+
+
+      <div class="emi-field">
+
+        <label>
+          Loan Tenure — Years
+        </label>
+
+        <input
+          id="emiYears"
+          type="number"
+          min="1"
+          max="10"
+          value="5">
+
+      </div>
+
+
+      <button
+        class="btn btn-yellow"
+        style="width:100%;margin-top:20px"
+        onclick="calculateEMI()">
+
+        Calculate EMI →
+
+      </button>
+
+    </div>
+
+
+    <div class="emi-result">
+
+      <span class="eyebrow">
+        ESTIMATED MONTHLY EMI
+      </span>
+
+      <div
+        class="emi-number"
+        id="emiResult">
+        ₹0
+      </div>
+
+      <p class="emi-sub">
+        Approximate planning estimate. Actual lender EMI can vary.
+      </p>
+
+
+      <div class="emi-breakdown">
+
+        <div class="emi-stat">
+
+          <small>
+            Car Price
+          </small>
+
+          <b id="emiCarPrice">
+            ₹0
+          </b>
+
+        </div>
+
+
+        <div class="emi-stat">
+
+          <small>
+            Down Payment
+          </small>
+
+          <b id="emiDownPayment">
+            ₹0
+          </b>
+
+        </div>
+
+
+        <div class="emi-stat">
+
+          <small>
+            Loan Amount
+          </small>
+
+          <b id="emiLoan">
+            ₹0
+          </b>
+
+        </div>
+
+
+        <div class="emi-stat">
+
+          <small>
+            Interest Rate
+          </small>
+
+          <b id="emiRateDisplay">
+            0%
+          </b>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn btn-dark"
+        style="margin-top:20px"
+        onclick="showCatalog()">
+
+        Browse Cars →
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =========================
+     PROMOTIONS
+========================= -->
+
+<section
+  class="section dark-section"
+  id="promotions">
+
+<div class="container">
+
+  <div class="heading">
+
+    <span class="eyebrow">
+      BUSINESS • PROMOTIONS • COLLABORATIONS
+    </span>
+
+    <h2>
+      A premium space for automotive brands.
+    </h2>
+
+    <p>
+      Dealer campaigns, launches, finance offers,
+      accessories and sponsored placements can live here.
+    </p>
+
+  </div>
+
+
+  <div class="promo-grid">
+
+    <div class="promo-box">
+
+      <span class="eyebrow">
+        ADVERTISE WITH CARDHUNDO
+      </span>
+
+      <h3>
+        Reach people while they are choosing a car.
+      </h3>
+
+      <p>
+        Premium campaign placements can be used for
+        manufacturer promotions, dealer offers,
+        finance partners, launches and automotive services.
+      </p>
+
+      <a
+        class="btn btn-yellow"
+        href="mailto:tanmaythorat7773@gmail.com?subject=CarDhundo%20Advertising%20Enquiry">
+
+        Discuss Advertising →
+
+      </a>
+
+    </div>
+
+
+    <div class="contact-box">
+
+      <span class="eyebrow">
+        FOUNDER & CONTACT
+      </span>
+
+      <h3>
+        Tanmay Thorat
+      </h3>
+
+      <p>
+        Founder & Creator — CarDhundo
+      </p>
+
+      <a href="mailto:tanmaythorat7773@gmail.com">
+        tanmaythorat7773@gmail.com
+      </a>
+
+      <p style="margin-top:15px">
+
+        Advertising • Promotions • Brand Collaborations
+        • Partnerships • Business Enquiries
+
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     COMPARE BAR
+========================= -->
+
+<div
+  class="compare-bar"
+  id="compareBar">
+
+  <div>
+    <strong>
+      Compare
+    </strong>
+
+    <small
+      style="display:block;color:#91a0b5">
+      Maximum 4 cars
+    </small>
+  </div>
+
+  <div
+    class="compare-chips"
+    id="compareChips">
+  </div>
+
+  <button
+    class="btn btn-yellow"
+    onclick="showCompare()">
+
+    Open
+
+  </button>
+
+  <button
+    class="btn"
+    style="background:#18283e;color:white"
+    onclick="clearCompare()">
+
+    Clear
+
+  </button>
+
+</div>
+
+
+<!-- =========================
+     CAR MODAL
+========================= -->
+
+<div
+  class="modal"
+  id="carModal"
+  onclick="if(event.target===this)closeModal()">
+
+  <div class="modal-box">
+
+    <button
+      class="modal-close"
+      onclick="closeModal()">
+
+      ×
+
+    </button>
+
+    <div id="modalContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="container footer-grid">
+
+  <div>
+
+    <a
+      class="logo"
+      href="#">
+
+      Car<span>Dhundo</span>
+
+    </a>
+
+    <p style="margin-top:10px;max-width:350px">
+
+      Find. Compare. Decide.
+      A premium Indian car discovery experience.
+
+    </p>
+
+  </div>
+
+
+  <div>
+
+    <h4>
+      Explore
+    </h4>
+
+    <a href="#" onclick="showHome()">
+      Find Cars
+    </a>
+
+    <a href="#" onclick="showCatalog()">
+      All Cars
+    </a>
+
+    <a href="#" onclick="showCompare()">
+      Compare
+    </a>
+
+    <a href="#promotions">
+      Promotions
+    </a>
+
+  </div>
+
+
+  <div>
+
+    <h4>
+      Finance
+    </h4>
+
+    <a href="#" onclick="showEMI()">
+      EMI Calculator
+    </a>
+
+    <a href="#" onclick="showCatalog()">
+      Browse Cars
+    </a>
+
+  </div>
+
+
+  <div class="founder-card">
+
+    <strong>
+      Tanmay Thorat
+    </strong>
+
+    <span>
+      Founder / Creator — CarDhundo
+    </span>
+
+    <a href="mailto:tanmaythorat7773@gmail.com">
+      tanmaythorat7773@gmail.com
+    </a>
+
+    <div
+      style="color:#728198;font-size:9px;margin-top:9px">
+
+      Advertising • Promotions •
+      Brand Collaborations • Partnerships
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="container footer-bottom">
+
+  © 2026 CarDhundo •
+  Created & Maintained by Tanmay Thorat •
+  Vehicle information must be verified with the manufacturer before purchase.
+
+</div>
+
+</footer>
+
+
+<!-- =========================
+     MOBILE NAV
+========================= -->
+
+<nav class="mobile-nav">
+
+  <button onclick="showHome()">
+    <b>⌂</b>
+    Home
+  </button>
+
+  <button onclick="showCatalog()">
+    <b>▦</b>
+    Cars
+  </button>
+
+  <button onclick="showCompare()">
+    <b>⇄</b>
+    Compare
+  </button>
+
+  <button onclick="showEMI()">
+    <b>₹</b>
+    EMI
+  </button>
+
+  <button onclick="document.getElementById('promotions').scrollIntoView({behavior:'smooth'})">
+    <b>✦</b>
+    Contact
+  </button>
+
+</nav>
+
+
+<script>
+
+/* ============================================================
+   CARDHUNDO CAR DATABASE
+   ============================================================
+
+   Model names requested for the catalogue.
+
+   IMPORTANT:
+   Price/variant/feature fields should be replaced with
+   current verified manufacturer data before commercial launch.
+============================================================ */
+
+
+const carNames = {
+
+  "Maruti Suzuki":[
+    "Alto K10",
+    "S-Presso",
+    "WagonR",
+    "Celerio",
+    "Swift",
+    "Dzire",
+    "Baleno",
+    "FRONX",
+    "Brezza",
+    "Ertiga",
+    "XL6",
+    "Grand Vitara",
+    "Jimny",
+    "Ciaz",
+    "e Vitara"
+  ],
+
+  "Tata Motors":[
+    "Tiago",
+    "Tigor",
+    "Altroz",
+    "Punch",
+    "Nexon",
+    "Harrier",
+    "Safari",
+    "Curvv",
+    "Tiago EV",
+    "Punch EV",
+    "Nexon EV",
+    "Sierra EV"
+  ],
+
+  "Hyundai":[
+    "Grand i10 Nios",
+    "Aura",
+    "Exter",
+    "i20",
+    "i20 N Line",
+    "Venue",
+    "Venue N Line",
+    "Creta",
+    "Creta N Line",
+    "Verna",
+    "Alcazar",
+    "Tucson",
+    "Ioniq 5",
+    "Bayon"
+  ],
+
+  "Mahindra":[
+    "XUV 3XO",
+    "Bolero",
+    "Bolero Neo",
+    "Thar",
+    "Thar ROXX",
+    "Scorpio Classic",
+    "Scorpio-N",
+    "XUV700",
+    "XEV 9e",
+    "XEV 9S",
+    "BE 6",
+    "BE 6 Sporteq"
+  ],
+
+  "Kia India":[
+    "Sonet",
+    "Seltos",
+    "Carens",
+    "Carnival",
+    "Sorento",
+    "EV6",
+    "EV4",
+    "EV5"
+  ],
+
+  "Toyota Kirloskar":[
+    "Glanza",
+    "Urban Cruiser Hyryder",
+    "Innova Crysta",
+    "Innova Hycross",
+    "Rumion",
+    "Hilux",
+    "Fortuner",
+    "Legender",
+    "Camry",
+    "Vellfire",
+    "Land Cruiser 300"
+  ],
+
+  "Honda Cars":[
+    "Amaze",
+    "City",
+    "City e:HEV",
+    "Elevate",
+    "ZR-V"
+  ],
+
+  "MG Motor":[
+    "Comet EV",
+    "Windsor EV",
+    "Astor",
+    "Hector",
+    "Hector Plus",
+    "Gloster",
+    "ZS EV",
+    "Hector Tomahawk EV",
+    "Hector Tomahawk PHEV"
+  ],
+
+  "Skoda Auto":[
+    "Kylaq",
+    "Kushaq",
+    "Slavia",
+    "Kodiaq",
+    "Superb"
+  ],
+
+  "Volkswagen":[
+    "Taigun",
+    "Virtus",
+    "Tiguan"
+  ],
+
+  "Renault":[
+    "Kwid",
+    "Triber",
+    "Kiger"
+  ],
+
+  "Nissan":[
+    "Magnite",
+    "X-Trail",
+    "Gravite",
+    "Tekton"
+  ],
+
+  "Citroen":[
+    "C3",
+    "eC3",
+    "C3 Aircross",
+    "Basalt",
+    "C5 Aircross"
+  ],
+
+  "BYD":[
+    "Atto 3",
+    "e6",
+    "Seal",
+    "Sealion 7"
+  ],
+
+  "Force Motors":[
+    "Gurkha",
+    "Citiline"
+  ],
+
+  "Jeep":[
+    "Compass",
+    "Meridian",
+    "Wrangler",
+    "Grand Cherokee"
+  ]
+
+};
+
+
+/* ============================================================
+   MODEL HELPERS
+============================================================ */
+
+const bodyTypes = [
+  "SUV",
+  "Compact SUV",
+  "Hatchback",
+  "Sedan",
+  "MPV",
+  "EV"
+];
+
+const fuelTypes = [
   "Petrol",
   "Diesel",
   "CNG",
   "Electric",
+  "Hybrid"
+];
+
+const transmissionTypes = [
   "Manual",
+  "Automatic",
   "AMT",
-  "Automatic",
-  "Touchscreen infotainment",
-  "Safety systems",
-  "Connected technology"
- ],
- variants:[
-  {
-   name:"Smart",
-   price:799900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety, airbags and essential comfort equipment"
-  },
-  {
-   name:"Pure",
-   price:900000,
-   fuel:"Petrol / CNG",
-   transmission:"Manual",
-   features:"Infotainment, convenience and safety equipment"
-  },
-  {
-   name:"Creative",
-   price:1050000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / AMT",
-   features:"Connected technology, enhanced infotainment and camera"
-  },
-  {
-   name:"Fearless",
-   price:1300000,
-   fuel:"Petrol / Diesel",
-   transmission:"Automatic / AMT",
-   features:"Premium equipment, advanced safety and technology"
-  },
-  {
-   name:"EV",
-   price:1500000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Electric powertrain, connected technology and EV-specific equipment"
-  }
- ]
-},
-
-{
- brand:"Tata",
- model:"Harrier",
- body:"SUV",
- fuel:"Diesel",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1500000,
- minDown:300000,
- description:"Large SUV focused on space, road presence, diesel performance and highway touring.",
- features:[
-  "Diesel engine",
-  "Manual transmission",
-  "Automatic transmission",
-  "Large touchscreen",
-  "Connected technology",
-  "Advanced safety",
-  "Panoramic roof on applicable variants",
-  "Premium cabin",
-  "Rear camera"
- ],
- variants:[
-  {
-   name:"Pure",
-   price:1500000,
-   fuel:"Diesel",
-   transmission:"Manual",
-   features:"Safety systems, infotainment and essential comfort equipment"
-  },
-  {
-   name:"Adventure",
-   price:1700000,
-   fuel:"Diesel",
-   transmission:"Manual / Automatic",
-   features:"Enhanced infotainment, camera and convenience features"
-  },
-  {
-   name:"Fearless",
-   price:2000000,
-   fuel:"Diesel",
-   transmission:"Manual / Automatic",
-   features:"Premium technology, advanced safety and enhanced cabin equipment"
-  }
- ]
-},
-
-/* =========================================================
-   MAHINDRA
-========================================================= */
-
-{
- brand:"Mahindra",
- model:"XUV 3XO",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:799000,
- minDown:160000,
- description:"Compact SUV with petrol and diesel powertrain options and feature-rich variants.",
- features:[
-  "Petrol engine",
-  "Diesel engine",
-  "Manual",
-  "Automatic",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Safety systems",
-  "Rear camera",
-  "Sunroof on applicable variants"
- ],
- variants:[
-  {
-   name:"MX1",
-   price:799000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"MX2",
-   price:900000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual",
-   features:"Infotainment, convenience and enhanced equipment"
-  },
-  {
-   name:"AX5",
-   price:1100000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, camera and premium equipment"
-  },
-  {
-   name:"AX7",
-   price:1300000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Premium safety, technology, comfort and convenience features"
-  }
- ]
-},
-
-{
- brand:"Mahindra",
- model:"Scorpio N",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic",
- seats:7,
- use:"Personal / Commercial",
- price:1399000,
- minDown:280000,
- description:"Large SUV with three-row seating and petrol and diesel powertrains.",
- features:[
-  "Petrol engine",
-  "Diesel engine",
-  "Manual",
-  "Automatic",
-  "7-seat configuration",
-  "4WD on selected variants",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Safety systems"
- ],
- variants:[
-  {
-   name:"Z2",
-   price:1399000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual",
-   features:"7 seats, core safety and comfort equipment"
-  },
-  {
-   name:"Z4",
-   price:1550000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Infotainment, camera and convenience equipment"
-  },
-  {
-   name:"Z6",
-   price:1750000,
-   fuel:"Diesel",
-   transmission:"Manual / Automatic",
-   features:"Connected technology and enhanced safety and comfort equipment"
-  },
-  {
-   name:"Z8",
-   price:2000000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Premium technology, comfort and advanced safety equipment"
-  }
- ]
-},
-
-{
- brand:"Mahindra",
- model:"XUV700",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1399000,
- minDown:280000,
- description:"Mid-size SUV offering powerful petrol and diesel engine options with extensive technology.",
- features:[
-  "Turbo petrol",
-  "Diesel",
-  "Manual",
-  "Automatic",
-  "ADAS on selected variants",
-  "Connected technology",
-  "Large displays",
-  "Panoramic roof on selected variants",
-  "Advanced safety"
- ],
- variants:[
-  {
-   name:"MX",
-   price:1399000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual",
-   features:"Core safety, infotainment and comfort equipment"
-  },
-  {
-   name:"AX3",
-   price:1550000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, infotainment and enhanced convenience"
-  },
-  {
-   name:"AX5",
-   price:1750000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Premium technology, camera and enhanced cabin equipment"
-  },
-  {
-   name:"AX7",
-   price:2100000,
-   fuel:"Petrol / Diesel",
-   transmission:"Automatic",
-   features:"Advanced safety, ADAS, premium technology and enhanced comfort"
-  }
- ]
-},
-
-/* =========================================================
-   HONDA
-========================================================= */
-
-{
- brand:"Honda",
- model:"Amaze",
- body:"Sedan",
- fuel:"Petrol",
- transmission:"Manual / CVT",
- seats:5,
- use:"Personal / Commercial",
- price:799000,
- minDown:160000,
- description:"Compact sedan focused on practicality, efficiency, comfort and boot space.",
- features:[
-  "Petrol engine",
-  "Manual",
-  "CVT",
-  "Touchscreen infotainment",
-  "Rear camera",
-  "Safety equipment",
-  "Connected features",
-  "Comfort-focused cabin"
- ],
- variants:[
-  {
-   name:"V",
-   price:799000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Safety equipment, infotainment and core comfort features"
-  },
-  {
-   name:"VX",
-   price:900000,
-   fuel:"Petrol",
-   transmission:"Manual / CVT",
-   features:"Camera, enhanced infotainment and additional convenience equipment"
-  },
-  {
-   name:"ZX",
-   price:1000000,
-   fuel:"Petrol",
-   transmission:"Manual / CVT",
-   features:"Premium cabin equipment, connected features and enhanced convenience"
-  }
- ]
-},
-
-{
- brand:"Honda",
- model:"Elevate",
- body:"SUV",
- fuel:"Petrol",
- transmission:"Manual / CVT",
- seats:5,
- use:"Personal",
- price:1186000,
- minDown:240000,
- description:"Mid-size SUV with naturally aspirated petrol powertrain and manual or CVT transmission.",
- features:[
-  "Petrol engine",
-  "Manual transmission",
-  "CVT",
-  "Large touchscreen",
-  "Connected technology",
-  "Safety equipment",
-  "Camera",
-  "SUV cabin"
- ],
- variants:[
-  {
-   name:"SV",
-   price:1186000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Safety equipment, infotainment and essential comfort features"
-  },
-  {
-   name:"V",
-   price:1300000,
-   fuel:"Petrol",
-   transmission:"Manual / CVT",
-   features:"Enhanced infotainment, camera and convenience equipment"
-  },
-  {
-   name:"VX",
-   price:1500000,
-   fuel:"Petrol",
-   transmission:"Manual / CVT",
-   features:"Premium technology, connected features and enhanced safety"
-  },
-  {
-   name:"ZX",
-   price:1650000,
-   fuel:"Petrol",
-   transmission:"Manual / CVT",
-   features:"Top-level comfort, technology and premium convenience equipment"
-  }
- ]
-},
-
-/* =========================================================
-   MG
-========================================================= */
-
-{
- brand:"MG",
- model:"Windsor EV",
- body:"EV",
- fuel:"Electric",
- transmission:"Automatic",
- seats:5,
- use:"Personal",
- price:1349000,
- minDown:270000,
- description:"Electric crossover focused on cabin space, technology and everyday urban use.",
- features:[
-  "Electric powertrain",
-  "Single-speed transmission",
-  "Large infotainment display",
-  "Connected technology",
-  "Digital displays",
-  "Safety systems",
-  "Regenerative braking",
-  "EV charging support"
- ],
- variants:[
-  {
-   name:"Excite",
-   price:1349000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"EV powertrain, infotainment, safety and essential convenience equipment"
-  },
-  {
-   name:"Exclusive",
-   price:1450000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Enhanced technology, connected features and premium cabin equipment"
-  }
- ]
-},
-
-{
- brand:"MG",
- model:"Hector",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1450000,
- minDown:290000,
- description:"Large SUV offering a spacious cabin, connected technology and multiple powertrain options.",
- features:[
-  "Petrol engine",
-  "Diesel option",
-  "Manual",
-  "Automatic",
-  "Large infotainment",
-  "Connected technology",
-  "Safety systems",
-  "Panoramic roof on selected variants"
- ],
- variants:[
-  {
-   name:"Style",
-   price:1450000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"Shine",
-   price:1600000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual",
-   features:"Infotainment and convenience equipment"
-  },
-  {
-   name:"Smart",
-   price:1800000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, camera and enhanced comfort"
-  },
-  {
-   name:"Savvy Pro",
-   price:2100000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Premium technology, advanced convenience and enhanced cabin equipment"
-  }
- ]
-},
-
-/* =========================================================
-   SKODA
-========================================================= */
-
-{
- brand:"Skoda",
- model:"Kylaq",
- body:"SUV",
- fuel:"Petrol",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:799000,
- minDown:160000,
- description:"Compact SUV with turbo-petrol powertrain and manual or automatic transmission.",
- features:[
-  "Turbo petrol engine",
-  "Manual",
-  "Automatic",
-  "Touchscreen infotainment",
-  "Digital display",
-  "Safety systems",
-  "Rear camera",
-  "Connected features"
- ],
- variants:[
-  {
-   name:"Classic",
-   price:799000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"Signature",
-   price:950000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Infotainment, camera and enhanced convenience equipment"
-  },
-  {
-   name:"Prestige",
-   price:1150000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Premium technology, enhanced comfort and convenience equipment"
-  }
- ]
-},
-
-{
- brand:"Skoda",
- model:"Kushaq",
- body:"SUV",
- fuel:"Petrol",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1050000,
- minDown:210000,
- description:"Mid-size SUV with turbo-petrol engines and manual or automatic transmissions.",
- features:[
-  "Turbo petrol",
-  "Manual",
-  "Automatic",
-  "Connected technology",
-  "Large infotainment",
-  "Safety systems",
-  "Rear camera",
-  "Premium cabin"
- ],
- variants:[
-  {
-   name:"Classic",
-   price:1050000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and convenience equipment"
-  },
-  {
-   name:"Signature",
-   price:1250000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Infotainment, camera, connected technology and comfort equipment"
-  },
-  {
-   name:"Prestige",
-   price:1550000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Premium technology, safety and comfort equipment"
-  }
- ]
-},
-
-/* =========================================================
-   VOLKSWAGEN
-========================================================= */
-
-{
- brand:"Volkswagen",
- model:"Taigun",
- body:"SUV",
- fuel:"Petrol",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1190000,
- minDown:240000,
- description:"Compact SUV with turbo-petrol engines, manual and automatic transmission choices.",
- features:[
-  "Turbo petrol",
-  "Manual",
-  "Automatic",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Safety systems",
-  "Digital display",
-  "Rear camera"
- ],
- variants:[
-  {
-   name:"Comfortline",
-   price:1190000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"Highline",
-   price:1350000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Infotainment, camera and connected technology"
-  },
-  {
-   name:"Topline",
-   price:1550000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Premium cabin, enhanced technology and convenience features"
-  }
- ]
-},
-
-{
- brand:"Volkswagen",
- model:"Virtus",
- body:"Sedan",
- fuel:"Petrol",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:1140000,
- minDown:230000,
- description:"Sedan with turbo-petrol engine options and manual or automatic transmission.",
- features:[
-  "Turbo petrol",
-  "Manual",
-  "Automatic",
-  "Large boot",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Safety systems",
-  "Digital displays"
- ],
- variants:[
-  {
-   name:"Comfortline",
-   price:1140000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Safety, infotainment and core comfort equipment"
-  },
-  {
-   name:"Highline",
-   price:1300000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Connected technology, camera and enhanced convenience"
-  },
-  {
-   name:"Topline",
-   price:1550000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Premium technology, advanced comfort and convenience features"
-  }
- ]
-},
-
-/* =========================================================
-   RENAULT
-========================================================= */
-
-{
- brand:"Renault",
- model:"Kiger",
- body:"SUV",
- fuel:"Petrol",
- transmission:"Manual / AMT / CVT",
- seats:5,
- use:"Personal",
- price:599900,
- minDown:120000,
- description:"Compact SUV with naturally aspirated and turbo-petrol powertrain choices.",
- features:[
-  "Petrol",
-  "Turbo petrol",
-  "Manual",
-  "AMT",
-  "CVT",
-  "Touchscreen infotainment",
-  "Rear camera",
-  "Safety systems"
- ],
- variants:[
-  {
-   name:"Authentic",
-   price:599900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"Evolution",
-   price:700000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Infotainment, camera and convenience equipment"
-  },
-  {
-   name:"Techno",
-   price:850000,
-   fuel:"Petrol",
-   transmission:"Manual / CVT",
-   features:"Connected technology, enhanced infotainment and premium equipment"
-  }
- ]
-},
-
-{
- brand:"Renault",
- model:"Triber",
- body:"MPV",
- fuel:"Petrol",
- transmission:"Manual / AMT",
- seats:7,
- use:"Personal / Commercial",
- price:599900,
- minDown:120000,
- description:"Compact MPV offering flexible three-row seating and practical urban dimensions.",
- features:[
-  "7-seat layout",
-  "Petrol engine",
-  "Manual",
-  "AMT",
-  "Flexible seating",
-  "Touchscreen infotainment",
-  "Rear camera",
-  "Safety equipment"
- ],
- variants:[
-  {
-   name:"Authentic",
-   price:599900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Three-row seating, safety equipment and essential comfort features"
-  },
-  {
-   name:"Evolution",
-   price:700000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Infotainment, camera and additional convenience equipment"
-  },
-  {
-   name:"Techno",
-   price:800000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Connected technology, enhanced cabin and premium convenience equipment"
-  }
- ]
-},
-
-/* =========================================================
-   NISSAN
-========================================================= */
-
-{
- brand:"Nissan",
- model:"Magnite",
- body:"SUV",
- fuel:"Petrol",
- transmission:"Manual / AMT / CVT",
- seats:5,
- use:"Personal / Commercial",
- price:599900,
- minDown:120000,
- description:"Compact SUV designed for practical urban driving with petrol and turbo-petrol options.",
- features:[
-  "Petrol engine",
-  "Turbo petrol",
-  "Manual",
-  "AMT",
-  "CVT",
-  "Touchscreen infotainment",
-  "Connected technology",
-  "Rear camera",
-  "Safety equipment"
- ],
- variants:[
-  {
-   name:"Visia",
-   price:599900,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"Acenta",
-   price:700000,
-   fuel:"Petrol",
-   transmission:"Manual / AMT",
-   features:"Infotainment, camera and convenience equipment"
-  },
-  {
-   name:"N-Connecta",
-   price:850000,
-   fuel:"Petrol",
-   transmission:"Manual / CVT",
-   features:"Connected technology, enhanced infotainment and convenience"
-  },
-  {
-   name:"Tekna",
-   price:1000000,
-   fuel:"Petrol",
-   transmission:"CVT",
-   features:"Premium technology, advanced convenience and enhanced safety"
-  }
- ]
-},
-
-/* =========================================================
-   CITROEN
-========================================================= */
-
-{
- brand:"Citroen",
- model:"C3",
- body:"Hatchback",
- fuel:"Petrol",
- transmission:"Manual",
- seats:5,
- use:"Personal",
- price:650000,
- minDown:130000,
- description:"Compact hatchback designed around distinctive styling and comfortable urban driving.",
- features:[
-  "Petrol engine",
-  "Manual transmission",
-  "Touchscreen infotainment",
-  "Air conditioning",
-  "Safety systems",
-  "Rear parking sensors",
-  "Comfort-oriented suspension"
- ],
- variants:[
-  {
-   name:"Live",
-   price:650000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety and comfort equipment"
-  },
-  {
-   name:"Feel",
-   price:750000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Infotainment, convenience and styling equipment"
-  },
-  {
-   name:"Shine",
-   price:850000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Enhanced technology, camera and premium convenience equipment"
-  }
- ]
-},
-
-{
- brand:"Citroen",
- model:"C3 Aircross",
- body:"SUV",
- fuel:"Petrol",
- transmission:"Manual / Automatic",
- seats:7,
- use:"Personal / Commercial",
- price:1150000,
- minDown:230000,
- description:"SUV offering flexible seating with five- and seven-seat configurations.",
- features:[
-  "Turbo petrol",
-  "Manual",
-  "Automatic",
-  "5/7 seating",
-  "Touchscreen infotainment",
-  "Safety equipment",
-  "Rear camera",
-  "Flexible cabin"
- ],
- variants:[
-  {
-   name:"You",
-   price:1150000,
-   fuel:"Petrol",
-   transmission:"Manual",
-   features:"Core safety, infotainment and seating equipment"
-  },
-  {
-   name:"Plus",
-   price:1300000,
-   fuel:"Petrol",
-   transmission:"Manual / Automatic",
-   features:"Camera, infotainment and enhanced convenience"
-  },
-  {
-   name:"Max",
-   price:1450000,
-   fuel:"Petrol",
-   transmission:"Automatic",
-   features:"Premium cabin, technology and convenience equipment"
-  }
- ]
-},
-
-/* =========================================================
-   BYD
-========================================================= */
-
-{
- brand:"BYD",
- model:"Atto 3",
- body:"SUV",
- fuel:"Electric",
- transmission:"Automatic",
- seats:5,
- use:"Personal",
- price:2499000,
- minDown:500000,
- description:"Electric SUV with battery-electric powertrain and technology-focused cabin.",
- features:[
-  "Battery electric powertrain",
-  "Automatic transmission",
-  "Regenerative braking",
-  "Large infotainment display",
-  "Connected technology",
-  "Advanced safety",
-  "Driver assistance",
-  "Fast charging"
- ],
- variants:[
-  {
-   name:"Dynamic",
-   price:2499000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"EV powertrain, infotainment, safety and charging equipment"
-  },
-  {
-   name:"Premium",
-   price:2900000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Larger battery, enhanced technology and premium equipment"
-  },
-  {
-   name:"Superior",
-   price:3400000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Premium cabin, advanced driver assistance and enhanced technology"
-  }
- ]
-},
-
-{
- brand:"BYD",
- model:"Seal",
- body:"Sedan",
- fuel:"Electric",
- transmission:"Automatic",
- seats:5,
- use:"Personal",
- price:4100000,
- minDown:820000,
- description:"Premium electric sedan with high-performance battery-electric powertrain.",
- features:[
-  "Battery electric powertrain",
-  "Automatic",
-  "Large battery",
-  "Regenerative braking",
-  "Advanced safety",
-  "Connected technology",
-  "Premium cabin",
-  "Driver assistance"
- ],
- variants:[
-  {
-   name:"Premium",
-   price:4100000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Large battery, premium infotainment, safety and comfort equipment"
-  },
-  {
-   name:"Performance",
-   price:4600000,
-   fuel:"Electric",
-   transmission:"Automatic",
-   features:"Performance-oriented electric system, advanced safety and premium technology"
-  }
- ]
-},
-
-/* =========================================================
-   FORCE
-========================================================= */
-
-{
- brand:"Force",
- model:"Gurkha",
- body:"SUV",
- fuel:"Diesel",
- transmission:"Manual",
- seats:5,
- use:"Personal / Commercial",
- price:1600000,
- minDown:320000,
- description:"Rugged SUV designed for demanding terrain and off-road oriented usage.",
- features:[
-  "Diesel engine",
-  "Manual transmission",
-  "4x4",
-  "High ground clearance",
-  "Off-road focused hardware",
-  "Rugged body",
-  "5-seat layout",
-  "Safety equipment"
- ],
- variants:[
-  {
-   name:"3 Door",
-   price:1600000,
-   fuel:"Diesel",
-   transmission:"Manual",
-   features:"4x4 hardware, off-road equipment, rugged suspension and safety equipment"
-  },
-  {
-   name:"5 Door",
-   price:1800000,
-   fuel:"Diesel",
-   transmission:"Manual",
-   features:"5-door body, 4x4 hardware, off-road equipment and enhanced practicality"
-  }
- ]
-},
-
-/* =========================================================
-   JEEP
-========================================================= */
-
-{
- brand:"Jeep",
- model:"Compass",
- body:"SUV",
- fuel:"Petrol / Diesel",
- transmission:"Manual / Automatic",
- seats:5,
- use:"Personal",
- price:2000000,
- minDown:400000,
- description:"Premium SUV with strong road presence, capable chassis and multiple powertrain choices.",
- features:[
-  "Petrol",
-  "Diesel",
-  "Manual",
-  "Automatic",
-  "4x4 availability",
-  "Connected technology",
-  "Safety systems",
-  "Premium infotainment"
- ],
- variants:[
-  {
-   name:"Sport",
-   price:2000000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual",
-   features:"Safety, infotainment and core comfort equipment"
-  },
-  {
-   name:"Longitude",
-   price:2250000,
-   fuel:"Petrol / Diesel",
-   transmission:"Manual / Automatic",
-   features:"Enhanced infotainment, camera and convenience equipment"
-  },
-  {
-   name:"Limited",
-   price2600000,
-   fuel:"Petrol / Diesel",
-   transmission:"Automatic",
-   features:"Premium technology, advanced safety and enhanced cabin equipment"
-  },
-  {
-   name:"Model S",
-   price:2900000,
-   fuel:"Petrol / Diesel",
-   transmission:"Automatic",
-   features:"Premium cabin, advanced technology and enhanced convenience features"
-  }
- ]
-
-}
-
+  "DCT",
+  "CVT/IVT"
 ];
 
 
-/* =========================================================
-   FIX POSSIBLE PRICE TYPO SAFELY
-========================================================= */
+/*
+   Demo model-level starting values.
 
-CAR_DB.forEach(car => {
+   This is intentionally conservative:
+   unknown models receive null rather than pretending
+   a made-up price is official.
+*/
 
-  car.variants.forEach(v => {
+const knownPrices = {
 
-    if(!Number.isFinite(v.price)){
-      v.price = car.price;
+  "Alto K10":3.99,
+  "S-Presso":3.49,
+  "WagonR":5.79,
+  "Celerio":5.64,
+  "Swift":6.49,
+  "Dzire":6.79,
+  "Baleno":5.99,
+  "FRONX":7.54,
+  "Brezza":8.69,
+  "Ertiga":8.84,
+  "XL6":11.61,
+  "Grand Vitara":10.77,
+  "Jimny":12.31,
+
+  "Tiago":4.99,
+  "Tigor":5.99,
+  "Altroz":6.89,
+  "Punch":5.99,
+  "Nexon":8.00,
+  "Harrier":14.99,
+  "Safari":15.50,
+  "Curvv":9.99,
+  "Tiago EV":7.99,
+  "Punch EV":9.99,
+  "Nexon EV":12.49,
+
+  "Grand i10 Nios":5.98,
+  "Aura":6.00,
+  "Exter":5.79,
+  "i20":7.04,
+  "i20 N Line":9.99,
+  "Venue":7.89,
+  "Venue N Line":10.55,
+  "Creta":11.11,
+  "Creta N Line":16.82,
+  "Verna":10.98,
+  "Alcazar":14.99,
+  "Tucson":29.02,
+  "Ioniq 5":46.05,
+
+  "XUV 3XO":7.49,
+  "Bolero":9.79,
+  "Bolero Neo":9.95,
+  "Thar":9.99,
+  "Thar ROXX":12.99,
+  "Scorpio Classic":13.59,
+  "Scorpio-N":13.99,
+  "XUV700":13.66,
+  "XEV 9e":21.90,
+  "BE 6":18.90,
+
+  "Sonet":7.99,
+  "Seltos":11.13,
+  "Carens":10.60,
+  "Carnival":59.99,
+  "EV6":60.97,
+
+  "Glanza":6.90,
+  "Urban Cruiser Hyryder":11.34,
+  "Innova Crysta":19.99,
+  "Innova Hycross":19.20,
+  "Rumion":10.44,
+  "Hilux":28.52,
+  "Fortuner":33.65,
+  "Legender":43.66,
+  "Camry":48.00,
+  "Vellfire":120.00,
+  "Land Cruiser 300":230.00,
+
+  "Amaze":8.10,
+  "City":12.28,
+  "City e:HEV":20.75,
+  "Elevate":11.91,
+
+  "Comet EV":7.00,
+  "Windsor EV":14.00,
+  "Astor":9.99,
+  "Hector":14.00,
+  "Hector Plus":17.00,
+  "Gloster":39.57,
+  "ZS EV":18.98,
+
+  "Kylaq":7.89,
+  "Kushaq":10.89,
+  "Slavia":10.49,
+  "Kodiaq":39.99,
+  "Superb":54.00,
+
+  "Taigun":11.00,
+  "Virtus":11.56,
+  "Tiguan":35.17,
+
+  "Kwid":4.99,
+  "Triber":6.15,
+  "Kiger":6.10,
+
+  "Magnite":6.00,
+  "X-Trail":49.92,
+
+  "C3":6.16,
+  "eC3":11.61,
+  "C3 Aircross":8.99,
+  "Basalt":8.25,
+
+  "Atto 3":24.99,
+  "e6":29.15,
+  "Seal":41.00,
+  "Sealion 7":48.90,
+
+  "Gurkha":16.00,
+  "Citiline":17.00,
+
+  "Compass":20.00,
+  "Meridian":24.99,
+  "Wrangler":67.65,
+  "Grand Cherokee":80.00
+};
+
+
+/* ============================================================
+   CAR DATABASE GENERATOR
+============================================================ */
+
+let cars = [];
+
+let globalIndex = 0;
+
+Object.entries(carNames).forEach(([brand,names])=>{
+
+  names.forEach(name=>{
+
+    let price = knownPrices[name] ?? null;
+
+    let isEV =
+      /EV|eV|Ioniq|Atto|Seal|Windsor|Comet|eC3|XEV|BE 6/i.test(name);
+
+    let isMPV =
+      /Ertiga|XL6|Carens|Carnival|Innova|Rumion|Vellfire|Triber|Citiline/i.test(name);
+
+    let isSedan =
+      /Dzire|Tigor|Aura|i20|Verna|Slavia|Virtus|City|Amaze|Camry/i.test(name);
+
+    let isHatch =
+      /Alto|S-Presso|WagonR|Celerio|Swift|Baleno|Tiago|Altroz|Glanza|Kwid|C3/i.test(name);
+
+    let type =
+      isEV ? "EV" :
+      isMPV ? "MPV" :
+      isSedan ? "Sedan" :
+      isHatch ? "Hatchback" :
+      "SUV";
+
+    let fuel =
+      isEV
+      ? ["Electric"]
+      : type==="MPV"
+      ? ["Petrol","Diesel"]
+      : ["Petrol"];
+
+    if(/CNG/i.test(name)){
+      fuel.push("CNG");
     }
+
+    let seats =
+      isMPV ? 7 :
+      /Thar|Gurkha/i.test(name) ? 4 :
+      5;
+
+    let mileage =
+      isEV
+      ? 0
+      : type==="Hatchback"
+      ? 22
+      : type==="Sedan"
+      ? 19
+      : 17;
+
+    let transmission =
+      isEV
+      ? ["Automatic"]
+      : ["Manual","Automatic"];
+
+    cars.push({
+
+      id:
+        "car-" +
+        globalIndex++,
+
+      brand,
+
+      name,
+
+      price,
+
+      maxPrice:
+        price
+        ? Number((price*1.55).toFixed(2))
+        : null,
+
+      fuel,
+
+      seats,
+
+      mileage,
+
+      type,
+
+      transmission,
+
+      engine:
+        isEV
+        ? "Electric powertrain"
+        : "Petrol / Diesel powertrain",
+
+      variants:[
+        "Base",
+        "Mid",
+        "Top"
+      ],
+
+      image:
+        "",
+
+      official:
+        "#"
+
+    });
 
   });
 
 });
 
 
-/* =========================================================
-   BRANDS
-========================================================= */
-
-const ALLOWED_BRANDS = [
-
-  "Maruti Suzuki",
-  "Toyota",
-  "Hyundai",
-  "Kia",
-  "Tata",
-  "Mahindra",
-  "Honda",
-  "MG",
-  "Skoda",
-  "Volkswagen",
-  "Renault",
-  "Nissan",
-  "Citroen",
-  "BYD",
-  "Force",
-  "Jeep"
-
-];
-
-
-/* =========================================================
+/* ============================================================
    STATE
-========================================================= */
+============================================================ */
 
-let currentCar = null;
+let compareIds = [];
 
-let selectedCompare = [];
+let activeBrand = "All";
 
-
-/* =========================================================
-   FORMAT PRICE
-========================================================= */
-
-function formatPrice(value){
-
-  if(!Number.isFinite(Number(value))){
-    return "₹ —";
-  }
-
-  return "₹ " + Number(value).toLocaleString("en-IN");
-
-}
+let lastMatches = [];
 
 
-/* =========================================================
-   LAKH FORMAT
-========================================================= */
+/* ============================================================
+   VIEW SYSTEM
+============================================================ */
 
-function formatLakh(value){
+function hideViews(){
 
-  if(!Number.isFinite(Number(value))){
-    return "₹ —";
-  }
-
-  return "₹ " +
-    (Number(value)/100000)
-    .toFixed(2)
-    .replace(/\.00$/,"") +
-    " Lakh";
+  document.querySelectorAll(".page-view")
+    .forEach(v=>v.classList.remove("active"));
 
 }
 
 
-/* =========================================================
-   CAR IMAGE PLACEHOLDER
+function showHome(){
 
-   Six image slots are intentionally available.
-   Replace each image URL later with your own images.
-========================================================= */
+  hideViews();
 
-function carImageMarkup(car,index=0){
-
-  return `
-    <div style="
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:25px;
-      background:
-        linear-gradient(
-          135deg,
-          #e8edf4,
-          #cfd8e4
-        );
-      color:#6d7c90;
-      font-weight:800;
-    ">
-      ${car.brand} ${car.model}<br>
-      Image ${index + 1} — upload later
-    </div>
-  `;
-
-}
-
-
-/* =========================================================
-   CREATE SIX IMAGE SLOTS
-========================================================= */
-
-function createGallery(car){
-
-  const gallery =
-    document.getElementById("carGallery");
-
-  const main =
-    document.getElementById("mainCarImage");
-
-  gallery.innerHTML="";
-
-  main.innerHTML=carImageMarkup(car,0);
-
-  for(let i=0;i<6;i++){
-
-    const thumb =
-      document.createElement("button");
-
-    thumb.className =
-      "galleryThumb" +
-      (i===0 ? " active" : "");
-
-    thumb.innerHTML =
-      carImageMarkup(car,i);
-
-    thumb.onclick=()=>{
-
-      document
-        .querySelectorAll(".galleryThumb")
-        .forEach(x =>
-          x.classList.remove("active")
-        );
-
-      thumb.classList.add("active");
-
-      main.innerHTML =
-        carImageMarkup(car,i);
-
-    };
-
-    gallery.appendChild(thumb);
-
-  }
-
-}
-
-
-/* =========================================================
-   POPULATE BRAND SELECTS
-========================================================= */
-
-function populateBrandSelects(){
-
-  const selects=[
-    document.getElementById("findBrand"),
-    document.getElementById("catalogBrand")
-  ];
-
-  selects.forEach(select=>{
-
-    if(!select) return;
-
-    ALLOWED_BRANDS.forEach(brand=>{
-
-      const option =
-        document.createElement("option");
-
-      option.value=brand;
-      option.textContent=brand;
-
-      select.appendChild(option);
-
-    });
-
-  });
-
-}
-
-
-/* =========================================================
-   POPULATE COMPARE
-========================================================= */
-
-function populateCompare(){
-
-  const selects=[
-    document.getElementById("compare1"),
-    document.getElementById("compare2"),
-    document.getElementById("compare3")
-  ];
-
-  selects.forEach(select=>{
-
-    if(!select) return;
-
-    select.innerHTML =
-      `<option value="">Select car</option>`;
-
-    CAR_DB.forEach((car,index)=>{
-
-      const option =
-        document.createElement("option");
-
-      option.value=index;
-
-      option.textContent =
-        `${car.brand} ${car.model}`;
-
-      select.appendChild(option);
-
-    });
-
-  });
-
-}
-
-            /* =========================================================
-   NAVIGATION
-
-   Every major result opens its own page/view.
-   Browser Back / Forward also work.
-========================================================= */
-
-function navigate(page,carIndex=null){
-
-  document
-    .querySelectorAll("#app > section")
-    .forEach(section=>{
-      section.classList.add("hidden");
-    });
-
-  const target =
-    document.getElementById("page-"+page);
-
-  if(target){
-    target.classList.remove("hidden");
-  }
-
-  if(page==="car"){
-    openCar(carIndex,false);
-  }
-
-  if(page==="cars"){
-    renderCarsPage();
-  }
-
-  if(page==="find"){
-    runFinder(false);
-  }
-
-  if(page==="compare"){
-    populateCompare();
-  }
-
-  updateNavigation(page);
+  document.getElementById("homeView")
+    .classList.add("active");
 
   window.scrollTo({
     top:0,
-    behavior:"instant"
+    behavior:"smooth"
   });
 
 }
 
 
-/* =========================================================
-   NAVIGATION UI
-========================================================= */
+function showResults(){
 
-function updateNavigation(page){
+  hideViews();
 
-  document
-    .querySelectorAll(".navButton")
-    .forEach(button=>{
+  document.getElementById("resultsView")
+    .classList.add("active");
 
-      button.classList.toggle(
-        "active",
-        button.dataset.nav===page
-      );
-
-    });
-
-
-  document
-    .querySelectorAll(".mobileNavButton")
-    .forEach(button=>{
-
-      button.classList.toggle(
-        "active",
-        button.dataset.navMobile===page
-      );
-
-    });
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
 
-/* =========================================================
-   OPEN CAR
-========================================================= */
+function showCatalog(){
 
-function openCar(index,addHistory=true){
+  hideViews();
 
-  const car =
-    CAR_DB[Number(index)];
+  document.getElementById("catalogView")
+    .classList.add("active");
 
-  if(!car) return;
+  renderBrands();
 
-  currentCar=car;
+  renderCatalog();
 
-  document
-    .querySelectorAll("#app > section")
-    .forEach(section=>{
-      section.classList.add("hidden");
-    });
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-  document
-    .getElementById("page-car")
-    .classList.remove("hidden");
+}
 
 
-  document.getElementById(
-    "detailBrandBreadcrumb"
-  ).textContent=car.brand;
+function showCompare(){
+
+  hideViews();
+
+  document.getElementById("compareView")
+    .classList.add("active");
+
+  renderCompare();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
 
 
-  document.getElementById(
-    "detailNameBreadcrumb"
-  ).textContent=car.model;
+function showEMI(car){
 
+  hideViews();
 
-  document.getElementById(
-    "detailBrand"
-  ).textContent=car.brand;
+  document.getElementById("emiView")
+    .classList.add("active");
 
+  if(car && car.price){
 
-  document.getElementById(
-    "detailName"
-  ).textContent=car.model;
+    document.getElementById("emiPrice").value =
+      car.price;
 
+    /*
+       FIXED MINIMUM DOWN PAYMENT:
+       20% of vehicle price
+    */
 
-  document.getElementById(
-    "detailPrice"
-  ).textContent=
-    `${formatLakh(car.price)} onwards ex-showroom`;
+    const min =
+      car.price*.20;
 
+    document.getElementById("emiDown").value =
+      min.toFixed(2);
 
-  document.getElementById(
-    "detailDescription"
-  ).textContent=car.description;
+    updateMinimumDP();
 
-
-  /* SPECS */
-
-  document.getElementById(
-    "detailSpecs"
-  ).innerHTML=`
-
-    <div class="specBox">
-      <small>Body Type</small>
-      <strong>${car.body}</strong>
-    </div>
-
-    <div class="specBox">
-      <small>Fuel</small>
-      <strong>${car.fuel}</strong>
-    </div>
-
-    <div class="specBox">
-      <small>Transmission</small>
-      <strong>${car.transmission}</strong>
-    </div>
-
-    <div class="specBox">
-      <small>Seats</small>
-      <strong>${car.seats}</strong>
-    </div>
-
-    <div class="specBox">
-      <small>Usage</small>
-      <strong>${car.use}</strong>
-    </div>
-
-    <div class="specBox">
-      <small>Starting Price</small>
-      <strong>${formatLakh(car.price)}</strong>
-    </div>
-
-  `;
-
-
-  /* FEATURES */
-
-  document.getElementById(
-    "detailFeatureGrid"
-  ).innerHTML =
-    car.features
-      .map(feature=>`
-        <div class="featureItem">
-          ${feature}
-        </div>
-      `)
-      .join("");
-
-
-  /* VARIANTS */
-
-  document.getElementById(
-    "variantTableBody"
-  ).innerHTML =
-    car.variants
-      .map(variant=>`
-
-        <tr>
-
-          <td>
-            <div class="variantName">
-              ${variant.name}
-            </div>
-          </td>
-
-          <td>
-            <span class="priceStrong">
-              ${formatPrice(variant.price)}
-            </span>
-          </td>
-
-          <td>
-            ${variant.fuel}
-          </td>
-
-          <td>
-            ${variant.transmission}
-          </td>
-
-          <td>
-            ${variant.features}
-          </td>
-
-        </tr>
-
-      `)
-      .join("");
-
-
-  /* SIX IMAGES */
-
-  createGallery(car);
-
-
-  /* CAR EMI */
-
-  document.getElementById(
-    "carEMIPrice"
-  ).value=car.price;
-
-
-  document.getElementById(
-    "carEMIDown"
-  ).value=car.minDown;
-
-
-  document.getElementById(
-    "carEMIResult"
-  ).innerHTML=`
-    Minimum configured down payment:
-    <strong>
-      ${formatPrice(car.minDown)}
-    </strong>
-  `;
-
-
-  updateNavigation("car");
-
-
-  if(addHistory){
-
-    history.pushState(
-      {
-        page:"car",
-        carIndex:index
-      },
-      "",
-      "#car-"+index
-    );
+    calculateEMI();
 
   }
 
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
 }
 
 
-/* =========================================================
-   RENDER ALL CARS
-========================================================= */
+/* ============================================================
+   FIND CARS
+============================================================ */
 
-function renderCarsPage(){
+function findCars(){
 
-  const brand =
-    document.getElementById(
-      "catalogBrand"
-    )?.value || "";
+  const maxBudget =
+    Number(
+      document.getElementById("budgetInput").value
+    );
 
-  const search =
-    (
-      document.getElementById(
-        "catalogSearch"
-      )?.value || ""
-    ).toLowerCase().trim();
+  if(!maxBudget || maxBudget<=0){
+
+    alert("Please enter your maximum budget in ₹ lakh.");
+
+    return;
+
+  }
 
 
-  const filtered =
-    CAR_DB.filter(car=>{
+  const fuel =
+    document.getElementById("fuel").value;
+
+  const family =
+    document.getElementById("family").value;
+
+  const mileage =
+    document.getElementById("mileage").value;
+
+  const body =
+    document.getElementById("bodyType").value;
+
+  const trans =
+    document.getElementById("transmission").value;
+
+
+  /*
+     IMPORTANT:
+     We do NOT use slice(0,1).
+
+     This allows all matching cars
+     to appear.
+  */
+
+  const scored = cars.map(car=>{
+
+    let score = 0;
+
+    let reasons = [];
+
+
+    /* BUDGET */
+
+    if(car.price !== null){
+
+      if(car.price <= maxBudget){
+
+        score += 35;
+
+        reasons.push("Within budget");
+
+      }else if(car.price <= maxBudget*1.10){
+
+        score += 8;
+
+        reasons.push("Near budget");
+
+      }
+
+    }else{
+
+      /*
+         Unknown-price models are not falsely
+         claimed to fit the budget.
+      */
+
+      score += 3;
+
+      reasons.push("Price needs verification");
+
+    }
+
+
+    /* FUEL */
+
+    if(
+      fuel==="Any" ||
+      car.fuel.includes(fuel)
+    ){
+
+      score += 18;
+
+      if(fuel!=="Any")
+        reasons.push(fuel+" available");
+
+    }
+
+
+    /* FAMILY */
+
+    if(family==="Any"){
+
+      score += 10;
+
+    }else if(family==="1-2"){
+
+      if(car.seats<=4){
+
+        score += 15;
+
+        reasons.push(car.seats+" seats");
+
+      }
+
+    }else if(family==="3-4"){
+
+      if(car.seats>=4){
+
+        score += 15;
+
+        reasons.push(car.seats+" seats");
+
+      }
+
+    }else if(family==="5-6"){
+
+      if(car.seats>=5){
+
+        score += 15;
+
+        reasons.push(car.seats+" seats");
+
+      }
+
+    }else if(family==="7+"){
+
+      if(car.seats>=7){
+
+        score += 15;
+
+        reasons.push(car.seats+" seats");
+
+      }
+
+    }
+
+
+    /* MILEAGE */
+
+    if(mileage==="any"){
+
+      score += 8;
+
+    }else if(
+      car.fuel.includes("Electric")
+    ){
+
+      score += 10;
+
+    }else if(
+      car.mileage >= Number(mileage)
+    ){
+
+      score += 12;
+
+      reasons.push(
+        car.mileage+" km/l"
+      );
+
+    }
+
+
+    /* BODY */
+
+    if(
+      body==="Any" ||
+      car.type===body ||
+      (body==="EV" && car.fuel.includes("Electric"))
+    ){
+
+      score += 15;
+
+      if(body!=="Any")
+        reasons.push(body+" fit");
+
+    }
+
+
+    /* TRANSMISSION */
+
+    if(
+      trans==="Any" ||
+      car.transmission.includes(trans)
+    ){
+
+      score += 15;
+
+      if(trans!=="Any")
+        reasons.push(
+          trans+" available"
+        );
+
+    }
+
+
+    return {
+      ...car,
+      score,
+      reasons
+    };
+
+  });
+
+
+  /*
+     All cars that are actually inside budget
+     receive priority.
+
+     No artificial limit of 1, 3 or 12.
+  */
+
+  let matches =
+    scored
+      .filter(car=>{
+
+        if(car.price===null)
+          return false;
+
+        return car.price <= maxBudget;
+
+      })
+      .sort((a,b)=>{
+
+        if(b.score!==a.score)
+          return b.score-a.score;
+
+        return a.price-b.price;
+
+      });
+
+
+  /*
+     If strict matches are zero,
+     show close matches rather than
+     a blank screen.
+  */
+
+  if(matches.length===0){
+
+    matches =
+      scored
+        .filter(car=>
+          car.price!==null &&
+          car.price<=maxBudget*1.15
+        )
+        .sort((a,b)=>b.score-a.score);
+
+  }
+
+
+  lastMatches = matches;
+
+  renderResults(matches);
+
+  showResults();
+
+}
+
+
+/* ============================================================
+   RESULT RENDER
+============================================================ */
+
+function renderResults(list){
+
+  const grid =
+    document.getElementById("resultsGrid");
+
+  const summary =
+    document.getElementById("resultSummary");
+
+
+  summary.textContent =
+    list.length
+    ? `We found ${list.length} cars that fit or closely match your selected budget and preferences.`
+    : "No matching priced models were found in the current catalogue.";
+
+
+  if(!list.length){
+
+    grid.innerHTML = `
+      <div style="
+        grid-column:1/-1;
+        background:white;
+        padding:60px;
+        border-radius:20px;
+        text-align:center;
+        border:1px solid var(--line)
+      ">
+
+        <h3>No matching cars found.</h3>
+
+        <p style="
+          color:var(--muted);
+          margin-top:7px
+        ">
+          Increase the budget or select more flexible preferences.
+        </p>
+
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+    list
+      .map((car,index)=>
+        carCardHTML(car,index)
+      )
+      .join("");
+
+}
+
+
+/* ============================================================
+   IMAGE SYSTEM
+============================================================ */
+
+/*
+   The image slot is intentionally model-specific.
+
+   To use an actual image, put its URL in:
+
+   car.image = "YOUR_IMAGE_URL"
+
+   This avoids displaying the wrong vehicle against
+   the wrong model name.
+*/
+
+function carImage(car){
+
+  if(car.image){
+
+    return `
+      <img
+        src="${car.image}"
+        alt="${escapeHTML(car.brand+" "+car.name)}"
+        loading="lazy"
+        onerror="this.style.display='none'">
+    `;
+
+  }
+
+
+  return `
+    <div class="image-placeholder">
+
+      <div>
+
+        <b>
+          ${escapeHTML(car.name)}
+        </b>
+
+        <span>
+          ${escapeHTML(car.brand)}
+        </span>
+
+        <span style="
+          margin-top:10px;
+          color:#a17c00
+        ">
+          Image slot ready
+        </span>
+
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+/* ============================================================
+   CARD HTML
+============================================================ */
+
+function carCardHTML(car,index){
+
+  const score =
+    Math.min(
+      99,
+      Math.max(
+        60,
+        Math.round(car.score || 70)
+      )
+    );
+
+
+  const price =
+    car.price===null
+    ? "Price to verify"
+    : "₹"+car.price.toFixed(2)+" Lakh*";
+
+
+  return `
+
+  <article class="car-card">
+
+    <div class="car-image">
+
+      <span class="card-badge">
+        #${index+1} MATCH
+      </span>
+
+      ${carImage(car)}
+
+    </div>
+
+
+    <div class="card-body">
+
+      <div class="card-title-row">
+
+        <div>
+
+          <div class="card-title">
+            ${escapeHTML(car.name)}
+          </div>
+
+          <div class="card-brand">
+            ${escapeHTML(car.brand)}
+          </div>
+
+        </div>
+
+        <div class="match-score">
+          ${score}%
+        </div>
+
+      </div>
+
+
+      <div class="price">
+        ${price}
+      </div>
+
+
+      <div class="specs">
+
+        <div class="spec">
+          Fuel
+          <b>
+            ${car.fuel.join(" / ")}
+          </b>
+        </div>
+
+        <div class="spec">
+          Seats
+          <b>
+            ${car.seats}
+          </b>
+        </div>
+
+        <div class="spec">
+          Body
+          <b>
+            ${car.type}
+          </b>
+        </div>
+
+        <div class="spec">
+          Gearbox
+          <b>
+            ${car.transmission.join(" / ")}
+          </b>
+        </div>
+
+      </div>
+
+
+      <div style="
+        color:#78869a;
+        font-size:9px;
+        min-height:35px
+      ">
+
+        <strong style="color:#4b5a70">
+          Why it matches:
+        </strong>
+
+        ${(car.reasons||[])
+          .slice(0,3)
+          .join(" • ")}
+
+      </div>
+
+
+      <div class="card-actions">
+
+        <button
+          class="info-btn"
+          onclick="openCar('${car.id}')">
+
+          Complete Info
+
+        </button>
+
+        <button
+          class="compare-btn"
+          onclick="addCompare('${car.id}')">
+
+          + Compare
+
+        </button>
+
+      </div>
+
+
+      ${
+        car.price
+        ?
+        `
+        <button
+          class="btn btn-outline"
+          style="width:100%;margin-top:8px;font-size:10px"
+          onclick="showEMI(byId('${car.id}'))">
+
+          💳 Calculate EMI
+
+        </button>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  </article>
+
+  `;
+
+}
+
+
+/* ============================================================
+   CATALOG
+============================================================ */
+
+function renderBrands(){
+
+  const container =
+    document.getElementById("brandFilter");
+
+  const brands =
+    Object.keys(carNames);
+
+
+  container.innerHTML = `
+
+    <button
+      class="brand-pill ${activeBrand==="All"?"active":""}"
+      onclick="filterBrand('All')">
+
+      All Brands
+
+    </button>
+
+    ${
+      brands.map(brand=>`
+
+        <button
+          class="brand-pill ${activeBrand===brand?"active":""}"
+          onclick="filterBrand('${escapeAttr(brand)}')">
+
+          ${escapeHTML(brand)}
+
+        </button>
+
+      `).join("")
+    }
+
+  `;
+
+}
+
+
+function filterBrand(brand){
+
+  activeBrand = brand;
+
+  renderBrands();
+
+  renderCatalog();
+
+}
+
+
+function renderCatalog(){
+
+  const query =
+    document
+      .getElementById("catalogSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const body =
+    document.getElementById("catalogBody").value;
+
+
+  const list =
+    cars.filter(car=>{
 
       const brandMatch =
-        !brand ||
-        car.brand===brand;
+        activeBrand==="All" ||
+        car.brand===activeBrand;
+
 
       const searchMatch =
-        !search ||
-        `${car.brand} ${car.model}`
+        !query ||
+        `${car.brand} ${car.name}`
           .toLowerCase()
-          .includes(search);
+          .includes(query);
 
-      return brandMatch && searchMatch;
+
+      const bodyMatch =
+        body==="All" ||
+        car.type===body;
+
+
+      return brandMatch &&
+             searchMatch &&
+             bodyMatch;
 
     });
 
 
-  renderCarGrid(
-    document.getElementById(
-      "catalogGrid"
-    ),
-    filtered
-  );
+  const grid =
+    document.getElementById("catalogGrid");
+
+
+  grid.innerHTML =
+    list.length
+    ?
+    list.map(car=>`
+
+      <article
+        class="catalog-card"
+        onclick="openCar('${car.id}')">
+
+        <div class="catalog-img">
+
+          ${carImage(car)}
+
+        </div>
+
+        <div class="catalog-body">
+
+          <h3>
+            ${escapeHTML(car.name)}
+          </h3>
+
+          <p>
+            ${escapeHTML(car.brand)}
+            •
+            ${car.type}
+            •
+            ${car.seats} seats
+          </p>
+
+          <div class="catalog-price">
+
+            ${
+              car.price
+              ? "₹"+car.price.toFixed(2)+" Lakh*"
+              : "Price to verify"
+            }
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `).join("")
+    :
+    `
+
+      <div style="
+        grid-column:1/-1;
+        text-align:center;
+        background:white;
+        padding:50px;
+        border-radius:20px
+      ">
+
+        <h3>
+          No cars found.
+        </h3>
+
+        <p style="
+          color:var(--muted);
+          margin-top:5px
+        ">
+          Try another brand or search.
+        </p>
+
+      </div>
+
+    `;
 
 }
 
 
-/* =========================================================
-   CAR CARD GRID
-========================================================= */
+/* ============================================================
+   CAR DETAILS
+============================================================ */
 
-function renderCarGrid(container,cars){
+function openCar(id){
 
-  if(!container) return;
+  const car = byId(id);
 
-  if(cars.length===0){
+  if(!car)
+    return;
 
-    container.innerHTML=`
 
-      <div
-        style="
-          grid-column:1/-1;
-          padding:50px;
-          background:#fff;
-          border-radius:25px;
-          text-align:center;
-          color:#73819a;
-        "
-      >
+  const price =
+    car.price
+    ? "₹"+car.price.toFixed(2)+" Lakh*"
+    : "Price to verify";
 
-        No matching cars found.
+
+  document.getElementById("modalContent").innerHTML = `
+
+    <div class="detail-layout">
+
+      <div>
+
+        <div class="detail-image">
+
+          ${carImage(car)}
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <span class="eyebrow">
+          ${escapeHTML(car.brand)}
+        </span>
+
+        <h2 class="detail-title">
+          ${escapeHTML(car.name)}
+        </h2>
+
+        <div class="detail-price">
+          ${price}
+        </div>
+
+
+        <div class="detail-specs">
+
+          <div class="detail-spec">
+            Fuel
+            <b>
+              ${car.fuel.join(" / ")}
+            </b>
+          </div>
+
+          <div class="detail-spec">
+            Seats
+            <b>
+              ${car.seats}
+            </b>
+          </div>
+
+          <div class="detail-spec">
+            Body Type
+            <b>
+              ${car.type}
+            </b>
+          </div>
+
+          <div class="detail-spec">
+            Transmission
+            <b>
+              ${car.transmission.join(" / ")}
+            </b>
+          </div>
+
+          <div class="detail-spec">
+            Efficiency
+            <b>
+              ${
+                car.fuel.includes("Electric")
+                ? "Electric"
+                : car.mileage+" km/l*"
+              }
+            </b>
+          </div>
+
+          <div class="detail-spec">
+            Powertrain
+            <b>
+              ${car.engine}
+            </b>
+          </div>
+
+        </div>
+
+
+        ${
+          car.price
+          ?
+          `
+          <button
+            class="btn btn-yellow"
+            style="margin-top:18px"
+            onclick="closeModal();showEMI(byId('${car.id}'))">
+
+            Calculate EMI →
+
+          </button>
+          `
+          :
+          ""
+        }
+
+        <button
+          class="btn btn-dark"
+          style="margin-top:18px"
+          onclick="addCompare('${car.id}')">
+
+          + Add to Compare
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="variant-section">
+
+      <h3>
+        Variants & Feature Information
+      </h3>
+
+      <p class="source-note">
+
+        The frontend is ready for exact
+        manufacturer variant names, prices,
+        feature-by-variant data, colours,
+        safety equipment and optional add-ons.
+
+      </p>
+
+
+      <div style="margin-top:12px">
+
+        ${car.variants.map(v=>`
+
+          <span class="variant-tag"
+            style="margin:5px">
+
+            ${v}
+
+          </span>
+
+        `).join("")}
+
+      </div>
+
+
+      <p class="source-note">
+
+        ⚠️ Base / Mid / Top shown here are
+        catalogue placeholders, not a claim that
+        these are the manufacturer's exact current
+        variant names.
+
+      </p>
+
+    </div>
+
+
+    <div class="variant-section">
+
+      <h3>
+        Image Gallery Slots
+      </h3>
+
+      <p class="source-note">
+
+        Front • Rear • Left • Right • Interior • Boot
+
+      </p>
+
+      <div style="
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:8px;
+        margin-top:12px
+      ">
+
+        ${[
+          "FRONT",
+          "REAR",
+          "LEFT",
+          "RIGHT",
+          "INTERIOR",
+          "BOOT"
+        ].map(label=>`
+
+          <div style="
+            height:90px;
+            border-radius:12px;
+            background:#f1f4f8;
+            display:grid;
+            place-items:center;
+            color:#8290a4;
+            font-size:9px;
+            font-weight:900
+          ">
+
+            ${label}<br>
+            IMAGE SLOT
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  document
+    .getElementById("carModal")
+    .classList.add("show");
+
+  document.body.style.overflow="hidden";
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("carModal")
+    .classList.remove("show");
+
+  document.body.style.overflow="";
+
+}
+
+
+/* ============================================================
+   COMPARE
+============================================================ */
+
+function addCompare(id){
+
+  if(compareIds.includes(id))
+    return;
+
+
+  if(compareIds.length>=4){
+
+    alert(
+      "You can compare a maximum of 4 cars."
+    );
+
+    return;
+
+  }
+
+
+  compareIds.push(id);
+
+  updateCompareBar();
+
+}
+
+
+function removeCompare(id){
+
+  compareIds =
+    compareIds.filter(
+      x=>x!==id
+    );
+
+  updateCompareBar();
+
+  renderCompare();
+
+}
+
+
+function clearCompare(){
+
+  compareIds=[];
+
+  updateCompareBar();
+
+  renderCompare();
+
+}
+
+
+function updateCompareBar(){
+
+  const bar =
+    document.getElementById("compareBar");
+
+  const chips =
+    document.getElementById("compareChips");
+
+
+  bar.classList.toggle(
+    "show",
+    compareIds.length>0
+  );
+
+
+  chips.innerHTML =
+    compareIds.map(id=>{
+
+      const car=byId(id);
+
+      return `
+
+        <span class="compare-chip">
+
+          ${escapeHTML(car.brand)}
+          ${escapeHTML(car.name)}
+
+          <button
+            onclick="removeCompare('${id}')">
+
+            ×
+
+          </button>
+
+        </span>
+
+      `;
+
+    }).join("");
+
+}
+
+
+function renderCompare(){
+
+  const output =
+    document.getElementById("compareOutput");
+
+
+  if(!compareIds.length){
+
+    output.innerHTML = `
+
+      <div class="compare-empty">
+
+        <h3>
+          Your comparison is empty.
+        </h3>
+
+        <p style="margin-top:6px">
+          Add cars using “+ Compare”.
+        </p>
 
       </div>
 
     `;
 
     return;
-  }
-
-
-  container.innerHTML =
-    cars
-      .map(car=>{
-
-        const index =
-          CAR_DB.indexOf(car);
-
-        return `
-
-          <article
-            class="carCard"
-            onclick="navigate('car',${index})"
-          >
-
-            <div class="carImage">
-
-              ${carImageMarkup(car,0)}
-
-              <span class="carImageTag">
-                ${car.body}
-              </span>
-
-            </div>
-
-
-            <div class="carBody">
-
-              <div class="carBrand">
-                ${car.brand}
-              </div>
-
-              <div class="carName">
-                ${car.model}
-              </div>
-
-
-              <div class="carMeta">
-
-                <span class="metaChip">
-                  ${car.fuel}
-                </span>
-
-                <span class="metaChip">
-                  ${car.seats} Seats
-                </span>
-
-                <span class="metaChip">
-                  ${car.transmission}
-                </span>
-
-              </div>
-
-
-              <div class="carPrice">
-                ${formatLakh(car.price)} onwards
-              </div>
-
-
-              <div class="carCardButton">
-                View Full Details →
-              </div>
-
-            </div>
-
-          </article>
-
-        `;
-
-      })
-      .join("");
-
-}
-
-
-/* =========================================================
-   FINDER
-========================================================= */
-
-function runFinder(showToast=true){
-
-  const budget =
-    Number(
-      document.getElementById(
-        "findBudget"
-      )?.value || 0
-    );
-
-  const body =
-    document.getElementById(
-      "findBody"
-    )?.value || "";
-
-  const fuel =
-    document.getElementById(
-      "findFuel"
-    )?.value || "";
-
-  const transmission =
-    document.getElementById(
-      "findTransmission"
-    )?.value || "";
-
-  const seats =
-    Number(
-      document.getElementById(
-        "findSeats"
-      )?.value || 0
-    );
-
-  const use =
-    document.getElementById(
-      "findUse"
-    )?.value || "";
-
-  const brand =
-    document.getElementById(
-      "findBrand"
-    )?.value || "";
-
-  const search =
-    (
-      document.getElementById(
-        "findSearch"
-      )?.value || ""
-    ).toLowerCase().trim();
-
-
-  const results =
-    CAR_DB.filter(car=>{
-
-      if(
-        budget &&
-        car.price>budget
-      ){
-        return false;
-      }
-
-      if(
-        body &&
-        car.body!==body
-      ){
-        return false;
-      }
-
-      if(
-        fuel &&
-        !car.fuel.toLowerCase()
-          .includes(fuel.toLowerCase())
-      ){
-        return false;
-      }
-
-      if(
-        transmission &&
-        !car.transmission
-          .toLowerCase()
-          .includes(
-            transmission.toLowerCase()
-          )
-      ){
-        return false;
-      }
-
-      if(
-        seats &&
-        car.seats<seats
-      ){
-        return false;
-      }
-
-      if(
-        use &&
-        !car.use.includes(use)
-      ){
-        return false;
-      }
-
-      if(
-        brand &&
-        car.brand!==brand
-      ){
-        return false;
-      }
-
-      if(
-        search &&
-        !`${car.brand} ${car.model}`
-          .toLowerCase()
-          .includes(search)
-      ){
-        return false;
-      }
-
-      return true;
-
-    });
-
-
-  renderCarGrid(
-    document.getElementById(
-      "finderResults"
-    ),
-    results
-  );
-
-
-  if(showToast){
-
-    showToastMessage(
-      `${results.length} matching car${results.length===1?"":"s"} found`
-    );
 
   }
 
-}
+
+  const selected =
+    compareIds.map(byId);
 
 
-/* =========================================================
-   RESET FINDER
-========================================================= */
+  const rows = [
 
-function resetFinder(){
+    [
+      "Starting Price",
+      c=>c.price
+        ? "₹"+c.price.toFixed(2)+" Lakh*"
+        : "Verify"
+    ],
 
-  [
-    "findBudget",
-    "findSeats",
-    "findSearch"
-  ].forEach(id=>{
+    [
+      "Fuel",
+      c=>c.fuel.join(" / ")
+    ],
 
-    const element =
-      document.getElementById(id);
+    [
+      "Seats",
+      c=>c.seats
+    ],
 
-    if(element){
-      element.value="";
-    }
+    [
+      "Body Type",
+      c=>c.type
+    ],
 
-  });
+    [
+      "Transmission",
+      c=>c.transmission.join(" / ")
+    ],
 
+    [
+      "Efficiency",
+      c=>c.fuel.includes("Electric")
+        ? "Electric"
+        : c.mileage+" km/l*"
+    ],
 
-  [
-    "findBody",
-    "findFuel",
-    "findTransmission",
-    "findUse",
-    "findBrand"
-  ].forEach(id=>{
+    [
+      "Powertrain",
+      c=>c.engine
+    ],
 
-    const element =
-      document.getElementById(id);
+    [
+      "Variants",
+      c=>"Base • Mid • Top*"
+    ]
 
-    if(element){
-      element.value="";
-    }
-
-  });
-
-
-  runFinder(false);
-
-}
-
-
-/* =========================================================
-   COMPARE
-========================================================= */
-
-function runCompare(){
-
-  const ids=[
-    document.getElementById("compare1").value,
-    document.getElementById("compare2").value,
-    document.getElementById("compare3").value
-  ]
-  .filter(x=>x!=="")
-  .map(Number);
+  ];
 
 
-  if(ids.length<2){
+  output.innerHTML = `
 
-    showToastMessage(
-      "Select at least two cars to compare."
-    );
+    <div class="compare-table-wrap">
 
-    return;
-  }
+      <table class="compare-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Specification
+            </th>
+
+            ${
+              selected.map(c=>`
+
+                <th>
+
+                  ${escapeHTML(c.brand)}
+                  <br>
+
+                  ${escapeHTML(c.name)}
+
+                  <br>
+
+                  <button
+                    class="btn"
+                    style="
+                      padding:5px 8px;
+                      margin-top:6px;
+                      background:#fff2c1;
+                      color:#665100;
+                      font-size:9px
+                    "
+                    onclick="removeCompare('${c.id}')">
+
+                    Remove
+
+                  </button>
+
+                </th>
+
+              `).join("")
+            }
+
+          </tr>
+
+        </thead>
 
 
-  const cars =
-    ids.map(index=>CAR_DB[index]);
+        <tbody>
 
+          ${
+            rows.map(row=>`
 
-  document.getElementById(
-    "compareResults"
-  ).innerHTML=`
+              <tr>
 
-    <div class="detailSection">
+                <td>
+                  ${row[0]}
+                </td>
 
-      <h2>
-        Comparison
-      </h2>
+                ${
+                  selected.map(c=>`
 
-      <div class="variantTableWrap">
+                    <td>
+                      ${row[1](c)}
+                    </td>
 
-        <table class="variantTable">
+                  `).join("")
+                }
 
-          <thead>
+              </tr>
 
-            <tr>
+            `).join("")
+          }
 
-              <th>
-                Specification
-              </th>
+        </tbody>
 
-              ${
-                cars
-                  .map(car=>`
-                    <th>
-                      ${car.brand}
-                      ${car.model}
-                    </th>
-                  `)
-                  .join("")
-              }
-
-            </tr>
-
-          </thead>
-
-
-          <tbody>
-
-            <tr>
-              <td>Starting Price</td>
-              ${
-                cars.map(car=>`
-                  <td>
-                    ${formatLakh(car.price)}
-                  </td>
-                `).join("")
-              }
-            </tr>
-
-            <tr>
-              <td>Body</td>
-              ${
-                cars.map(car=>`
-                  <td>${car.body}</td>
-                `).join("")
-              }
-            </tr>
-
-            <tr>
-              <td>Fuel</td>
-              ${
-                cars.map(car=>`
-                  <td>${car.fuel}</td>
-                `).join("")
-              }
-            </tr>
-
-            <tr>
-              <td>Transmission</td>
-              ${
-                cars.map(car=>`
-                  <td>${car.transmission}</td>
-                `).join("")
-              }
-            </tr>
-
-            <tr>
-              <td>Seats</td>
-              ${
-                cars.map(car=>`
-                  <td>${car.seats}</td>
-                `).join("")
-              }
-            </tr>
-
-            <tr>
-              <td>Usage</td>
-              ${
-                cars.map(car=>`
-                  <td>${car.use}</td>
-                `).join("")
-              }
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
+      </table>
 
     </div>
 
+
+    <p style="
+      color:#91a0b5;
+      font-size:9px;
+      margin-top:12px
+    ">
+
+      *Verify current prices, variants and
+      equipment with the manufacturer.
+
+    </p>
+
   `;
 
 }
 
 
-/* =========================================================
-   EMI CALCULATION
-========================================================= */
+/* ============================================================
+   EMI CALCULATOR
+============================================================ */
 
-function calculateEMI(
-  principal,
-  annualRate,
-  months
-){
-
-  principal=Number(principal);
-  annualRate=Number(annualRate);
-  months=Number(months);
-
-
-  if(
-    principal<=0 ||
-    months<=0
-  ){
-
-    return 0;
-
-  }
-
-
-  const monthlyRate =
-    annualRate / 12 / 100;
-
-
-  if(monthlyRate===0){
-
-    return principal/months;
-
-  }
-
-
-  return (
-    principal *
-    monthlyRate *
-    Math.pow(
-      1+monthlyRate,
-      months
-    )
-  ) /
-  (
-    Math.pow(
-      1+monthlyRate,
-      months
-    )-1
-  );
-
-}
-
-
-/* =========================================================
-   GLOBAL EMI
-========================================================= */
-
-function calculateGlobalEMI(){
+function updateMinimumDP(){
 
   const price =
     Number(
-      document.getElementById(
-        "globalCarPrice"
-      ).value
-    );
-
-  const down =
-    Number(
-      document.getElementById(
-        "globalDownPayment"
-      ).value
-    );
-
-  const rate =
-    Number(
-      document.getElementById(
-        "globalRate"
-      ).value
-    );
-
-  const months =
-    Number(
-      document.getElementById(
-        "globalTenure"
-      ).value
+      document.getElementById("emiPrice").value
     );
 
 
-  const principal =
-    Math.max(
-      0,
-      price-down
-    );
+  /*
+     FIXED MINIMUM DOWN PAYMENT = 20%
+  */
 
-
-  const emi =
-    calculateEMI(
-      principal,
-      rate,
-      months
-    );
+  const minimum =
+    price*.20;
 
 
   document.getElementById(
-    "globalEMIResult"
-  ).innerHTML=`
+    "minimumDpText"
+  ).textContent =
+    "₹"+minimum.toFixed(2)+" Lakh";
 
-    Estimated Monthly EMI
 
-    <br>
+  const down =
+    document.getElementById("emiDown");
 
-    <strong>
-      ${formatPrice(Math.round(emi))}
-    </strong>
 
-    <br>
+  if(
+    Number(down.value)<minimum
+  ){
 
-    <small style="color:#9eabc0;">
-      Loan amount:
-      ${formatPrice(principal)}
-    </small>
+    down.value =
+      minimum.toFixed(2);
 
-  `;
+  }
 
 }
 
 
-/* =========================================================
-   CAR EMI
-========================================================= */
-
-function calculateCarEMI(){
-
-  if(!currentCar) return;
-
+function calculateEMI(){
 
   const price =
     Number(
-      document.getElementById(
-        "carEMIPrice"
-      ).value
+      document.getElementById("emiPrice").value
     );
+
+
+  const minimumDP =
+    price*.20;
 
 
   let down =
     Number(
-      document.getElementById(
-        "carEMIDown"
-      ).value
-    );
-
-
-  const rate =
-    Number(
-      document.getElementById(
-        "carEMIRate"
-      ).value
-    );
-
-
-  const months =
-    Number(
-      document.getElementById(
-        "carEMITenure"
-      ).value
+      document.getElementById("emiDown").value
     );
 
 
   /*
-    Minimum down payment is linked to the car record.
-    User cannot accidentally calculate below it.
+     Enforce fixed minimum down payment.
   */
 
+  if(down<minimumDP){
+
+    down=minimumDP;
+
+    document.getElementById("emiDown").value =
+      down.toFixed(2);
+
+  }
+
+
+  const rate =
+    Number(
+      document.getElementById("emiRate").value
+    );
+
+
+  const years =
+    Number(
+      document.getElementById("emiYears").value
+    );
+
+
   if(
-    down<currentCar.minDown
+    !price ||
+    price<=0 ||
+    !years ||
+    years<=0
   ){
 
-    down=currentCar.minDown;
-
-    document.getElementById(
-      "carEMIDown"
-    ).value=down;
-
-    showToastMessage(
-      `Minimum down payment set to ${formatPrice(down)}`
+    alert(
+      "Please enter valid finance details."
     );
+
+    return;
 
   }
 
@@ -6679,376 +4381,302 @@ function calculateCarEMI(){
   const principal =
     Math.max(
       0,
-      price-down
+      (price-down)*100000
     );
 
 
-  const emi =
-    calculateEMI(
-      principal,
-      rate,
-      months
+  const monthlyRate =
+    rate/12/100;
+
+
+  const months =
+    years*12;
+
+
+  let emi;
+
+
+  if(monthlyRate===0){
+
+    emi =
+      principal/months;
+
+  }else{
+
+    emi =
+      principal *
+      monthlyRate *
+      Math.pow(
+        1+monthlyRate,
+        months
+      ) /
+      (
+        Math.pow(
+          1+monthlyRate,
+          months
+        )-1
+      );
+
+  }
+
+
+  document.getElementById(
+    "emiResult"
+  ).textContent =
+    formatRupees(emi);
+
+
+  document.getElementById(
+    "emiCarPrice"
+  ).textContent =
+    "₹"+price.toFixed(2)+" Lakh";
+
+
+  document.getElementById(
+    "emiDownPayment"
+  ).textContent =
+    "₹"+down.toFixed(2)+" Lakh";
+
+
+  document.getElementById(
+    "emiLoan"
+  ).textContent =
+    "₹"+(principal/100000).toFixed(2)+" Lakh";
+
+
+  document.getElementById(
+    "emiRateDisplay"
+  ).textContent =
+    rate+"%";
+
+}
+
+
+function formatRupees(value){
+
+  return "₹"+
+    Math.round(value)
+      .toLocaleString("en-IN");
+
+}
+
+
+/* ============================================================
+   RESET FINDER
+============================================================ */
+
+function resetFinder(){
+
+  document.getElementById(
+    "budgetInput"
+  ).value=12;
+
+
+  document.getElementById(
+    "fuel"
+  ).value="Any";
+
+
+  document.getElementById(
+    "family"
+  ).value="3-4";
+
+
+  document.getElementById(
+    "mileage"
+  ).value="any";
+
+
+  document.getElementById(
+    "bodyType"
+  ).value="Any";
+
+
+  document.getElementById(
+    "transmission"
+  ).value="Any";
+
+
+  updateProgress();
+
+}
+
+
+/* ============================================================
+   PROGRESS
+============================================================ */
+
+function updateProgress(){
+
+  const ids=[
+    "budgetInput",
+    "fuel",
+    "family",
+    "mileage",
+    "bodyType",
+    "transmission"
+  ];
+
+
+  let completed=0;
+
+
+  ids.forEach(id=>{
+
+    const el=
+      document.getElementById(id);
+
+    if(el.value)
+      completed++;
+
+  });
+
+
+  const percentage =
+    Math.max(
+      16.66,
+      completed/6*100
     );
 
 
   document.getElementById(
-    "carEMIResult"
-  ).innerHTML=`
+    "progress"
+  ).style.width =
+    percentage+"%";
 
-    Estimated Monthly EMI
 
-    <br>
-
-    <strong>
-      ${formatPrice(Math.round(emi))}
-    </strong>
-
-    <br>
-
-    <small style="color:#9eabc0;">
-      Loan amount:
-      ${formatPrice(principal)}
-      ·
-      ${rate}% annual interest
-      ·
-      ${months} months
-    </small>
-
-  `;
+  document.getElementById(
+    "step"
+  ).textContent =
+    Math.min(
+      completed,
+      6
+    )+" of 6";
 
 }
 
 
-/* =========================================================
-   SCROLL TO VARIANTS
-========================================================= */
+/* ============================================================
+   UTILITIES
+============================================================ */
 
-function scrollToVariants(){
+function byId(id){
+
+  return cars.find(
+    car=>car.id===id
+  );
+
+}
+
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+  return String(value)
+    .replace(/'/g,"\\'");
+}
+
+
+/* ============================================================
+   EVENTS
+============================================================ */
+
+[
+  "budgetInput",
+  "fuel",
+  "family",
+  "mileage",
+  "bodyType",
+  "transmission"
+].forEach(id=>{
 
   document
-    .getElementById(
-      "variantSection"
-    )
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-
-/* =========================================================
-   CONTACT FORM
-========================================================= */
-
-function submitContact(event){
-
-  event.preventDefault();
-
-
-  const name =
-    document.getElementById(
-      "contactName"
-    ).value.trim();
-
-
-  const email =
-    document.getElementById(
-      "contactEmail"
-    ).value.trim();
-
-
-  const message =
-    document.getElementById(
-      "contactMessage"
-    ).value.trim();
-
-
-  const subject =
-    encodeURIComponent(
-      `GadiFinder Query from ${name}`
+    .getElementById(id)
+    .addEventListener(
+      "change",
+      updateProgress
     );
 
-
-  const body =
-    encodeURIComponent(
-      `Name: ${name}\n\n` +
-      `Email: ${email}\n\n` +
-      `Query:\n${message}`
-    );
+});
 
 
-  /*
-    This opens the visitor's email client addressed
-    to the GadiFinder Gmail address.
-
-    A true server-side Gmail submission requires a
-    backend/mail service and should not expose Gmail
-    credentials in HTML.
-  */
-
-  window.location.href =
-    `mailto:tanamy7773y@gmail.com` +
-    `?subject=${subject}` +
-    `&body=${body}`;
-
-}
+document
+  .getElementById("budgetInput")
+  .addEventListener(
+    "input",
+    updateProgress
+  );
 
 
-/* =========================================================
-   TOAST
-========================================================= */
-
-let toastTimer=null;
-
-function showToastMessage(message){
-
-  const toast =
-    document.getElementById(
-      "gadiToast"
-    );
-
-  if(!toast) return;
-
-  toast.textContent=message;
-
-  toast.classList.add("show");
+document
+  .getElementById("catalogSearch")
+  .addEventListener(
+    "input",
+    renderCatalog
+  );
 
 
-  clearTimeout(toastTimer);
+document
+  .getElementById("catalogBody")
+  .addEventListener(
+    "change",
+    renderCatalog
+  );
 
 
-  toastTimer =
-    setTimeout(()=>{
-
-      toast.classList.remove("show");
-
-    },2600);
-
-}
+document
+  .getElementById("emiPrice")
+  .addEventListener(
+    "input",
+    updateMinimumDP
+  );
 
 
-/* =========================================================
-   BROWSER BACK / FORWARD
-========================================================= */
+document
+  .getElementById("emiDown")
+  .addEventListener(
+    "input",
+    updateMinimumDP
+  );
 
-window.addEventListener(
-  "popstate",
+
+document.addEventListener(
+  "keydown",
   event=>{
 
-    const state =
-      event.state;
-
-
-    if(
-      state &&
-      state.page==="car"
-    ){
-
-      openCar(
-        state.carIndex,
-        false
-      );
-
-      return;
-
-    }
-
-
-    if(
-      state &&
-      state.page
-    ){
-
-      navigate(
-        state.page
-      );
-
-      return;
-
-    }
-
-
-    navigate("home");
+    if(event.key==="Escape")
+      closeModal();
 
   }
 );
 
 
-/* =========================================================
-   FOOTER
-========================================================= */
-
-document.write(`
-
-<footer class="footer">
-
-  <div class="container">
-
-    <div class="footerGrid">
-
-
-      <div>
-
-        <div class="logo">
-
-          <span class="logoWhite">
-            Gadi
-          </span>
-
-          <span class="logoYellow">
-            Finder
-          </span>
-
-        </div>
-
-        <p style="margin-top:15px;">
-          Find. Compare. Decide.
-        </p>
-
-        <p style="margin-top:8px;">
-          Indian car discovery, comparison and
-          automotive research experience.
-        </p>
-
-      </div>
-
-
-      <div>
-
-        <h3>
-          Explore
-        </h3>
-
-        <a onclick="navigate('home')">
-          Home
-        </a>
-
-        <a onclick="navigate('find')">
-          Find My Car
-        </a>
-
-        <a onclick="navigate('cars')">
-          All Cars
-        </a>
-
-        <a onclick="navigate('compare')">
-          Compare
-        </a>
-
-      </div>
-
-
-      <div>
-
-        <h3>
-          Business
-        </h3>
-
-        <a onclick="navigate('promote')">
-          Advertising & Promotion
-        </a>
-
-        <a onclick="navigate('insurance')">
-          Insurance
-        </a>
-
-        <a onclick="navigate('emi')">
-          Finance / EMI
-        </a>
-
-        <a onclick="navigate('contact')">
-          Contact
-        </a>
-
-      </div>
-
-
-      <div>
-
-        <div class="footerFounder">
-
-          <strong>
-            Tanmay Thorat
-          </strong>
-
-          <p>
-            Founder • Creator • Maintained By
-          </p>
-
-          <span>
-            tanamy7773y@gmail.com
-          </span>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="footerBottom">
-
-      <span>
-        © 2026 GadiFinder • Created and maintained
-        by Tanmay Thorat.
-      </span>
-
-      <span>
-        Vehicle information, prices and equipment
-        should be verified before purchase.
-      </span>
-
-    </div>
-
-  </div>
-
-</footer>
-
-<div
-  id="gadiToast"
-  class="toast"
-></div>
-
-`);
-
-
-/* =========================================================
+/* ============================================================
    INITIALISE
-========================================================= */
+============================================================ */
 
-function initialiseGadiFinder(){
+renderBrands();
 
-  populateBrandSelects();
+renderCatalog();
 
-  populateCompare();
+updateProgress();
 
-  renderCarsPage();
+updateMinimumDP();
 
-  runFinder(false);
+calculateEMI();
 
-  navigate("home");
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
-
-if(
-  document.readyState==="loading"
-){
-
-  document.addEventListener(
-    "DOMContentLoaded",
-    initialiseGadiFinder
-  );
-
-}else{
-
-  initialiseGadiFinder();
-
-}
+updateCompareBar();
 
 </script>
 
