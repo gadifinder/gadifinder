@@ -1,1 +1,2834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="GadiFinder - Find Indian cars by budget, fuel, seats, mileage, body type, transmission and usage.">
+
+  <title>Find Cars | GadiFinder</title>
+
+  <!-- =========================================================
+       GADIFINDER
+       PART 2 — FIND CARS PAGE
+       ========================================================= -->
+
+  <style>
+
+    /* =========================================================
+       1. COLOUR VARIABLES
+       EDIT COLOURS HERE
+       ========================================================= */
+
+    :root {
+      --navy: #0F172A;
+      --navy-2: #111C32;
+      --navy-3: #17243D;
+
+      --yellow: #FFD43B;
+      --yellow-2: #FFE675;
+
+      --white: #FFFFFF;
+      --black: #020617;
+
+      --text: #172238;
+      --muted: #64748B;
+      --border: #E2E8F0;
+
+      --background: #F5F7FB;
+      --card: #FFFFFF;
+
+      --success: #16A34A;
+      --danger: #DC2626;
+
+      --shadow:
+        0 12px 35px rgba(15, 23, 42, 0.10);
+
+      --radius: 18px;
+    }
+
+
+    /* =========================================================
+       2. BASIC RESET
+       ========================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: var(--background);
+      color: var(--text);
+
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    /* =========================================================
+       3. TOP NAVIGATION
+       ========================================================= */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      width: 100%;
+
+      background:
+        rgba(15, 23, 42, 0.96);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      max-width: 1400px;
+      margin: auto;
+
+      min-height: 76px;
+
+      padding:
+        0 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 25px;
+    }
+
+
+    /* =========================================================
+       4. LOGO
+       ========================================================= */
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: var(--white);
+
+      font-size: 25px;
+      font-weight: 900;
+
+      letter-spacing: -0.7px;
+
+      white-space: nowrap;
+    }
+
+    .logo-mark {
+      width: 39px;
+      height: 39px;
+
+      border-radius: 12px;
+
+      background: var(--yellow);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--navy);
+
+      font-weight: 1000;
+      font-size: 19px;
+
+      box-shadow:
+        0 6px 18px rgba(255,212,59,0.22);
+    }
+
+
+    /* =========================================================
+       5. DESKTOP MENU
+       ========================================================= */
+
+    .desktop-menu {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .desktop-menu a {
+      color: #CBD5E1;
+
+      padding:
+        10px 12px;
+
+      border-radius: 10px;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      transition: 0.2s ease;
+    }
+
+    .desktop-menu a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .desktop-menu .active {
+      background: var(--yellow);
+      color: var(--navy);
+    }
+
+
+    /* =========================================================
+       6. PAGE HEADER
+       ========================================================= */
+
+    .page-header {
+      background:
+        linear-gradient(
+          135deg,
+          var(--navy),
+          var(--navy-2)
+        );
+
+      color: var(--white);
+
+      padding:
+        55px 24px 80px;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: "";
+
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,212,59,0.08);
+
+      top: -240px;
+      right: -100px;
+    }
+
+    .page-header-inner {
+      max-width: 1200px;
+      margin: auto;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+
+      background:
+        rgba(255,212,59,0.12);
+
+      border:
+        1px solid rgba(255,212,59,0.30);
+
+      color: var(--yellow-2);
+
+      padding:
+        8px 13px;
+
+      border-radius: 999px;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      margin-bottom: 17px;
+    }
+
+    .page-header h1 {
+      font-size:
+        clamp(32px, 5vw, 58px);
+
+      line-height: 1.02;
+
+      letter-spacing: -1.8px;
+
+      margin-bottom: 15px;
+    }
+
+    .page-header h1 span {
+      color: var(--yellow);
+    }
+
+    .page-header p {
+      max-width: 720px;
+
+      color: #CBD5E1;
+
+      line-height: 1.7;
+
+      font-size: 16px;
+    }
+
+
+    /* =========================================================
+       7. FINDER CONTAINER
+       ========================================================= */
+
+    .finder-wrap {
+      max-width: 1120px;
+
+      margin:
+        -42px auto 0;
+
+      padding:
+        0 20px;
+
+      position: relative;
+      z-index: 5;
+    }
+
+
+    /* =========================================================
+       8. FINDER CARD
+       ========================================================= */
+
+    .finder-card {
+      background: var(--card);
+
+      border:
+        1px solid rgba(15,23,42,0.06);
+
+      border-radius: 24px;
+
+      box-shadow:
+        0 22px 55px rgba(15,23,42,0.15);
+
+      padding: 28px;
+    }
+
+    .finder-title {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 20px;
+
+      margin-bottom: 25px;
+    }
+
+    .finder-title h2 {
+      font-size: 23px;
+      color: var(--navy);
+    }
+
+    .finder-title p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .choice-count {
+      background: #FFF8D8;
+      color: #806400;
+
+      padding: 8px 12px;
+
+      border-radius: 999px;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+
+    /* =========================================================
+       9. CHOICE GRID
+       ========================================================= */
+
+    .choices {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 18px;
+    }
+
+    .choice {
+      border:
+        1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 18px;
+
+      background: #FBFCFE;
+
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .choice:hover {
+      border-color:
+        rgba(255,212,59,0.8);
+
+      box-shadow:
+        0 8px 22px rgba(15,23,42,0.07);
+
+      transform:
+        translateY(-1px);
+    }
+
+    .choice-label {
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      font-weight: 850;
+
+      color: var(--navy);
+
+      margin-bottom: 10px;
+    }
+
+    .choice-number {
+      width: 27px;
+      height: 27px;
+
+      border-radius: 9px;
+
+      background: var(--navy);
+
+      color: var(--yellow);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .choice-help {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.5;
+
+      margin-bottom: 10px;
+    }
+
+
+    /* =========================================================
+       10. SELECT / INPUT
+       ========================================================= */
+
+    .choice select,
+    .choice input {
+      width: 100%;
+
+      height: 48px;
+
+      border:
+        1px solid #CBD5E1;
+
+      border-radius: 12px;
+
+      background: var(--white);
+
+      color: var(--text);
+
+      padding:
+        0 13px;
+
+      outline: none;
+
+      font-size: 14px;
+      font-weight: 650;
+
+      transition: 0.2s ease;
+    }
+
+    .choice select:focus,
+    .choice input:focus {
+      border-color: var(--navy);
+
+      box-shadow:
+        0 0 0 3px rgba(15,23,42,0.08);
+    }
+
+
+    /* =========================================================
+       11. KEYBOARD NUMBER INPUT
+       ========================================================= */
+
+    .number-input-wrap {
+      position: relative;
+    }
+
+    .number-input-wrap input {
+      padding-right: 55px;
+    }
+
+    .input-suffix {
+      position: absolute;
+
+      right: 14px;
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      color: var(--muted);
+
+      font-size: 12px;
+      font-weight: 800;
+
+      pointer-events: none;
+    }
+
+    .input-note {
+      margin-top: 7px;
+
+      font-size: 11px;
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       12. FIND BUTTON
+       ========================================================= */
+
+    .finder-actions {
+      display: flex;
+
+      justify-content: center;
+
+      margin-top: 25px;
+    }
+
+    .find-button {
+      width: min(100%, 430px);
+
+      min-height: 56px;
+
+      border: none;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--yellow),
+          var(--yellow-2)
+        );
+
+      color: var(--navy);
+
+      font-weight: 950;
+
+      font-size: 16px;
+
+      box-shadow:
+        0 10px 24px rgba(255,212,59,0.25);
+
+      transition: 0.2s ease;
+    }
+
+    .find-button:hover {
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 15px 30px rgba(255,212,59,0.32);
+    }
+
+    .find-button:active {
+      transform:
+        translateY(0);
+    }
+
+
+    /* =========================================================
+       13. RESULTS SECTION
+       ========================================================= */
+
+    .results-section {
+      max-width: 1200px;
+
+      margin:
+        50px auto;
+
+      padding:
+        0 20px;
+    }
+
+    .results-heading {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 20px;
+
+      margin-bottom: 20px;
+    }
+
+    .results-heading h2 {
+      font-size: 28px;
+      color: var(--navy);
+    }
+
+    .results-heading p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    .result-count {
+      color: var(--navy);
+
+      font-size: 13px;
+
+      font-weight: 850;
+
+      background: var(--white);
+
+      padding: 9px 13px;
+
+      border-radius: 999px;
+
+      border: 1px solid var(--border);
+    }
+
+
+    /* =========================================================
+       14. RESULT GRID
+       ========================================================= */
+
+    .results-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+
+    /* =========================================================
+       15. CAR RESULT CARD
+       ========================================================= */
+
+    .car-card {
+      background: var(--white);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      overflow: hidden;
+
+      box-shadow:
+        0 8px 25px rgba(15,23,42,0.06);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .car-card:hover {
+      transform:
+        translateY(-4px);
+
+      box-shadow:
+        var(--shadow);
+    }
+
+    .car-image {
+      height: 210px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #E8EDF5,
+          #F8FAFC
+        );
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+    .car-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      display: block;
+
+      transition:
+        transform 0.3s ease;
+    }
+
+    .car-card:hover .car-image img {
+      transform:
+        scale(1.04);
+    }
+
+    .image-placeholder {
+      height: 100%;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
+      color: #94A3B8;
+
+      text-align: center;
+
+      padding: 20px;
+    }
+
+    .image-placeholder-icon {
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .image-placeholder strong {
+      color: #64748B;
+      font-size: 13px;
+    }
+
+    .image-placeholder small {
+      margin-top: 4px;
+      font-size: 10px;
+    }
+
+
+    /* =========================================================
+       16. CAR CARD CONTENT
+       ========================================================= */
+
+    .car-content {
+      padding: 19px;
+    }
+
+    .brand-label {
+      color: var(--muted);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.8px;
+
+      margin-bottom: 4px;
+    }
+
+    .car-name {
+      font-size: 21px;
+
+      color: var(--navy);
+
+      font-weight: 900;
+
+      margin-bottom: 9px;
+    }
+
+    .car-price {
+      color: var(--navy);
+
+      font-weight: 850;
+
+      font-size: 14px;
+
+      margin-bottom: 13px;
+    }
+
+    .car-specs {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 7px;
+
+      margin-bottom: 16px;
+    }
+
+    .spec {
+      background: #F8FAFC;
+
+      border-radius: 9px;
+
+      padding: 8px;
+
+      font-size: 11px;
+
+      color: var(--muted);
+    }
+
+    .spec strong {
+      display: block;
+
+      color: var(--text);
+
+      font-size: 12px;
+
+      margin-top: 2px;
+    }
+
+    .view-car-button {
+      width: 100%;
+
+      min-height: 44px;
+
+      border-radius: 11px;
+
+      border:
+        1px solid var(--navy);
+
+      background: var(--navy);
+
+      color: var(--white);
+
+      font-size: 13px;
+
+      font-weight: 850;
+
+      transition: 0.2s ease;
+    }
+
+    .view-car-button:hover {
+      background:
+        var(--yellow);
+
+      color:
+        var(--navy);
+
+      border-color:
+        var(--yellow);
+    }
+
+
+    /* =========================================================
+       17. EMPTY RESULT STATE
+       ========================================================= */
+
+    .empty-state {
+      background: var(--white);
+
+      border:
+        1px dashed #CBD5E1;
+
+      border-radius: 18px;
+
+      padding: 45px 25px;
+
+      text-align: center;
+
+      grid-column: 1 / -1;
+    }
+
+    .empty-state-icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    .empty-state h3 {
+      color: var(--navy);
+
+      font-size: 20px;
+
+      margin-bottom: 7px;
+    }
+
+    .empty-state p {
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       18. BOTTOM NAVIGATION
+       MOBILE ONLY
+       ========================================================= */
+
+    .mobile-nav {
+      display: none;
+
+      position: fixed;
+
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      z-index: 2000;
+
+      background:
+        rgba(15,23,42,0.97);
+
+      backdrop-filter:
+        blur(15px);
+
+      border-top:
+        1px solid rgba(255,255,255,0.08);
+
+      padding:
+        8px 5px
+        calc(8px + env(safe-area-inset-bottom));
+    }
+
+    .mobile-nav-inner {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      gap: 3px;
+    }
+
+    .mobile-nav a {
+      color: #94A3B8;
+
+      min-height: 55px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 3px;
+
+      border-radius: 10px;
+
+      font-size: 10px;
+
+      font-weight: 750;
+
+      text-align: center;
+    }
+
+    .mobile-nav a span {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .mobile-nav a.active {
+      background: var(--yellow);
+      color: var(--navy);
+    }
+
+
+    /* =========================================================
+       19. RESPONSIVE TABLET
+       ========================================================= */
+
+    @media (max-width: 1050px) {
+
+      .desktop-menu a {
+        padding:
+          8px 8px;
+
+        font-size: 12px;
+      }
+
+      .results-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+
+    /* =========================================================
+       20. RESPONSIVE MOBILE
+       ========================================================= */
+
+    @media (max-width: 700px) {
+
+      body {
+        padding-bottom: 76px;
+      }
+
+      .topbar-inner {
+        min-height: 65px;
+        padding:
+          0 15px;
+      }
+
+      .logo {
+        font-size: 21px;
+      }
+
+      .logo-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+      }
+
+      .desktop-menu {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      .page-header {
+        padding:
+          38px 18px 65px;
+      }
+
+      .page-header h1 {
+        font-size: 37px;
+      }
+
+      .finder-wrap {
+        padding:
+          0 13px;
+      }
+
+      .finder-card {
+        padding: 18px;
+
+        border-radius: 18px;
+      }
+
+      .finder-title {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+      }
+
+      .choices {
+        grid-template-columns:
+          1fr;
+      }
+
+      .results-section {
+        padding:
+          0 13px;
+      }
+
+      .results-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+      .results-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .car-image {
+        height: 230px;
+      }
+
+    }
+
+
+    /* =========================================================
+       21. VERY SMALL PHONES
+       ========================================================= */
+
+    @media (max-width: 390px) {
+
+      .mobile-nav a {
+        font-size: 9px;
+      }
+
+      .mobile-nav a span {
+        font-size: 16px;
+      }
+
+      .finder-card {
+        padding: 14px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================================================
+       TOP NAVIGATION
+       ========================================================= -->
+
+  <header class="topbar">
+
+    <div class="topbar-inner">
+
+      <a href="index.html" class="logo">
+
+        <div class="logo-mark">
+          GF
+        </div>
+
+        GadiFinder
+
+      </a>
+
+
+      <!-- DESKTOP / TABLET MENU -->
+
+      <nav class="desktop-menu">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="find-cars.html" class="active">
+          Find Cars
+        </a>
+
+        <a href="all-cars.html">
+          All Cars
+        </a>
+
+        <a href="compare.html">
+          Compare
+        </a>
+
+        <a href="promote.html">
+          Promote
+        </a>
+
+        <a href="insurance-emi.html">
+          Insurance & EMI
+        </a>
+
+        <a href="contact.html">
+          Contact
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================================================
+       PAGE HEADER
+       ========================================================= -->
+
+  <section class="page-header">
+
+    <div class="page-header-inner">
+
+      <div class="eyebrow">
+        🚗 SMART CAR DISCOVERY
+      </div>
+
+      <h1>
+        Find the car that
+        <span>fits your life.</span>
+      </h1>
+
+      <p>
+        Tell GadiFinder what you need and our matching system
+        will filter the available cars using your budget,
+        fuel preference, seating requirement, mileage,
+        body type, transmission and intended usage.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================================
+       FINDER
+       ========================================================= -->
+
+  <main>
+
+    <div class="finder-wrap">
+
+      <section class="finder-card">
+
+        <div class="finder-title">
+
+          <div>
+
+            <h2>
+              Tell us what you need
+            </h2>
+
+            <p>
+              Complete the choices below to see matching cars.
+            </p>
+
+          </div>
+
+          <div class="choice-count" id="choiceCount">
+            0 / 7 selected
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             CHOICES
+             ===================================================== -->
+
+        <div class="choices">
+
+
+          <!-- ===================================================
+               CHOICE 1 — BUDGET
+               =================================================== -->
+
+          <div class="choice">
+
+            <div class="choice-label">
+
+              <span class="choice-number">
+                1
+              </span>
+
+              Budget
+
+            </div>
+
+            <div class="choice-help">
+              Enter your approximate maximum budget in ₹ lakh.
+            </div>
+
+            <div class="number-input-wrap">
+
+              <input
+                id="budget"
+                type="number"
+                min="1"
+                step="0.1"
+                inputmode="decimal"
+                placeholder="Example: 12"
+                aria-label="Budget in lakh"
+              >
+
+              <span class="input-suffix">
+                Lakh
+              </span>
+
+            </div>
+
+            <div class="input-note">
+              Keyboard input is enabled.
+            </div>
+
+          </div>
+
+
+
+          <!-- ===================================================
+               CHOICE 2 — FUEL
+               =================================================== -->
+
+          <div class="choice">
+
+            <div class="choice-label">
+
+              <span class="choice-number">
+                2
+              </span>
+
+              Fuel
+
+            </div>
+
+            <div class="choice-help">
+              Select the fuel/powertrain you prefer.
+            </div>
+
+            <select id="fuel">
+
+              <option value="">
+                Select fuel type
+              </option>
+
+              <option value="Petrol">
+                Petrol
+              </option>
+
+              <option value="Diesel">
+                Diesel
+              </option>
+
+              <option value="CNG">
+                CNG
+              </option>
+
+              <option value="Electric">
+                Electric
+              </option>
+
+              <option value="Hybrid">
+                Hybrid
+              </option>
+
+              <option value="Any">
+                Any
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- ===================================================
+               CHOICE 3 — SEATS
+               =================================================== -->
+
+          <div class="choice">
+
+            <div class="choice-label">
+
+              <span class="choice-number">
+                3
+              </span>
+
+              Seats
+
+            </div>
+
+            <div class="choice-help">
+              Enter the number of seats you need.
+            </div>
+
+            <div class="number-input-wrap">
+
+              <input
+                id="seats"
+                type="number"
+                min="2"
+                max="12"
+                step="1"
+                inputmode="numeric"
+                placeholder="Example: 5"
+                aria-label="Number of seats"
+              >
+
+              <span class="input-suffix">
+                Seats
+              </span>
+
+            </div>
+
+            <div class="input-note">
+              Keyboard input is enabled.
+            </div>
+
+          </div>
+
+
+
+          <!-- ===================================================
+               CHOICE 4 — MILEAGE
+               =================================================== -->
+
+          <div class="choice">
+
+            <div class="choice-label">
+
+              <span class="choice-number">
+                4
+              </span>
+
+              Mileage
+
+            </div>
+
+            <div class="choice-help">
+              Choose the minimum mileage you would prefer.
+            </div>
+
+            <select id="mileage">
+
+              <option value="">
+                Select mileage
+              </option>
+
+              <option value="any">
+                Any mileage
+              </option>
+
+              <option value="12">
+                12 km/l or more
+              </option>
+
+              <option value="15">
+                15 km/l or more
+              </option>
+
+              <option value="18">
+                18 km/l or more
+              </option>
+
+              <option value="20">
+                20 km/l or more
+              </option>
+
+              <option value="25">
+                25 km/l or more
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- ===================================================
+               CHOICE 5 — BODY TYPE
+               =================================================== -->
+
+          <div class="choice">
+
+            <div class="choice-label">
+
+              <span class="choice-number">
+                5
+              </span>
+
+              Body Type
+
+            </div>
+
+            <div class="choice-help">
+              Select the type of vehicle you are looking for.
+            </div>
+
+            <select id="bodyType">
+
+              <option value="">
+                Select body type
+              </option>
+
+              <option value="Hatchback">
+                Hatchback
+              </option>
+
+              <option value="Sedan">
+                Sedan
+              </option>
+
+              <option value="SUV">
+                SUV
+              </option>
+
+              <option value="Compact SUV">
+                Compact SUV
+              </option>
+
+              <option value="MPV">
+                MPV
+              </option>
+
+              <option value="MUV">
+                MUV
+              </option>
+
+              <option value="Pickup">
+                Pickup
+              </option>
+
+              <option value="Any">
+                Any
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- ===================================================
+               CHOICE 6 — TRANSMISSION
+               =================================================== -->
+
+          <div class="choice">
+
+            <div class="choice-label">
+
+              <span class="choice-number">
+                6
+              </span>
+
+              Transmission
+
+            </div>
+
+            <div class="choice-help">
+              Select your preferred transmission.
+            </div>
+
+            <select id="transmission">
+
+              <option value="">
+                Select transmission
+              </option>
+
+              <option value="Manual">
+                Manual
+              </option>
+
+              <option value="AMT">
+                AMT
+              </option>
+
+              <option value="Automatic">
+                Automatic
+              </option>
+
+              <option value="CVT">
+                CVT
+              </option>
+
+              <option value="DCT">
+                DCT
+              </option>
+
+              <option value="e-CVT">
+                e-CVT
+              </option>
+
+              <option value="Any">
+                Any
+              </option>
+
+            </select>
+
+          </div>
+
+
+
+          <!-- ===================================================
+               CHOICE 7 — USAGE
+               =================================================== -->
+
+          <div class="choice">
+
+            <div class="choice-label">
+
+              <span class="choice-number">
+                7
+              </span>
+
+              Usage
+
+            </div>
+
+            <div class="choice-help">
+              Tell us whether the car is mainly for personal
+              or commercial use.
+            </div>
+
+            <select id="usage">
+
+              <option value="">
+                Select usage
+              </option>
+
+              <option value="Personal">
+                Personal Use
+              </option>
+
+              <option value="Commercial">
+                Commercial Use
+              </option>
+
+              <option value="Any">
+                Both / Any
+              </option>
+
+            </select>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+             ACTION BUTTON
+             ===================================================== -->
+
+        <div class="finder-actions">
+
+          <button
+            type="button"
+            class="find-button"
+            id="findButton"
+          >
+
+            🔎 Find My Cars
+
+          </button>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+
+    <!-- =======================================================
+         RESULTS
+         ======================================================= -->
+
+    <section
+      class="results-section"
+      id="resultsSection"
+    >
+
+      <div class="results-heading">
+
+        <div>
+
+          <h2>
+            Your Matches
+          </h2>
+
+          <p id="resultsDescription">
+            Complete your preferences above to see matching cars.
+          </p>
+
+        </div>
+
+        <div
+          class="result-count"
+          id="resultCount"
+        >
+          0 cars
+        </div>
+
+      </div>
+
+
+      <div
+        class="results-grid"
+        id="resultsGrid"
+      >
+
+        <div class="empty-state">
+
+          <div class="empty-state-icon">
+            🚘
+          </div>
+
+          <h3>
+            Your car matches will appear here
+          </h3>
+
+          <p>
+            Select your preferences and press
+            <strong>Find My Cars</strong>.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================================================
+       MOBILE BOTTOM NAVIGATION
+       ========================================================= -->
+
+  <nav class="mobile-nav">
+
+    <div class="mobile-nav-inner">
+
+      <a href="index.html">
+
+        <span>⌂</span>
+
+        Home
+
+      </a>
+
+
+      <a
+        href="find-cars.html"
+        class="active"
+      >
+
+        <span>⌕</span>
+
+        Find
+
+      </a>
+
+
+      <a href="all-cars.html">
+
+        <span>🚗</span>
+
+        Cars
+
+      </a>
+
+
+      <a href="compare.html">
+
+        <span>⇄</span>
+
+        Compare
+
+      </a>
+
+
+      <a href="contact.html">
+
+        <span>✉</span>
+
+        Contact
+
+      </a>
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+       FIND CAR MATCHING SYSTEM
+       ========================================================= -->
+
+  <script>
+
+
+    /* =========================================================
+       CAR DATABASE
+       
+       IMPORTANT:
+       This is the PLACEHOLDER DATABASE SECTION.
+
+       When your Excel/PDF database is supplied and converted
+       into the final website database, ONLY THIS SECTION needs
+       to be replaced.
+
+       The page design does NOT need to be changed.
+       ========================================================= */
+
+
+    const cars = [
+
+      {
+        id: "swift",
+        brand: "Maruti Suzuki",
+        name: "Swift",
+        price: 6.49,
+        maxPrice: 9.64,
+        fuel: ["Petrol"],
+        seats: 5,
+        mileage: 25.75,
+        bodyType: "Hatchback",
+        transmission: ["Manual", "AMT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/maruti-swift/swift-exterior-right-front-three-quarter-31.avif"
+      },
+
+
+      {
+        id: "baleno",
+        brand: "Maruti Suzuki",
+        name: "Baleno",
+        price: 5.99,
+        maxPrice: 9.10,
+        fuel: ["Petrol"],
+        seats: 5,
+        mileage: 22.35,
+        bodyType: "Hatchback",
+        transmission: ["Manual", "AMT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/maruti-baleno/baleno.avif"
+      },
+
+
+      {
+        id: "fronx",
+        brand: "Maruti Suzuki",
+        name: "Fronx",
+        price: 7.55,
+        maxPrice: 13.06,
+        fuel: ["Petrol", "CNG"],
+        seats: 5,
+        mileage: 28.51,
+        bodyType: "Compact SUV",
+        transmission: ["Manual", "AMT", "Automatic"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/maruti-fronx/fronx.avif"
+      },
+
+
+      {
+        id: "wagon-r",
+        brand: "Maruti Suzuki",
+        name: "Wagon R",
+        price: 5.79,
+        maxPrice: 8.79,
+        fuel: ["Petrol", "CNG"],
+        seats: 5,
+        mileage: 34.05,
+        bodyType: "Hatchback",
+        transmission: ["Manual", "AMT"],
+        usage: ["Personal", "Commercial"],
+
+        image:
+          "images/cars/maruti-wagon-r/wagon-r.avif"
+      },
+
+
+      {
+        id: "punch",
+        brand: "Tata",
+        name: "Punch",
+        price: 6.13,
+        maxPrice: 10.15,
+        fuel: ["Petrol", "CNG"],
+        seats: 5,
+        mileage: 26.99,
+        bodyType: "SUV",
+        transmission: ["Manual", "AMT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/tata-punch/punch.avif"
+      },
+
+
+      {
+        id: "nexon",
+        brand: "Tata",
+        name: "Nexon",
+        price: 8.00,
+        maxPrice: 15.60,
+        fuel: ["Petrol", "Diesel", "CNG"],
+        seats: 5,
+        mileage: 24.08,
+        bodyType: "Compact SUV",
+        transmission: ["Manual", "AMT", "DCT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/tata-nexon/nexon.avif"
+      },
+
+
+      {
+        id: "tiago",
+        brand: "Tata",
+        name: "Tiago",
+        price: 5.00,
+        maxPrice: 8.75,
+        fuel: ["Petrol", "CNG"],
+        seats: 5,
+        mileage: 26.49,
+        bodyType: "Hatchback",
+        transmission: ["Manual", "AMT"],
+        usage: ["Personal", "Commercial"],
+
+        image:
+          "images/cars/tata-tiago/tiago.avif"
+      },
+
+
+      {
+        id: "i20",
+        brand: "Hyundai",
+        name: "i20",
+        price: 7.04,
+        maxPrice: 11.21,
+        fuel: ["Petrol"],
+        seats: 5,
+        mileage: 20.35,
+        bodyType: "Hatchback",
+        transmission: ["Manual", "AMT", "CVT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/hyundai-i20/i20.avif"
+      },
+
+
+      {
+        id: "exter",
+        brand: "Hyundai",
+        name: "Exter",
+        price: 5.68,
+        maxPrice: 9.42,
+        fuel: ["Petrol", "CNG"],
+        seats: 5,
+        mileage: 27.10,
+        bodyType: "Compact SUV",
+        transmission: ["Manual", "AMT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/hyundai-exter/exter.avif"
+      },
+
+
+      {
+        id: "venue",
+        brand: "Hyundai",
+        name: "Venue",
+        price: 7.89,
+        maxPrice: 13.62,
+        fuel: ["Petrol", "Diesel"],
+        seats: 5,
+        mileage: 24.20,
+        bodyType: "Compact SUV",
+        transmission: ["Manual", "AMT", "DCT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/hyundai-venue/venue.avif"
+      },
+
+
+      {
+        id: "sonet",
+        brand: "Kia",
+        name: "Sonet",
+        price: 7.99,
+        maxPrice: 15.69,
+        fuel: ["Petrol", "Diesel"],
+        seats: 5,
+        mileage: 22.30,
+        bodyType: "Compact SUV",
+        transmission: ["Manual", "AMT", "Automatic", "DCT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/kia-sonet/sonet.avif"
+      },
+
+
+      {
+        id: "brezza",
+        brand: "Maruti Suzuki",
+        name: "Brezza",
+        price: 8.69,
+        maxPrice: 14.14,
+        fuel: ["Petrol", "CNG"],
+        seats: 5,
+        mileage: 25.51,
+        bodyType: "SUV",
+        transmission: ["Manual", "Automatic"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/maruti-brezza/brezza.avif"
+      },
+
+
+      {
+        id: "creta",
+        brand: "Hyundai",
+        name: "Creta",
+        price: 11.11,
+        maxPrice: 20.50,
+        fuel: ["Petrol", "Diesel"],
+        seats: 5,
+        mileage: 21.80,
+        bodyType: "SUV",
+        transmission: ["Manual", "Automatic", "DCT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/hyundai-creta/creta.avif"
+      },
+
+
+      {
+        id: "ertiga",
+        brand: "Maruti Suzuki",
+        name: "Ertiga",
+        price: 8.80,
+        maxPrice: 13.10,
+        fuel: ["Petrol", "CNG"],
+        seats: 7,
+        mileage: 26.11,
+        bodyType: "MPV",
+        transmission: ["Manual", "Automatic"],
+        usage: ["Personal", "Commercial"],
+
+        image:
+          "images/cars/maruti-ertiga/ertiga.avif"
+      },
+
+
+      {
+        id: "innova-hycross",
+        brand: "Toyota",
+        name: "Innova Hycross",
+        price: 19.94,
+        maxPrice: 31.34,
+        fuel: ["Petrol", "Hybrid"],
+        seats: 7,
+        mileage: 23.24,
+        bodyType: "MPV",
+        transmission: ["Automatic", "e-CVT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/toyota-innova-hycross/innova-hycross.avif"
+      },
+
+
+      {
+        id: "hyryder",
+        brand: "Toyota",
+        name: "Urban Cruiser Hyryder",
+        price: 11.34,
+        maxPrice: 20.19,
+        fuel: ["Petrol", "CNG", "Hybrid"],
+        seats: 5,
+        mileage: 27.97,
+        bodyType: "SUV",
+        transmission: ["Manual", "Automatic", "e-CVT"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/toyota-hyryder/hyryder.avif"
+      },
+
+
+      {
+        id: "xuv-3xo",
+        brand: "Mahindra",
+        name: "XUV 3XO",
+        price: 7.99,
+        maxPrice: 15.56,
+        fuel: ["Petrol", "Diesel"],
+        seats: 5,
+        mileage: 20.10,
+        bodyType: "Compact SUV",
+        transmission: ["Manual", "AMT", "Automatic"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/mahindra-xuv-3xo/xuv-3xo.avif"
+      },
+
+
+      {
+        id: "scorpio",
+        brand: "Mahindra",
+        name: "Scorpio",
+        price: 13.59,
+        maxPrice: 17.35,
+        fuel: ["Diesel"],
+        seats: 7,
+        mileage: 15.40,
+        bodyType: "SUV",
+        transmission: ["Manual"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/mahindra-scorpio/scorpio.avif"
+      },
+
+
+      {
+        id: "punch-ev",
+        brand: "Tata",
+        name: "Punch EV",
+        price: 9.99,
+        maxPrice: 14.44,
+        fuel: ["Electric"],
+        seats: 5,
+        mileage: 0,
+        bodyType: "Compact SUV",
+        transmission: ["Automatic"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/tata-punch-ev/punch-ev.avif"
+      },
+
+
+      {
+        id: "comet-ev",
+        brand: "MG",
+        name: "Comet EV",
+        price: 7.00,
+        maxPrice: 9.40,
+        fuel: ["Electric"],
+        seats: 4,
+        mileage: 0,
+        bodyType: "Hatchback",
+        transmission: ["Automatic"],
+        usage: ["Personal"],
+
+        image:
+          "images/cars/mg-comet/comet-ev.avif"
+      }
+
+
+    ];
+
+
+
+    /* =========================================================
+       DOM REFERENCES
+       ========================================================= */
+
+    const budgetInput =
+      document.getElementById("budget");
+
+    const fuelSelect =
+      document.getElementById("fuel");
+
+    const seatsInput =
+      document.getElementById("seats");
+
+    const mileageSelect =
+      document.getElementById("mileage");
+
+    const bodyTypeSelect =
+      document.getElementById("bodyType");
+
+    const transmissionSelect =
+      document.getElementById("transmission");
+
+    const usageSelect =
+      document.getElementById("usage");
+
+    const findButton =
+      document.getElementById("findButton");
+
+    const choiceCount =
+      document.getElementById("choiceCount");
+
+    const resultsGrid =
+      document.getElementById("resultsGrid");
+
+    const resultCount =
+      document.getElementById("resultCount");
+
+    const resultsDescription =
+      document.getElementById("resultsDescription");
+
+
+
+    /* =========================================================
+       COUNT SELECTED CHOICES
+       ========================================================= */
+
+    function updateChoiceCount() {
+
+      let count = 0;
+
+      if (
+        budgetInput.value !== ""
+      ) {
+        count++;
+      }
+
+      if (
+        fuelSelect.value !== ""
+      ) {
+        count++;
+      }
+
+      if (
+        seatsInput.value !== ""
+      ) {
+        count++;
+      }
+
+      if (
+        mileageSelect.value !== ""
+      ) {
+        count++;
+      }
+
+      if (
+        bodyTypeSelect.value !== ""
+      ) {
+        count++;
+      }
+
+      if (
+        transmissionSelect.value !== ""
+      ) {
+        count++;
+      }
+
+      if (
+        usageSelect.value !== ""
+      ) {
+        count++;
+      }
+
+      choiceCount.textContent =
+        `${count} / 7 selected`;
+    }
+
+
+
+    /* =========================================================
+       LISTEN FOR INPUT CHANGES
+       ========================================================= */
+
+    [
+      budgetInput,
+      fuelSelect,
+      seatsInput,
+      mileageSelect,
+      bodyTypeSelect,
+      transmissionSelect,
+      usageSelect
+
+    ].forEach(
+      element => {
+
+        element.addEventListener(
+          "input",
+          updateChoiceCount
+        );
+
+        element.addEventListener(
+          "change",
+          updateChoiceCount
+        );
+
+      }
+    );
+
+
+
+    /* =========================================================
+       NORMALISE VALUE
+       ========================================================= */
+
+    function normalise(value) {
+
+      return String(value)
+        .trim()
+        .toLowerCase();
+
+    }
+
+
+
+    /* =========================================================
+       CHECK "ANY"
+       ========================================================= */
+
+    function isAny(value) {
+
+      return (
+        value === "" ||
+        normalise(value) === "any"
+      );
+
+    }
+
+
+
+    /* =========================================================
+       CAR MATCHING
+       
+       IMPORTANT:
+       This uses ALL selected filters.
+
+       A car is only considered a direct match when it satisfies
+       the user's requirements.
+
+       Budget is treated as maximum budget.
+       Seats are treated as minimum required seats.
+       Mileage is treated as minimum preferred mileage.
+       ========================================================= */
+
+    function getMatches() {
+
+      const budget =
+        parseFloat(
+          budgetInput.value
+        );
+
+      const fuel =
+        fuelSelect.value;
+
+      const seats =
+        parseInt(
+          seatsInput.value,
+          10
+        );
+
+      const mileage =
+        mileageSelect.value;
+
+      const bodyType =
+        bodyTypeSelect.value;
+
+      const transmission =
+        transmissionSelect.value;
+
+      const usage =
+        usageSelect.value;
+
+
+      return cars.filter(car => {
+
+
+        /* -----------------------------------------------
+           BUDGET
+           ----------------------------------------------- */
+
+        if (
+          Number.isFinite(budget)
+        ) {
+
+          if (
+            car.price > budget
+          ) {
+            return false;
+          }
+
+        }
+
+
+        /* -----------------------------------------------
+           FUEL
+           ----------------------------------------------- */
+
+        if (
+          !isAny(fuel)
+        ) {
+
+          if (
+            !car.fuel
+              .map(normalise)
+              .includes(
+                normalise(fuel)
+              )
+          ) {
+            return false;
+          }
+
+        }
+
+
+        /* -----------------------------------------------
+           SEATS
+           ----------------------------------------------- */
+
+        if (
+          Number.isInteger(seats)
+        ) {
+
+          if (
+            car.seats < seats
+          ) {
+            return false;
+          }
+
+        }
+
+
+        /* -----------------------------------------------
+           MILEAGE
+           ----------------------------------------------- */
+
+        if (
+          mileage !== "" &&
+          mileage !== "any"
+        ) {
+
+          const minimumMileage =
+            parseFloat(mileage);
+
+          /*
+           Electric cars do not have km/l mileage.
+           They are therefore not removed merely because
+           the user chooses a mileage requirement.
+          */
+
+          if (
+            car.fuel.includes("Electric")
+          ) {
+
+            return false;
+
+          }
+
+          if (
+            car.mileage < minimumMileage
+          ) {
+
+            return false;
+
+          }
+
+        }
+
+
+        /* -----------------------------------------------
+           BODY TYPE
+           ----------------------------------------------- */
+
+        if (
+          !isAny(bodyType)
+        ) {
+
+          if (
+            normalise(
+              car.bodyType
+            ) !== normalise(
+              bodyType
+            )
+          ) {
+
+            return false;
+
+          }
+
+        }
+
+
+        /* -----------------------------------------------
+           TRANSMISSION
+           ----------------------------------------------- */
+
+        if (
+          !isAny(transmission)
+        ) {
+
+          if (
+            !car.transmission
+              .map(normalise)
+              .includes(
+                normalise(transmission)
+              )
+          ) {
+
+            return false;
+
+          }
+
+        }
+
+
+        /* -----------------------------------------------
+           USAGE
+           ----------------------------------------------- */
+
+        if (
+          !isAny(usage)
+        ) {
+
+          if (
+            !car.usage
+              .map(normalise)
+              .includes(
+                normalise(usage)
+              )
+          ) {
+
+            return false;
+
+          }
+
+        }
+
+
+        return true;
+
+      });
+
+    }
+
+
+
+    /* =========================================================
+       FORMAT PRICE
+       ========================================================= */
+
+    function formatPrice(value) {
+
+      return `₹${value.toFixed(2)} Lakh*`;
+
+    }
+
+
+
+    /* =========================================================
+       CREATE CAR CARD
+       ========================================================= */
+
+    function createCarCard(car) {
+
+      const article =
+        document.createElement("article");
+
+      article.className =
+        "car-card";
+
+
+      const imageHTML =
+        car.image
+
+          ? `
+            <img
+              src="${car.image}"
+              alt="${car.brand} ${car.name}"
+              loading="lazy"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+
+            <div
+              class="image-placeholder"
+              style="display:none;"
+            >
+
+              <div class="image-placeholder-icon">
+                🚗
+              </div>
+
+              <strong>
+                ${car.name}
+              </strong>
+
+              <small>
+                Add your car image here
+              </small>
+
+            </div>
+          `
+
+          : `
+
+            <div class="image-placeholder">
+
+              <div class="image-placeholder-icon">
+                🚗
+              </div>
+
+              <strong>
+                ${car.name}
+              </strong>
+
+              <small>
+                Image location can be added later
+              </small>
+
+            </div>
+
+          `;
+
+
+      article.innerHTML = `
+
+        <div class="car-image">
+
+          ${imageHTML}
+
+        </div>
+
+
+        <div class="car-content">
+
+          <div class="brand-label">
+            ${car.brand}
+          </div>
+
+          <h3 class="car-name">
+            ${car.name}
+          </h3>
+
+          <div class="car-price">
+            Starting from ${formatPrice(car.price)}
+          </div>
+
+
+          <div class="car-specs">
+
+            <div class="spec">
+              Fuel
+              <strong>
+                ${car.fuel.join(" / ")}
+              </strong>
+            </div>
+
+            <div class="spec">
+              Seats
+              <strong>
+                ${car.seats}
+              </strong>
+            </div>
+
+            <div class="spec">
+              Body
+              <strong>
+                ${car.bodyType}
+              </strong>
+            </div>
+
+            <div class="spec">
+              Transmission
+              <strong>
+                ${car.transmission.join(" / ")}
+              </strong>
+            </div>
+
+          </div>
+
+
+          <button
+            class="view-car-button"
+            type="button"
+            data-car-id="${car.id}"
+          >
+            View Complete Car Details →
+          </button>
+
+        </div>
+
+      `;
+
+
+      const button =
+        article.querySelector(
+          ".view-car-button"
+        );
+
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          /*
+           * Each car opens on its own page.
+           *
+           * car-details.html will read the ID from the URL
+           * and display the complete database information.
+           */
+
+          window.location.href =
+            `car-details.html?id=${encodeURIComponent(car.id)}`;
+
+        }
+      );
+
+
+      return article;
+
+    }
+
+
+
+    /* =========================================================
+       DISPLAY RESULTS
+       ========================================================= */
+
+    function displayResults(
+      matchedCars
+    ) {
+
+      resultsGrid.innerHTML = "";
+
+
+      if (
+        matchedCars.length === 0
+      ) {
+
+        resultCount.textContent =
+          "0 cars";
+
+        resultsDescription.textContent =
+          "No car exactly matches all your selected requirements.";
+
+
+        const empty =
+          document.createElement("div");
+
+        empty.className =
+          "empty-state";
+
+        empty.innerHTML = `
+
+          <div class="empty-state-icon">
+            🔍
+          </div>
+
+          <h3>
+            No exact matches found
+          </h3>
+
+          <p>
+            Try increasing your budget,
+            choosing "Any" for one preference,
+            or reducing the minimum mileage requirement.
+          </p>
+
+        `;
+
+        resultsGrid.appendChild(
+          empty
+        );
+
+        return;
+
+      }
+
+
+      resultCount.textContent =
+        `${matchedCars.length} ${
+          matchedCars.length === 1
+            ? "car"
+            : "cars"
+        }`;
+
+
+      resultsDescription.textContent =
+        "These cars match the preferences you entered.";
+
+
+      matchedCars.forEach(
+        car => {
+
+          resultsGrid.appendChild(
+            createCarCard(car)
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================================================
+       FIND BUTTON
+       ========================================================= */
+
+    findButton.addEventListener(
+      "click",
+      () => {
+
+        const matches =
+          getMatches();
+
+
+        displayResults(
+          matches
+        );
+
+
+        document
+          .getElementById(
+            "resultsSection"
+          )
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+
+      }
+    );
+
+
+
+    /* =========================================================
+       INITIAL STATE
+       ========================================================= */
+
+    updateChoiceCount();
+
+
+  </script>
+
+
+</body>
+</html>
