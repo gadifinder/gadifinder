@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Find Cars | Gadi Finder
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body data-page="find">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="site-header">
+
+        <div class="container navbar">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                <span>Gadi</span> Finder
+            </a>
+
+
+            <nav class="desktop-nav">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="find-cars.html">
+                    Find Cars
+                </a>
+
+                <a href="all-cars.html">
+                    All Cars
+                </a>
+
+                <a href="compare.html">
+                    Compare
+                </a>
+
+                <a href="promote.html">
+                    Promote
+                </a>
+
+                <a href="insurance.html">
+                    Insurance
+                </a>
+
+                <a href="finance.html">
+                    EMI &amp; Finance
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MOBILE NAVIGATION
+         ===================================================== -->
+
+    <nav class="mobile-nav">
+
+        <a href="index.html">
+            <span class="icon">⌂</span>
+            Home
+        </a>
+
+        <a href="find-cars.html">
+            <span class="icon">⌕</span>
+            Find
+        </a>
+
+        <a href="all-cars.html">
+            <span class="icon">▦</span>
+            Cars
+        </a>
+
+        <a href="compare.html">
+            <span class="icon">⇄</span>
+            Compare
+        </a>
+
+        <a href="promote.html">
+            <span class="icon">★</span>
+            Promote
+        </a>
+
+        <a href="insurance.html">
+            <span class="icon">◈</span>
+            Insurance
+        </a>
+
+        <a href="finance.html">
+            <span class="icon">₹</span>
+            Finance
+        </a>
+
+        <a href="contact.html">
+            <span class="icon">✉</span>
+            Contact
+        </a>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         PAGE HEADER
+         ===================================================== -->
+
+    <main>
+
+        <section class="page-hero">
+
+            <div class="container">
+
+                <h1>
+                    Find Cars
+                </h1>
+
+                <p>
+                    Choose your preferences and
+                    GadiFinder will filter the catalogue
+                    before showing matching cars.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FIND CAR FILTER
+             ===================================================== -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="panel">
+
+                    <form id="findForm">
+
+
+                        <div class="filter-grid">
+
+
+                            <!-- BUDGET -->
+
+                            <div class="field">
+
+                                <label>
+                                    Maximum Budget
+                                </label>
+
+                                <select name="budget">
+
+                                    <option value="">
+                                        Any budget
+                                    </option>
+
+                                    <option value="300000">
+                                        ₹3 Lakh
+                                    </option>
+
+                                    <option value="400000">
+                                        ₹4 Lakh
+                                    </option>
+
+                                    <option value="500000">
+                                        ₹5 Lakh
+                                    </option>
+
+                                    <option value="600000">
+                                        ₹6 Lakh
+                                    </option>
+
+                                    <option value="700000">
+                                        ₹7 Lakh
+                                    </option>
+
+                                    <option value="800000">
+                                        ₹8 Lakh
+                                    </option>
+
+                                    <option value="1000000">
+                                        ₹10 Lakh
+                                    </option>
+
+                                    <option value="1200000">
+                                        ₹12 Lakh
+                                    </option>
+
+                                    <option value="1500000">
+                                        ₹15 Lakh
+                                    </option>
+
+                                    <option value="2000000">
+                                        ₹20 Lakh
+                                    </option>
+
+                                    <option value="3000000">
+                                        ₹30 Lakh
+                                    </option>
+
+                                    <option value="5000000">
+                                        ₹50 Lakh
+                                    </option>
+
+                                    <option value="10000000">
+                                        ₹1 Crore
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- BRAND -->
+
+                            <div class="field">
+
+                                <label>
+                                    Brand
+                                </label>
+
+                                <select
+                                    id="filterBrand"
+                                    name="brand"
+                                >
+
+                                    <option value="">
+                                        Any brand
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- MODEL -->
+
+                            <div class="field">
+
+                                <label>
+                                    Model
+                                </label>
+
+                                <select
+                                    id="filterModel"
+                                    name="model"
+                                >
+
+                                    <option value="">
+                                        Any model
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- BODY -->
+
+                            <div class="field">
+
+                                <label>
+                                    Body Type
+                                </label>
+
+                                <select name="body">
+
+                                    <option value="">
+                                        Any body type
+                                    </option>
+
+                                    <option value="SUV">
+                                        SUV
+                                    </option>
+
+                                    <option value="Hatchback">
+                                        Hatchback
+                                    </option>
+
+                                    <option value="Sedan">
+                                        Sedan
+                                    </option>
+
+                                    <option value="MPV">
+                                        MPV
+                                    </option>
+
+                                    <option value="Pickup">
+                                        Pickup
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- TRANSMISSION -->
+
+                            <div class="field">
+
+                                <label>
+                                    Transmission
+                                </label>
+
+                                <select name="transmission">
+
+                                    <option value="">
+                                        Any transmission
+                                    </option>
+
+                                    <option>
+                                        Manual
+                                    </option>
+
+                                    <option>
+                                        Automatic
+                                    </option>
+
+                                    <option>
+                                        AMT
+                                    </option>
+
+                                    <option>
+                                        CVT
+                                    </option>
+
+                                    <option>
+                                        DCT
+                                    </option>
+
+                                    <option>
+                                        Torque Converter
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- FUEL -->
+
+                            <div class="field">
+
+                                <label>
+                                    Fuel
+                                </label>
+
+                                <select name="fuel">
+
+                                    <option value="">
+                                        Any fuel
+                                    </option>
+
+                                    <option>
+                                        Petrol
+                                    </option>
+
+                                    <option>
+                                        Diesel
+                                    </option>
+
+                                    <option>
+                                        CNG
+                                    </option>
+
+                                    <option>
+                                        Electric
+                                    </option>
+
+                                    <option>
+                                        Hybrid
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <!-- SEATS -->
+
+                            <div class="field">
+
+                                <label>
+                                    Seats
+                                </label>
+
+                                <select name="seats">
+
+                                    <option value="">
+                                        Any seats
+                                    </option>
+
+                                    <option>
+                                        2
+                                    </option>
+
+                                    <option>
+                                        4
+                                    </option>
+
+                                    <option>
+                                        5
+                                    </option>
+
+                                    <option>
+                                        6
+                                    </option>
+
+                                    <option>
+                                        7
+                                    </option>
+
+                                    <option>
+                                        8
+                                    </option>
+
+                                    <option>
+                                        9
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <!-- BUTTONS -->
+
+                        <div class="filter-actions">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                            >
+                                Find My Cars →
+                            </button>
+
+
+                            <button
+                                type="button"
+                                id="resetFind"
+                                class="btn btn-outline"
+                            >
+                                Reset
+                            </button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+            <div>
+
+                <h3>
+                    Gadi Finder
+                </h3>
+
+                <p>
+                    India's smart car discovery experience.
+                </p>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Explore
+                </h3>
+
+                <a href="find-cars.html">
+                    Find Cars
+                </a>
+
+                <a href="all-cars.html">
+                    All Cars
+                </a>
+
+                <a href="compare.html">
+                    Compare
+                </a>
+
+            </div>
+
+            <div>
+
+                <h3>
+                    Business
+                </h3>
+
+                <a href="promote.html">
+                    Promote
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="js/data.js"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
